@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    urlProcesos: 'http://app-moviewp.ofs6ea9lw6-e9249nx8d6kr.p.runcloud.link/'
+    urlProcesos: 'https://api.pelisflix.com/'
   },
   mutations: {
     scrollToTop() {
