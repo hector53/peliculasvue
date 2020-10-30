@@ -30,7 +30,7 @@
             <div class="featured-segment">
                 <div class="flex flex-row">
                     <div class="flex flex-column">
-                        <h2 class="segment-title">Series 22222</h2>
+                        <h2 class="segment-title">Series Test</h2>
                         <SeriesHomeFeatured />
                     </div>
                   <MovieHomeFeatured />                 
