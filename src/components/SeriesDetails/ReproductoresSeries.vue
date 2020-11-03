@@ -5,6 +5,17 @@
         <a class="ui pointing item " href="#" :class="{'active': SubtituladaDoblada == true}" @click.prevent="ShowPlayers(1)">Subtitulada</a>
         <a class="ui pointing  item" href="#"  :class="{'active': SubtituladaDoblada == false}" @click.prevent="ShowPlayers(2)" >Doblada</a>
         <a class="item desktop-only" id="sinemaModu" style="color:#fff;">Modo Cine</a>
+        <a href="dizi/all-creatures-great-and-small/sezon-1/bolum-4"   class="item navigate navigate-prev right">
+			<svg class="mofycon">
+				<use xlink:href="#icon-arrow-left"></use>
+			</svg>
+			Capítulo Anterior</a>
+
+            <a href="dizi/all-creatures-great-and-small/sezon-1/bolum-6"  class="item navigate navigate-next ">
+			Capítulo Siguiente		<svg class="mofycon">
+				<use xlink:href="#icon-arrow-right"></use>
+			</svg>
+		</a>
     </div>
 
 
@@ -56,7 +67,7 @@
 import {mapState} from 'vuex'
 
 export default {
-  name: 'ReproductoresMovies',
+  name: 'ReproductoresSeries',
      props: {
         movieID:{
             type: String, 
@@ -79,7 +90,10 @@ export default {
     },
     methods: {
          async GetPlayersSubtitulados(){
-            await fetch(this.urlProcesos+'wp-json/peliculas/detalle_slug/post/?id='+this.movieID+'&subtitulada=1')
+            await fetch(this.urlProcesos +
+          "wp-json/series/detalle_slug_capitulo/post/?id=" +
+          this.movieID + "&temporada=" + this.$route.params.id_temp + 
+          "&capitulo=" + this.$route.params.id_cap + "&subtitulada=1")
                     .then((r) => r.json())
                     .then((res) => {
                  //       console.log(res);
@@ -92,7 +106,10 @@ export default {
            }, 
 
             async GetPlayersDobladas(){
-            await fetch(this.urlProcesos+'wp-json/peliculas/detalle_slug/post/?id='+this.movieID+'&subtitulada=2')
+            await fetch(this.urlProcesos +
+          "wp-json/series/detalle_slug_capitulo/post/?id=" +
+          this.movieID + "&temporada=" + this.$route.params.id_temp + 
+          "&capitulo=" + this.$route.params.id_cap + "&subtitulada=2")
                     .then((r) => r.json())
                     .then((res) => {
                       //  console.log(res);

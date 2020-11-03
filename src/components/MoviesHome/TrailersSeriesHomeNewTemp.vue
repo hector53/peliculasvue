@@ -42,7 +42,7 @@ export default {
            await fetch(this.urlProcesos+'wp-json/series/home_trailers/post')
                     .then((r) => r.json())
                     .then((res) => {
-                        console.log(res);
+                   //     console.log(res);
                         this.TrailersSeriesHomeNewTemp = res[0].SeriesHomeTrailers;
                     }
                     );

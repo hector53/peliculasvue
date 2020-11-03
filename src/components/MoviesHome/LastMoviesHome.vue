@@ -63,7 +63,7 @@ export default {
            await fetch(this.urlProcesos+'wp-json/peliculas/home_destacadas2/post')
                     .then((r) => r.json())
                     .then((res) => {
-                        console.log(res)
+                      //  console.log(res)
                         this.LastMoviesA = res[0].PeliculasDestacadas2;
                     }
                     );
