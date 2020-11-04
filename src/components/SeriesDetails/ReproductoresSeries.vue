@@ -5,17 +5,22 @@
         <a class="ui pointing item " href="#" :class="{'active': SubtituladaDoblada == true}" @click.prevent="ShowPlayers(1)">Subtitulada</a>
         <a class="ui pointing  item" href="#"  :class="{'active': SubtituladaDoblada == false}" @click.prevent="ShowPlayers(2)" >Doblada</a>
         <a class="item desktop-only" id="sinemaModu" style="color:#fff;">Modo Cine</a>
-        <a href="dizi/all-creatures-great-and-small/sezon-1/bolum-4"   class="item navigate navigate-prev right">
+        
+       <router-link  @click.native="$store.commit('scrollToTop')" class="item navigate navigate-prev right" :class="{'disabled': temporada_anterior == 0}"
+        :to="{ name: 'detalleSeriesTemporadasCapitulos', 
+        params: {slug: $route.params.slug, id_temp: temporada_anterior, id_cap: capitulo_anterior } }">
 			<svg class="mofycon">
 				<use xlink:href="#icon-arrow-left"></use>
 			</svg>
-			Capítulo Anterior</a>
+			Capítulo Anterior</router-link>
 
-            <a href="dizi/all-creatures-great-and-small/sezon-1/bolum-6"  class="item navigate navigate-next ">
-			Capítulo Siguiente		<svg class="mofycon">
+<router-link @click.native="$store.commit('scrollToTop')" class="item navigate navigate-next" :class="{'disabled': temporada_siguiente == 0}"
+        :to="{ name: 'detalleSeriesTemporadasCapitulos', 
+        params: {slug: $route.params.slug, id_temp: temporada_siguiente, id_cap: capitulo_siguiente } }">
+           	Capítulo Siguiente		<svg class="mofycon">
 				<use xlink:href="#icon-arrow-right"></use>
 			</svg>
-		</a>
+</router-link>
     </div>
 
 
@@ -71,6 +76,22 @@ export default {
      props: {
         movieID:{
             type: String, 
+            required: true,
+        },
+        temporada_anterior:{
+            type: Number, 
+            required: true,
+        },
+        capitulo_anterior:{
+            type: Number, 
+            required: true,
+        },
+        temporada_siguiente:{
+            type: Number, 
+            required: true,
+        },
+        capitulo_siguiente:{
+            type: Number, 
             required: true,
         },
     },

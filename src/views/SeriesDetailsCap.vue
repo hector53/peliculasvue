@@ -69,274 +69,193 @@
 		</div>
 			</div>
 
-        <ReproductoresSeries :movieID="movie.id"  />
+        <ReproductoresSeries :movieID="movie.id" :temporada_anterior="movie.temporada_anterior"
+        :capitulo_anterior="movie.capitulo_anterior" :temporada_siguiente="movie.temporada_siguiente"
+        :capitulo_siguiente="movie.capitulo_siguiente"
+          />
 
 
 
-        <br />
-
-        <div class="light-off"></div>
-
-        <div class="mobile-only mb-lg"></div>
-
-        <div data-gets="" data-type="va"></div>
-
-        <div class="player-seasons">
-          <!-- Slider main container -->
-          <div
-            class="swiper-container swiper-container-horizontal swiper-container-free-mode"
-            id="season-episode-silder"
-          >
-            <div class="season-info">
-              <ul>
-                <li>Sezon</li>
-                <li data-season="1" data-index="0" class="active">1</li>
-              </ul>
-              <div
-                class="ui slider checkbox fnc_addWatch season_1"
-                data-episode="38466"
-                onlyusers=""
-              >
-                <input
-                  type="checkbox"
-                  name="example"
-                  id="episode-5"
-                  disabled=""
-                  tabindex="0"
-                  class="hidden"
-                />
-                <label for="episode-5">
-                  <div class="ui red horizontal label">izledim</div></label
-                >
-              </div>
-            </div>
-            <div
-              class="swiper-wrapper"
-              style="
-                transition-duration: 0ms;
-                transform: translate3d(-3px, 0px, 0px);
-              "
-            >
-              <div
-                class="swiper-slide ss-episode season_start swiper-slide-active"
-                data-season="1"
-                data-episode="1"
-                data-status="season_start"
-                data-index="0"
-              >
-                <div class="episode-container">
-                  <div
-                    class="ui checkbox ordi episode-no fnc_addWatch season_1"
-                    data-episode="38045"
-                    onlyusers=""
-                  >
-                    <input
-                      type="checkbox"
-                      name="example"
-                      id="episode-38045"
-                      disabled=""
-                      tabindex="0"
-                      class="hidden"
-                    />
-                    <label for="episode-38045"></label>
-                  </div>
-                  <a
-                    href="dizi/all-creatures-great-and-small/sezon-1/bolum-1"
-                    class="episode-link"
-                    data-navigo=""
-                  >
-                    <h3>Bölüm 1</h3>
-                    <small class="truncate">You've Got to Dream</small>
-                    <date datetime="2020-09-12">12 Eylül 2020</date>
-                  </a>
+          <br />
+  <div class="player-seasons" > 
+    <div v-swiper="swiperOptions">
+    <div class="season-info">
+          <ul>
+            <li>Temporada</li>
+                      <li  class="active">1</li>
+                      <li class="">2</li>
+                    </ul>
+            
                 </div>
-              </div>
-              <div
-                class="swiper-slide ss-episode season_regular swiper-slide-next"
-                data-season="1"
-                data-episode="2"
-                data-status="season_regular"
-                data-index="1"
-              >
-                <div class="episode-container">
-                  <div
-                    class="ui checkbox ordi episode-no fnc_addWatch season_1"
-                    data-episode="38046"
-                    onlyusers=""
-                  >
-                    <input
-                      type="checkbox"
-                      name="example"
-                      id="episode-38046"
-                      disabled=""
-                      tabindex="0"
-                      class="hidden"
-                    />
-                    <label for="episode-38046"></label>
-                  </div>
-                  <a
-                    href="dizi/all-creatures-great-and-small/sezon-1/bolum-2"
-                    class="episode-link"
-                    data-navigo=""
-                  >
-                    <h3>Bölüm 2</h3>
-                    <small class="truncate">Another Farnon?</small>
-                    <date datetime="2020-09-12">12 Eylül 2020</date>
-                  </a>
-                </div>
-              </div>
-              <div
-                class="swiper-slide ss-episode season_regular"
-                data-season="1"
-                data-episode="3"
-                data-status="season_regular"
-                data-index="2"
-              >
-                <div class="episode-container">
-                  <div
-                    class="ui checkbox ordi episode-no fnc_addWatch season_1"
-                    data-episode="38047"
-                    onlyusers=""
-                  >
-                    <input
-                      type="checkbox"
-                      name="example"
-                      id="episode-38047"
-                      disabled=""
-                      tabindex="0"
-                      class="hidden"
-                    />
-                    <label for="episode-38047"></label>
-                  </div>
-                  <a
-                    href="dizi/all-creatures-great-and-small/sezon-1/bolum-3"
-                    class="episode-link"
-                    data-navigo=""
-                  >
-                    <h3>Bölüm 3</h3>
-                    <small class="truncate">Andante</small>
-                    <date datetime="2020-09-17">17 Eylül 2020</date>
-                  </a>
-                </div>
-              </div>
-              <div
-                class="swiper-slide ss-episode season_regular"
-                data-season="1"
-                data-episode="4"
-                data-status="season_regular"
-                data-index="3"
-              >
-                <div class="episode-container">
-                  <div
-                    class="ui checkbox ordi episode-no fnc_addWatch season_1"
-                    data-episode="38048"
-                    onlyusers=""
-                  >
-                    <input
-                      type="checkbox"
-                      name="example"
-                      id="episode-38048"
-                      disabled=""
-                      tabindex="0"
-                      class="hidden"
-                    />
-                    <label for="episode-38048"></label>
-                  </div>
-                  <a
-                    href="dizi/all-creatures-great-and-small/sezon-1/bolum-4"
-                    class="episode-link"
-                    data-navigo=""
-                  >
-                    <h3>Bölüm 4</h3>
-                    <small class="truncate">A Tricki Case</small>
-                    <date datetime="2020-09-23">23 Eylül 2020</date>
-                  </a>
-                </div>
-              </div>
-              <div
-                class="swiper-slide ss-episode season_regular active"
-                data-season="1"
-                data-episode="5"
-                data-status="season_regular"
-                data-index="4"
-              >
-                <div class="episode-container">
-                  <div
-                    class="ui checkbox ordi episode-no fnc_addWatch season_1"
-                    data-episode="38466"
-                    onlyusers=""
-                  >
-                    <input
-                      type="checkbox"
-                      name="example"
-                      id="episode-38466"
-                      disabled=""
-                      tabindex="0"
-                      class="hidden"
-                    />
-                    <label for="episode-38466"></label>
-                  </div>
-                  <a
-                    href="dizi/all-creatures-great-and-small/sezon-1/bolum-5"
-                    class="episode-link"
-                    data-navigo=""
-                  >
-                    <h3>Bölüm 5</h3>
-                    <small class="truncate">All's Fair</small>
-                    <date datetime="2020-10-01">01 Ekim 2020</date>
-                  </a>
-                </div>
-              </div>
-              <div
-                class="swiper-slide ss-episode season_finale"
-                data-season="1"
-                data-episode="6"
-                data-status="season_finale"
-                data-index="5"
-              >
-                <div class="episode-container">
-                  <div
-                    class="ui checkbox ordi episode-no fnc_addWatch season_1"
-                    data-episode="38467"
-                    onlyusers=""
-                  >
-                    <input
-                      type="checkbox"
-                      name="example"
-                      id="episode-38467"
-                      disabled=""
-                      tabindex="0"
-                      class="hidden"
-                    />
-                    <label for="episode-38467"></label>
-                  </div>
-                  <a
-                    href="dizi/all-creatures-great-and-small/sezon-1/bolum-6"
-                    class="episode-link"
-                    data-navigo=""
-                  >
-                    <h3>Bölüm 6</h3>
-                    <small class="truncate">A Cure for All Ills</small>
-                    <date datetime="2020-10-07">07 Ekim 2020</date>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <span
-              class="swiper-notification"
-              aria-live="assertive"
-              aria-atomic="true"
-            ></span>
-          </div>
-        </div>
+    <div class="swiper-wrapper">
+     
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
       </div>
-      <div class="bg-cover-bg">
-        <img src="uploads/series/cover/all-creatures-great-and-small.jpg" />
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
       </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+      <div class="swiper-slide" >
+        <div class="episode-container">
+					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
+								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
+								<label for="episode-27117"></label>
+							</div>
+							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
+							<h3>Bölüm 1</h3>
+						        <small class="truncate">Chapter 1: The Mandalorian</small>
+						        <date datetime="2019-11-12">12 Kasım 2019</date>
+							</a>
+				        </div>
+      </div>
+  
+    </div>
+  </div>
+    </div> 
+
+
+        
+      </div>
+  
       <!-- // Common Lists -->
 
-      <div data-gets="" data-type="vaa"></div>
 
       <div class="common-lists">
         <div class="new-content">
@@ -446,16 +365,32 @@
 <script>
 // @ is an alias to /src
 import { mapState } from "vuex";
-import ReproductoresSeries from '@/components/SeriesDetails/ReproductoresSeries.vue'
+import ReproductoresSeries from '@/components/SeriesDetails/ReproductoresSeries.vue'; 
+import { directive } from 'vue-awesome-swiper'
+
+// import style (>= Swiper 6.x)
+
+
 export default {
   name: "SeriesDetailsCap",
   data() {
     return {
       SeriesDetails: [],
       tabTemp: 1,
+      swiperOptions: {
+          slidesPerView: 6,
+          spaceBetween: 0,
+          freeMode: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+          // Some Swiper option/callback...
+        }
     };
   },
   computed: {
+    
     ...mapState(["urlProcesos"]),
     
   },
@@ -493,8 +428,12 @@ export default {
     },
   },
   components: {ReproductoresSeries},
+      directives: {
+    swiper: directive
+  },
   mounted() {
-      this.SeriesGetDetailsCapitulos()
+      this.SeriesGetDetailsCapitulos();
   },
 };
 </script>
+
