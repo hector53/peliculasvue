@@ -77,180 +77,8 @@
 
 
           <br />
-  <div class="player-seasons" > 
-    <div v-swiper="swiperOptions">
-    <div class="season-info">
-          <ul>
-            <li>Temporada</li>
-                      <li  class="active">1</li>
-                      <li class="">2</li>
-                    </ul>
-            
-                </div>
-    <div class="swiper-wrapper">
-     
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-      <div class="swiper-slide" >
-        <div class="episode-container">
-					        <div class="ui checkbox ordi episode-no fnc_addWatch season_1" data-episode="27117" onlyusers="">
-								<input type="checkbox" name="example" id="episode-27117" disabled="" tabindex="0" class="hidden">
-								<label for="episode-27117"></label>
-							</div>
-							<a href="dizi/the-mandalorian-izle-4/sezon-1/bolum-1" class="episode-link" data-navigo="">
-							<h3>Bölüm 1</h3>
-						        <small class="truncate">Chapter 1: The Mandalorian</small>
-						        <date datetime="2019-11-12">12 Kasım 2019</date>
-							</a>
-				        </div>
-      </div>
-  
-    </div>
-  </div>
-    </div> 
-
-
+ 
+<SwiperSliderCaps />
         
       </div>
   
@@ -366,48 +194,36 @@
 // @ is an alias to /src
 import { mapState } from "vuex";
 import ReproductoresSeries from '@/components/SeriesDetails/ReproductoresSeries.vue'; 
-import { directive } from 'vue-awesome-swiper'
-
-// import style (>= Swiper 6.x)
-
+import SwiperSliderCaps from '@/components/SeriesDetails/SwiperSliderCaps.vue'; 
 
 export default {
   name: "SeriesDetailsCap",
+    components: {ReproductoresSeries, SwiperSliderCaps},
   data() {
     return {
       SeriesDetails: [],
       tabTemp: 1,
-      swiperOptions: {
-          slidesPerView: 6,
-          spaceBetween: 0,
-          freeMode: true,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          }
-          // Some Swiper option/callback...
-        }
+      
     };
   },
   computed: {
-    
     ...mapState(["urlProcesos"]),
-    
   },
   methods: {
-    async SeriesGetDetailsCapitulos() {
-      await fetch(
-        this.urlProcesos +
-          "wp-json/series/detalle_slug_capitulo/post/?slug=" +
-          this.$route.params.slug + "&temporada=" + this.$route.params.id_temp + 
-          "&capitulo=" + this.$route.params.id_cap 
-      )
-        .then((r) => r.json())
-        .then((res) => {
-            console.log(res)
-          this.SeriesDetails = res;
-        });
-    },
+   
+      async SeriesGetDetailsCapitulos() {
+        await fetch(
+          this.urlProcesos +
+            "wp-json/series/detalle_slug_capitulo/post/?slug=" +
+            this.$route.params.slug + "&temporada=" + this.$route.params.id_temp + 
+            "&capitulo=" + this.$route.params.id_cap 
+        )
+          .then((r) => r.json())
+          .then((res) => {
+              console.log(res)
+            this.SeriesDetails = res;
+          });
+      },
 
     newTrailerMovie(trailer) {
       //mostrar trailer de youtube
@@ -427,13 +243,14 @@ export default {
       this.tabTemp = index;
     },
   },
-  components: {ReproductoresSeries},
-      directives: {
-    swiper: directive
-  },
+
+   
   mounted() {
       this.SeriesGetDetailsCapitulos();
+     
+     
   },
+  
 };
 </script>
 
