@@ -244,7 +244,7 @@ export default {
                     .then((res) => {
                    //     console.log(res);
                         this.MoviesDetails = res
-              
+              this.$store.state.skeleton = 1
                     }
                     );
            }, 

@@ -7,16 +7,16 @@
 						<section class="guide-menu fluid">
 							<h5 class="section-heading">Menú</h5>
 							<ul class="guide-icon-menu">
-								<li :class="{'active': $route.name == 'Home'}" >
+								<li  :class="{'active': $route.name == 'Home'}" >
 								
-                                        <router-link :to="{name:'Home'}"><span>
+                                        <router-link  @click.native="$store.commit('scrollToTop')"  :to="{name:'Home'}"><span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-home-new"></use>
 											</svg>
                                         </span>Inicio</router-link>  
 								</li>
 								<li :class="{'active': $route.name == 'test'}">
-                                <router-link :to="{name:'test'}"><span>
+                                <router-link  @click.native="$store.commit('scrollToTop')" :to="{name:'test'}"><span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-discover-new"></use>
 											</svg>
@@ -39,22 +39,22 @@
 										</span>Calendario </a>
 								</li>
 								<li>
-									<a href="https://yabancidizi.vip/dizi-izle" data-navigo="">
+									 <router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerSeries'}">
 										<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-tv-new"></use>
 											</svg>
 										</span>Series 
-									</a>
+									</router-link>
 								</li>
 								<li>
-									<a href="https://yabancidizi.vip/film-izle" data-navigo="">
-										<span>
+								<router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerPeliculas'}">
+									<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-film-new"></use>
 											</svg>
 										</span>Películas
-									</a>
+									</router-link>
 								</li>
 								<li>
 									<a href="https://yabancidizi.vip/forum" data-navigo="">
