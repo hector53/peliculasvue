@@ -163,9 +163,16 @@ export default {
 			//son los mismos parametros los q dan clic y los que vienen de arriba por lo tanto no hago nada
 		}else{
 				//son diferentes aqui si hago
+				this.urlTest = {}
 			    this.urlTest.s = tipo; 
 				this.$store.commit('scrollToTop');
 				this.$router.push({  name: 'Descubrir', query: this.urlTest })
+				 this.$store.state.DesYearI = 0
+      this.$store.state.DesYearE = 0
+      this.$store.state.DesImdbI = 0; 
+      this.$store.state.DesImdbE = 0; 
+      this.$store.state.DesGenSerie = "";
+      this.$store.state.DesPais = "";
 			}
 		},
 		buscarYear(){
