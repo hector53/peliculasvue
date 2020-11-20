@@ -6,6 +6,7 @@ import SeriesDetails from '../views/SeriesDetails.vue'
 import SeriesDetailsCap from '../views/SeriesDetailsCap.vue'
 import VerSeries from '../views/VerSeries.vue'
 import VerPeliculas from '../views/VerPeliculas.vue'
+import Descubrir from '../views/Descubrir.vue'
 import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
@@ -24,6 +25,17 @@ const routes = [
     path: '/ver-peliculas/',
     name: 'VerPeliculas',
     component: VerPeliculas
+  },
+  {
+    path: '/descubrir/',
+    name: 'Descubrir',
+    component: Descubrir, 
+    props: true
+  },
+  {
+    path: '/descubrir/:pag',
+    name: 'DescubrirPag',
+    component: Descubrir
   },
   {
     path: '/peliculas/:slug', 

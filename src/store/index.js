@@ -6,7 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     urlProcesos: 'https://api.pelisflix.com/',
-    skeleton:0
+    skeleton:0, 
+    DesYearI: 0, 
+    DesYearE: 2020, 
+    DesImdbI: 0, 
+    DesImdbE: 0, 
+    DesGenSerie: "", 
+    DesPais: "", 
+    s: "serie"
   },
   mutations: {
     scrollToTop() {

@@ -15,8 +15,8 @@
 											</svg>
                                         </span>Inicio</router-link>  
 								</li>
-								<li :class="{'active': $route.name == 'test'}">
-                                <router-link  @click.native="$store.commit('scrollToTop')" :to="{name:'test'}"><span>
+								<li :class="{'active': $route.name == 'Descubrir'}">
+                                <router-link  @click.native="$store.commit('scrollToTop')" :to="{name:'Descubrir'}"><span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-discover-new"></use>
 											</svg>

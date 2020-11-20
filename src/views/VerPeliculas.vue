@@ -2,8 +2,7 @@
 <div>
 	
 <div class="inner-content container" id="page-movies_list">
-		
-					<div data-gets="" data-type="hdr"></div>
+		 
 <div class="ui grid mb-0 desktop-only">	
 	<div class="left floated sixteen wide tablet eleven wide computer column pb-0">
 		<div class="cat-tagsx">
@@ -77,7 +76,6 @@ import PeliculasEditor from '@/components/VerPeliculas/PeliculasEditor.vue'
 import dropdown from 'vue-dropdowns';
 
 
-
 export default {
   name: 'VerPeliculas',
    data (){
@@ -98,7 +96,7 @@ export default {
            {"id":"6", "name":"Agregada ↑"},
      
        ],
-          
+       
 	  
         }
     },
@@ -106,6 +104,7 @@ export default {
         ...mapState(['urlProcesos'])
     },
     methods: {
+   
         methodToRunOnSelect(payload) {
             this.object = payload;
       //      console.log(this.object)
@@ -115,7 +114,7 @@ export default {
           "wp-json/peliculas/ver/post/")
                     .then((r) => r.json())
                     .then((res) => {
-                //      console.log(res)
+                     console.log(res)
                         this.generos = res[0].generos;
                         this.peliculasSlider = res[0].peliculas_slider;
                         this.peliculasEstrenar = res[0].peliculas_estrenar;

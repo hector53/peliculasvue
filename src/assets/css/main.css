@@ -35552,7 +35552,7 @@ scroll-wrapper .next-ep-holder .next-ep-wrapper .title-quaternary {
     display: block;
     width: 100%;
     height: 75px;
-    background: url(~@/assets/img/logoflix.png) center no-repeat;
+   /* background: url(~@/assets/img/logoflix.png) center no-repeat;*/
     background-size: 160px 32px;
     text-indent: -999px
 }
@@ -37481,7 +37481,7 @@ scroll-wrapper .next-ep-holder .next-ep-wrapper .title-quaternary {
     display: block;
     width: 100%;
     height: 50px;
-    background: url(~@/assets/img/logoflix.png) center no-repeat;
+    background: url(~@/assets/img/logo_beta.svg) center no-repeat;
     background-size: 215px 50px;
     text-indent: -99999em
 }
@@ -38543,7 +38543,8 @@ scroll-wrapper .next-ep-holder .next-ep-wrapper .title-quaternary {
     border: 1px solid #1e2029;
     border-radius: 2px;
     cursor: pointer;
-    margin: 15px 0
+    margin: 15px 0; 
+    margin-right: 10px;
 }
 
 #filtered-tags .ui.label .mofycon-delete {
