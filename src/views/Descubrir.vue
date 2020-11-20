@@ -15,8 +15,9 @@
 				<button type="button" id="trigger-filter-sidebar" class="ui primary button">Ordenar</button>
 				<div class="fm-order">
 					   <dropdown class="my-dropdown-toggle"
-                        :options="opcionesDrop" 
-                        :selected="opcionesDrop[5]" 
+                          :options="opcionesDrop" 
+                        :selected="ordenSelected" 
+                         v-on:updateOption="buscarOrdenar" 
                         :placeholder="'Seleccione'"
                         :closeOnOutsideClick="true">
                     </dropdown>
@@ -249,12 +250,7 @@ delete this.urlTest.pais;
           var pais = params.get('pais'); 
           var Order = params.get('Order'); 
           
-           //parametros 
-           console.log(this.urlProcesos +
-          "wp-json/buscador/descubrir/post/?t="+this.tipo
-          +"&yearI="+yearsI+"&yearE="+yearsE+"&imdbI="+imdbI+"&imdbE="+imdbE
-          +"&genS="+genS+"&pais="+pais+"&Order="+Order
-          +"&xPag="+this.registrosxPag+"&ini="+this.ini+"&fin="+this.fin  )
+          
             await fetch(this.urlProcesos +
           "wp-json/buscador/descubrir/post/?t="+this.tipo
           +"&yearI="+yearsI+"&yearE="+yearsE+"&imdbI="+imdbI+"&imdbE="+imdbE

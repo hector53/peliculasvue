@@ -27,6 +27,11 @@ const routes = [
     component: VerPeliculas
   },
   {
+    path: '/ver-peliculas/:pag',
+    name: 'VerPeliculasPag',
+    component: VerPeliculas
+  },
+  {
     path: '/descubrir/',
     name: 'Descubrir',
     component: Descubrir, 

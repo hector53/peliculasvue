@@ -19,7 +19,7 @@ export default new Vuex.Store({
     scrollToTop() {
       window.scrollTo(0,0);
       this.state.skeleton = 0;
-    //  console.log(this.state.skeleton)
+      console.log(this.state.skeleton)
     }, 
    
   },

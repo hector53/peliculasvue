@@ -6,13 +6,13 @@
 <div class="ui grid mb-0 desktop-only">	
 	<div class="left floated sixteen wide tablet eleven wide computer column pb-0">
 		<div class="cat-tagsx">
-		<a v-for="(item, index) in generos" :key="index"
-        href="/kesfet/eyJjb250ZW50IjoiMSIsImNhdGVnb3J5Ijp7IjIiOiIyIn19"
-         target="_blank" class="ui button secondary" 
-         :data-tooltip="item.name" 
-         :title="item.name">
+     <router-link class="ui button secondary"  target="_blank" :title="item.name"  v-for="(item, index) in generos" :key="index"
+     :data-tooltip="item.name" 
+:to="{ name: 'Descubrir', query: {s: 'pelicula', genS: item.slug} }">
+     
+	
         {{item.name}}
-         </a>
+         </router-link>
 	    </div>
 		
 	</div>
@@ -23,10 +23,10 @@
 	<div class="right aligned floated five wide column pt-lg desktop-only">
 <span class="section-heading pr-md">Mostrar:</span>
         <dropdown class="my-dropdown-toggle"
-          :options="opcionesDrop" 
-          :selected="opcionesDrop[5]" 
-          v-on:updateOption="methodToRunOnSelect" 
-          :placeholder="'Seleccione'"
+           :options="opcionesDrop" 
+                        :selected="ordenSelected" 
+                         v-on:updateOption="buscarOrdenar" 
+                        :placeholder="'Seleccione'"
           :closeOnOutsideClick="true">
 </dropdown>
 
@@ -51,10 +51,12 @@
 
 <div class="area latest-add-movies">
 <h2 class="segment-title p-0 m-0">Ultimas Peliculas</h2>
-<UltimasPeliculas :arrayUltimas="peliculasUltimas" />
+<UltimasPeliculas :arrayUltimas="peliculasUltimas" :totalPaginas="totalPaginas" :paginaActual="paginaActual" 
+    :num_actual_ini="num_actual_ini" :num_actual_fin="num_actual_fin" :urlTest="urlTest" />
 
-<div class="ui pagination menu film"><a href="javascript:;" class="active item">1</a><a href="film-izle/2" class="item" data-navigo="" data-ci-pagination-page="2">2</a><a href="film-izle/3" class="item" data-navigo="" data-ci-pagination-page="3">3</a><a href="film-izle/4" class="item" data-navigo="" data-ci-pagination-page="4">4</a><a href="film-izle/2" class="item" data-navigo="" data-ci-pagination-page="2" rel="next">&gt;</a></div></div>
 <PeliculasNotables :arrayNotables="peliculasNotables" />
+
+</div>
 </div>
 
 
@@ -80,6 +82,13 @@ export default {
   name: 'VerPeliculas',
    data (){
         return {
+          totalPaginas: 0, 
+       registrosxPag: 2,
+      paginaActual: 1, 
+       num_actual_ini: 1,
+        num_actual_fin: 3,
+        ini: 0, 
+        fin: 2,
       VerPelicula: [], 
       generos: [], 
       peliculasSlider: [],
@@ -87,16 +96,16 @@ export default {
        peliculasUltimas: [],
        peliculasNotables: [],
        peliculasEditor: [],
-       opcionesDrop: [
-           {"id":"1", "name":"IMDB ↓"},
-           {"id":"2", "name":"IMDB ↑"}, 
-           {"id":"3", "name":"Año ↓"},
-           {"id":"4", "name":"Año ↑"},
-           {"id":"5", "name":"Agregada ↓"},
-           {"id":"6", "name":"Agregada ↑"},
-     
+     opcionesDrop: [
+           {"id":"1", "name":"IMDB ↓", "order": "imdbMe"},
+           {"id":"2", "name":"IMDB ↑", "order": "imdbMa" }, 
+           {"id":"3", "name":"Año ↓", "order": "yearMe"},
+           {"id":"4", "name":"Año ↑", "order": "yearMa"},
+           {"id":"5", "name":"Agregada ↓", "order": "addMe"},
+           {"id":"6", "name":"Agregada ↑", "order": "addMa"},
        ],
-       
+       ordenSelected: "", 
+       urlTest: {}
 	  
         }
     },
@@ -104,14 +113,95 @@ export default {
         ...mapState(['urlProcesos'])
     },
     methods: {
+       buscarOrdenar(payload) {
+           console.log(payload.id);
+           let params = new URLSearchParams(location.search);
+              if(payload.id == 1){
+                //IMDB menor
+                    
+                    if(params.get('Order') == 'imdbMe' ){
+                    //son los mismos parametros los q dan clic y los que vienen de arriba por lo tanto no hago nada
+                    }else{
+                    //son diferentes aqui si hago
+                    this.urlTest.Order = payload.order
+                    this.$store.commit('scrollToTop');
+                    this.$router.push({  name: 'VerPeliculas', query: this.urlTest })
+                
+                    }
+              }
+              if(payload.id == 2){
+                //IMDB Mayor
+                 if(params.get('Order') == 'imdbMa' ){
+                    //son los mismos parametros los q dan clic y los que vienen de arriba por lo tanto no hago nada
+                    }else{
+                    //son diferentes aqui si hago
+                    this.urlTest.Order = payload.order
+                    this.$store.commit('scrollToTop');
+                    this.$router.push({  name: 'VerPeliculas', query: this.urlTest })
+                
+                    }
+              }
+              if(payload.id == 3){
+                //Año menor
+                 if(params.get('Order') == 'yearMe' ){
+                    //son los mismos parametros los q dan clic y los que vienen de arriba por lo tanto no hago nada
+                    }else{
+                    //son diferentes aqui si hago
+                    this.urlTest.Order = payload.order
+                    this.$store.commit('scrollToTop');
+                    this.$router.push({  name: 'VerPeliculas', query: this.urlTest })
+                
+                    }
+              }
+              if(payload.id == 4){
+                //Año Mayor
+                 if(params.get('Order') == 'yearMa' ){
+                    //son los mismos parametros los q dan clic y los que vienen de arriba por lo tanto no hago nada
+                    }else{
+                    //son diferentes aqui si hago
+                    this.urlTest.Order = payload.order
+                    this.$store.commit('scrollToTop');
+                    this.$router.push({  name: 'VerPeliculas', query: this.urlTest })
+                
+                    }
+              }
+              if(payload.id == 5){
+                //Agregada menor
+                 if(params.get('Order') == 'addMe' ){
+                    //son los mismos parametros los q dan clic y los que vienen de arriba por lo tanto no hago nada
+                    }else{
+                    //son diferentes aqui si hago
+                    this.urlTest.Order = payload.order
+                    this.$store.commit('scrollToTop');
+                    this.$router.push({  name: 'VerPeliculas', query: this.urlTest })
+                
+                    }
+              }
+              if(payload.id == 6){
+                //Agregada Mayor
+                 if(params.get('Order') == 'addMa' ){
+                    //son los mismos parametros los q dan clic y los que vienen de arriba por lo tanto no hago nada
+                    }else{
+                    //son diferentes aqui si hago
+                    this.urlTest.Order = payload.order
+                    this.$store.commit('scrollToTop');
+                    this.$router.push({  name: 'VerPeliculas', query: this.urlTest })
+                
+                    }
+              }
+
+
+          }, 
+    
    
-        methodToRunOnSelect(payload) {
-            this.object = payload;
-      //      console.log(this.object)
-          },
 		async getVerPeliculas(){
+           const valores = window.location.search;
+           const urlParams = new URLSearchParams(valores);
+           let params = new URLSearchParams(location.search);
+           var Order = params.get('Order'); 
             await fetch(this.urlProcesos +
-          "wp-json/peliculas/ver/post/")
+          "wp-json/peliculas/ver/post/"+"?xPag="+this.registrosxPag+"&ini="+this.ini+"&fin="+this.fin
+          +"&Order="+Order)
                     .then((r) => r.json())
                     .then((res) => {
                      console.log(res)
@@ -121,6 +211,33 @@ export default {
                         this.peliculasUltimas =  res[0].ultimas_peliculas;
                         this.peliculasNotables = res[0].peliculas_notables;
                         this.peliculasEditor = res[0].peliculas_editor;
+                         this.totalPaginas =  res[0].totalPaginas;
+                      this.paginaActual = parseInt(this.$route.params.pag); 
+                     if(this.$route.params.pag > 1){
+                       
+                   
+                       this.fin = this.registrosxPag
+                       this.num_actual_fin = 5
+                       if(this.$route.params.pag > 4){
+                         if(this.$route.params.pag == this.totalPaginas){
+                     
+                           this.num_actual_ini = this.paginaActual - 2
+                           this.num_actual_fin = this.totalPaginas
+                         }else
+                         {
+                            this.num_actual_ini = this.paginaActual - 2
+                          this.num_actual_fin = this.paginaActual + 2
+                       
+                         }
+                         
+                       }
+                       
+                     }else
+                     {
+                       this.paginaActual = 1
+                       this.num_actual_fin = 3
+                     
+                     }
                         this.$store.state.skeleton = 1
                     
                     }
@@ -136,6 +253,56 @@ export default {
   mounted() {
 	 this.getVerPeliculas()
     },
+    created(){
+        const valores = window.location.search;
+           const urlParams = new URLSearchParams(valores);
+           let params = new URLSearchParams(location.search);
+
+           if(urlParams.has('Order')==false){
+        this.ordenSelected = this.opcionesDrop[5]
+      }else{
+
+        if(params.get('Order') == 'imdbMe'){
+          this.parametros = true; 
+            this.ordenSelected = this.opcionesDrop[0]
+            this.urlTest.Order = "imdbMe"
+        }
+        if(params.get('Order') == 'imdbMa'){
+          this.parametros = true; 
+            this.ordenSelected = this.opcionesDrop[1]
+            this.urlTest.Order = "imdbMa"
+        }
+        if(params.get('Order') == 'yearMe'){
+          this.parametros = true; 
+            this.ordenSelected = this.opcionesDrop[2]
+             this.urlTest.Order = "yearMe"
+        }
+        if(params.get('Order') == 'yearMa'){
+          this.parametros = true; 
+            this.ordenSelected = this.opcionesDrop[3]
+             this.urlTest.Order = "yearMa"
+        }
+        if(params.get('Order') == 'addMe'){
+          this.parametros = true; 
+            this.ordenSelected = this.opcionesDrop[4]
+             this.urlTest.Order = "addMe"
+        }
+        if(params.get('Order') == 'addMa'){
+          this.parametros = true; 
+            this.ordenSelected = this.opcionesDrop[5]
+             this.urlTest.Order = "addMa"
+        }
+        
+      }
+      if(this.$route.params.pag > 1){
+  
+    this.ini = (parseInt(this.$route.params.pag) - 1) * this.registrosxPag;
+    
+}else{
+
+    this.ini = 0; 
+}
+    }
 }
 </script>
 <style >

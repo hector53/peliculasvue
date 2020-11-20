@@ -20,6 +20,7 @@ function  buscador_descubrir_endpoint( $request_data ) {
 	$ini = $request_data->get_param( 'ini' );
 	$fin = $request_data->get_param( 'fin' );
 	
+	
 	//incluir paises 
 include get_theme_file_path('/endpoints/buscador/paises.php');
 	if($tipo == 'serie'){
