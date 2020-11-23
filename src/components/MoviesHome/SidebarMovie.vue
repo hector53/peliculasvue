@@ -38,7 +38,11 @@
 											</svg>
 										</span>Calendario </a>
 								</li>
+<<<<<<< HEAD
 								<li>
+=======
+								<li :class="{'active': $route.name == 'VerSeries'}">
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 									 <router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerSeries'}">
 										<span>
 											<svg class="mofycon">
@@ -47,7 +51,11 @@
 										</span>Series 
 									</router-link>
 								</li>
+<<<<<<< HEAD
 								<li>
+=======
+								<li :class="{'active': $route.name == 'VerPeliculas'}">
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 								<router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerPeliculas'}">
 									<span>
 											<svg class="mofycon">

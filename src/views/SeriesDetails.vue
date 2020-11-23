@@ -2,20 +2,7 @@
    <div>
     <div class="inner-content container" id="page-index" v-for="(movie, index) in SeriesDetails" :key="index">
 
-        <div data-gets="" data-type="vu">
-            <center><a rel="nofollow" href="https://bit.ly/3cmEm3t" target="_blank" class="desktop-only"
-                    style="margin:0 auto; width:1000px;height: 45px;display: block">
-                    <img src="http://peliculasvue.local/wp-content/themes/moviesvue/img/bteyd.gif" alt="" width="1000px"
-                        height="45" border="0" style="object-fit: unset">
-                </a></center>
-            <hr style="margin: 5px 0;border-color: #42e3d0;">
-            <center><a rel="nofollow" href="https://bit.ly/2Xq3Tnl" target="_blank" class="desktop-only"
-                    style="margin:0 auto; width:1000px;height: 45px;display: block">
-                    <img src="http://peliculasvue.local/wp-content/themes/moviesvue/img/grnd.gif" alt="" width="1000px"
-                        height="45" border="0" style="object-fit: unset">
-                </a></center>
-            <br>
-        </div>
+       
 
 
         <div class="series-genres">

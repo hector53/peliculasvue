@@ -15,8 +15,14 @@
 				<button type="button" id="trigger-filter-sidebar" class="ui primary button">Ordenar</button>
 				<div class="fm-order">
 					   <dropdown class="my-dropdown-toggle"
+<<<<<<< HEAD
                         :options="opcionesDrop" 
                         :selected="opcionesDrop[5]" 
+=======
+                          :options="opcionesDrop" 
+                        :selected="ordenSelected" 
+                         v-on:updateOption="buscarOrdenar" 
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
                         :placeholder="'Seleccione'"
                         :closeOnOutsideClick="true">
                     </dropdown>
@@ -37,12 +43,20 @@
 	</div>
 	
 	<div id="filtered-tags">
+<<<<<<< HEAD
 		<a class="ui label" @click="cerrarYear()" rel="nofollow" v-show="$store.state.DesYearI > 0 && $store.state.DesYearE > 0" >
+=======
+		<a class="ui label" @click="cerrarYear()" rel="nofollow" v-show="$store.state.DesYearI > 0 && $store.state.DesYearE <= 2020" >
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 			Año: {{$store.state.DesYearI}} - {{$store.state.DesYearE}} 
 			<span class="mofycon-delete"></span>
 		</a>
 
+<<<<<<< HEAD
     	<a class="ui label" @click="cerrarImdb()" rel="nofollow" v-show="$store.state.DesImdbI > 0 && $store.state.DesImdbE > 0 && $store.state.DesImdbE < 11" >
+=======
+    	<a class="ui label" @click="cerrarImdb()" rel="nofollow" v-show="$store.state.DesImdbI >= 0 && $store.state.DesImdbE > 0 " >
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 			IMDB: {{$store.state.DesImdbI}} - {{$store.state.DesImdbE}} 
 			<span class="mofycon-delete"></span>
 		</a>
@@ -62,12 +76,20 @@
 
 		<DescubrirSidebar  :arrayGeneros="generos" :arrayPaises="paises" 
     :yearI="yearI" :yearE="yearE" :urlTest="urlTest" :imdbI="imdbI" :imdbE="imdbE"
+<<<<<<< HEAD
     :genS="genSerie" :pais="pais" />
+=======
+    :genS="genSerie" :pais="pais" :tipo="tipo" />
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 
 		<DescubrirContent :arraySeries="series" 
     :totalPaginas="totalPaginas" :paginaActual="paginaActual" 
     :num_actual_ini="num_actual_ini" :num_actual_fin="num_actual_fin"
+<<<<<<< HEAD
     :parametros="parametros" :urlTest="urlTest"
+=======
+    :parametros="parametros" :urlTest="urlTest" :tipo="tipo"
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
     />
 
 	</div>
@@ -218,7 +240,11 @@ export default {
  
     
       this.$store.state.DesImdbI = 0; 
+<<<<<<< HEAD
       this.$store.state.DesImdbE = 10; 
+=======
+      this.$store.state.DesImdbE = 0; 
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
      	this.$store.commit('scrollToTop');
 		
 			this.$router.push({ name: 'Descubrir',  query: this.urlTest })
@@ -239,6 +265,7 @@ delete this.urlTest.pais;
       const valores = window.location.search;
            const urlParams = new URLSearchParams(valores);
            let params = new URLSearchParams(location.search);
+<<<<<<< HEAD
 
            //parametros 
           var yearsI = parseInt(params.get('yearI')); 
@@ -249,6 +276,19 @@ delete this.urlTest.pais;
           var pais = params.get('pais'); 
           var Order = params.get('Order'); 
            //parametros 
+=======
+            
+           //parametros 
+          var yearsI = params.get('yearI'); 
+          var yearsE = params.get('yearE'); 
+          var imdbI = params.get('imdbI'); 
+          var imdbE = params.get('imdbE'); 
+          var genS = params.get('genS'); 
+          var pais = params.get('pais'); 
+          var Order = params.get('Order'); 
+          
+          
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
             await fetch(this.urlProcesos +
           "wp-json/buscador/descubrir/post/?t="+this.tipo
           +"&yearI="+yearsI+"&yearE="+yearsE+"&imdbI="+imdbI+"&imdbE="+imdbE
@@ -305,6 +345,15 @@ delete this.urlTest.pais;
            const valores = window.location.search;
            const urlParams = new URLSearchParams(valores);
            let params = new URLSearchParams(location.search);
+<<<<<<< HEAD
+=======
+
+           if(urlParams.has('s')==false){
+              this.tipo = 'serie'
+           }else{
+                  this.tipo = params.get('s')
+           }
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
       if(urlParams.has('Order')==false){
         this.ordenSelected = this.opcionesDrop[5]
       }else{
@@ -352,9 +401,16 @@ delete this.urlTest.pais;
 //console.log(urlParams.has('yearI'))
 if(urlParams.has('yearI')==false && urlParams.has('yearE')==false
 && urlParams.has('imdbI')==false && urlParams.has('imdbE')==false
+<<<<<<< HEAD
 && urlParams.has('genS')==false && urlParams.has('pais')==false
 ){
   //no hay ni un parametro 
+=======
+&& urlParams.has('genS')==false && urlParams.has('pais')==false && urlParams.has('s')==false
+){
+  //no hay ni un parametro 
+  this.$store.state.s = "serie"
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
       this.$store.state.DesYearI = 0
       this.$store.state.DesYearE = 0
       this.yearI = 2000; 
@@ -375,10 +431,18 @@ if(urlParams.has('yearI')==false && urlParams.has('yearE')==false
   var imdbE = parseInt(params.get('imdbE')); 
   var genS = params.get('genS'); 
     var pais = params.get('pais'); 
+<<<<<<< HEAD
   //existe algun parametro de los mios 
     for (const value of keys) {
         if(value == 'yearI' || value == 'yearE' || value == 'imdbI' || value == 'imdbE'
         || value == 'genS'   || value == 'pais'
+=======
+    var s = params.get('s'); 
+  //existe algun parametro de los mios 
+    for (const value of keys) {
+        if(value == 'yearI' || value == 'yearE' || value == 'imdbI' || value == 'imdbE'
+        || value == 'genS'   || value == 'pais' || value == 's'
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
         ){
           if(urlParams.has('yearI')==true && urlParams.has('yearE')==true){
             //años
@@ -414,11 +478,21 @@ if(urlParams.has('yearI')==false && urlParams.has('yearE')==false
              this.$store.state.DesPais = pais
                 this.pais = pais
           }
+<<<<<<< HEAD
         
+=======
+          if(urlParams.has('s')==true ){
+              //Genero Serie
+              this.urlTest.s = s
+             this.$store.state.s = s
+                this.tipo = s
+          }
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
           
          
           
           this.parametros = true; 
+<<<<<<< HEAD
         }else{
           //años
           this.$store.state.DesYearI = 0
@@ -436,6 +510,8 @@ if(urlParams.has('yearI')==false && urlParams.has('yearE')==false
                 this.$store.state.DesPais = "";
       this.pais = ""
       //    console.log(this.$store.state.DesYearI)
+=======
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
         }
     }
 }
@@ -450,7 +526,11 @@ if(urlParams.has('yearI')==false && urlParams.has('yearE')==false
 
 if(this.$route.params.pag > 1){
   
+<<<<<<< HEAD
     this.ini = (parseInt(this.$route.params.pag) - 1) + this.registrosxPag;
+=======
+    this.ini = (parseInt(this.$route.params.pag) - 1) * this.registrosxPag;
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
     
 }else{
 

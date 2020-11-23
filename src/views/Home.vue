@@ -3,30 +3,8 @@
 
         <div class="inner-content container" id="page-index">
        
-            <div data-gets="" data-type="uyari"></div>
-            <div data-gets="" data-type="hdr">
-                <center><a rel="nofollow" href="https://bit.ly/3cmEm3t" target="_blank" class="desktop-only"
-                        style="margin:0 auto; width:1000px;height: 45px;display: block">
-                        <img src="http://peliculasvue.local/wp-content/themes/moviesvue/img/bteyd.gif"
-                            alt="" width="1000px" height="45" border="0" style="object-fit: unset">
-                    </a></center>
-                <hr style="margin: 5px 0;border-color: #42e3d0;">
-                <center>
-                    <a rel="nofollow" href="https://bit.ly/2Xq3Tnl" target="_blank" class="desktop-only"
-                        style="margin:0 auto; width:1000px;height: 45px;display: block">
-                        <img src="http://peliculasvue.local/wp-content/themes/moviesvue/img/grnd.gif"
-                            alt="" width="1000px" height="45" border="0" style="object-fit: unset">
-                    </a>
-                    <hr style="margin: 5px 0;border-color: #42e3d0;">
-                    <center><a rel="nofollow" href="https://bit.ly/3d9gbX9" target="_blank"
-                            class="desktop-only"
-                            style="margin:0 auto; width:1000px;height: 45px;display: block">
-                            <img src="http://peliculasvue.local/wp-content/themes/moviesvue/img/atakt.webp"
-                                alt="" width="1000px" height="45" border="0" style="object-fit: unset">
-                        </a></center>
-
-                </center>
-            </div>
+           
+            
             <div class="featured-segment">
                 <div class="flex flex-row">
                     <div class="flex flex-column">
@@ -38,15 +16,7 @@
 
                 </div>
             </div>
-            <div data-gets="" data-type="ssf">
-                <br>
-                <a rel="nofollow" href="https://bit.ly/3h9i3jo" target="_blank" class="desktop-only"
-                    style="display:block;margin:0 auto; width:100%;height: 45px;margin-bottom:-40px">
-                    <img src="http://peliculasvue.local/wp-content/themes/moviesvue/img/casvale.gif"
-                        alt="" width="100%" height="45" border="0" style="object-fit: unset">
-                </a>
-                <br>
-            </div>
+        
           <TrailersSeriesHomeNewTemp />
           <SeriesLastCapHome />
           <SeriesHomeNotables />

@@ -37,7 +37,38 @@
                     </div>
                 </div>
          </li>
+<<<<<<< HEAD
           </ul>   
+=======
+          </ul>  
+
+      <div class="ui pagination menu" >
+<router-link class="item"   @click.native="$store.commit('scrollToTop')" 
+	:to="{ name: 'VerPeliculasPag', params: {pag: 1}, query: urlTest }" rel="start"
+	v-show="paginaActual > 1"
+	 >&lt; Primero</router-link>
+<router-link class="item"   @click.native="$store.commit('scrollToTop')" 
+	:to="{ name: 'VerPeliculasPag', params: {pag: paginaActual - 1}, query: urlTest }" rel="prev"
+	v-show="paginaActual > 1"
+	 >&lt;</router-link>
+	<router-link class="item"   @click.native="$store.commit('scrollToTop')" 
+	 v-for="(n, index) in totalPaginas" :key="index"
+	 :class="{'active' : n == paginaActual   }"
+	:to="{ name: 'VerPeliculasPag', params: {pag: n}, query: urlTest }"
+	v-show="n >= num_actual_ini && n <= num_actual_fin "
+	>
+	{{n}}</router-link>
+	<router-link class="item"   @click.native="$store.commit('scrollToTop')" 
+	:to="{ name: 'VerPeliculasPag', params: {pag: paginaActual + 1}, query: urlTest }" rel="next"
+	v-show="paginaActual < totalPaginas"
+	 >&gt;</router-link>
+	<router-link class="item"   @click.native="$store.commit('scrollToTop')" 
+	:to="{ name: 'VerPeliculasPag', params: {pag: totalPaginas}, query: urlTest }" rel="start"
+	v-show="paginaActual < totalPaginas"
+	 >Ultimo &gt;</router-link>		
+    	</div>    
+ 
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 </div>
 </template>
 
@@ -50,6 +81,29 @@ export default {
             type: Array, 
             required: true,
         },
+<<<<<<< HEAD
+=======
+        totalPaginas:{
+			type: Number,
+			required: true
+		}, 
+		paginaActual:{
+			type: Number,
+			required: true
+		},
+		num_actual_ini:{
+			type: Number,
+			required: true
+		}, 
+		num_actual_fin:{
+			type: Number,
+			required: true
+        },
+        urlTest:{
+			type: Object,
+			required: true
+		},
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
     },
    data (){
         return {

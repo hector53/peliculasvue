@@ -27,6 +27,14 @@ const routes = [
     component: VerPeliculas
   },
   {
+<<<<<<< HEAD
+=======
+    path: '/ver-peliculas/:pag',
+    name: 'VerPeliculasPag',
+    component: VerPeliculas
+  },
+  {
+>>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
     path: '/descubrir/',
     name: 'Descubrir',
     component: Descubrir, 
