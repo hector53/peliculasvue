@@ -4,7 +4,10 @@ import Home from '../views/Home.vue'
 import MoviesDetails from '../views/MoviesDetails.vue'
 import SeriesDetails from '../views/SeriesDetails.vue'
 import SeriesDetailsCap from '../views/SeriesDetailsCap.vue'
-
+import VerSeries from '../views/VerSeries.vue'
+import VerPeliculas from '../views/VerPeliculas.vue'
+import Descubrir from '../views/Descubrir.vue'
+import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,6 +15,27 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/ver-series/',
+    name: 'VerSeries',
+    component: VerSeries
+  },
+  {
+    path: '/ver-peliculas/',
+    name: 'VerPeliculas',
+    component: VerPeliculas
+  },
+  {
+    path: '/descubrir/',
+    name: 'Descubrir',
+    component: Descubrir, 
+    props: true
+  },
+  {
+    path: '/descubrir/:pag',
+    name: 'DescubrirPag',
+    component: Descubrir
   },
   {
     path: '/peliculas/:slug', 
@@ -40,6 +64,16 @@ const router = new VueRouter({
   baseUrl: '',
   base: process.env.BASE_URL,
   routes
+})
+router.beforeResolve((to, from, next) => {
+  if (to.name) {
+      NProgress.start()
+  }
+  next()
+})
+
+router.afterEach((to, from) => {
+  NProgress.done()
 })
 
 export default router

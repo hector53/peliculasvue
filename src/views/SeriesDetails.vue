@@ -499,6 +499,7 @@ export default {
                     .then((r) => r.json())
                     .then((res) => {
                         this.SeriesDetails = res
+                        this.$store.state.skeleton = 1
                     }
                     );
            }, 

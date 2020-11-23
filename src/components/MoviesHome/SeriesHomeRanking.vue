@@ -55,12 +55,14 @@ export default {
                     .then((res) => {
                     //    console.log(res)
                         this.SeriesHomeRank = res[0].seriesRankingHome;
+                       this.$store.state.skeleton = 1
                     }
                     );
            }, 
     },
     mounted() {
      this.SeriesRankingHome();
+   
     },
 }
 </script>

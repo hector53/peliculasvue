@@ -222,6 +222,7 @@ export default {
           .then((res) => {
               console.log(res)
             this.SeriesDetails = res;
+              this.$store.state.skeleton = 1
           });
       },
 
