@@ -7,6 +7,9 @@ import SeriesDetailsCap from '../views/SeriesDetailsCap.vue'
 import VerSeries from '../views/VerSeries.vue'
 import VerPeliculas from '../views/VerPeliculas.vue'
 import Descubrir from '../views/Descubrir.vue'
+import VerPerfil from '../views/VerPerfil.vue'
+import Colecciones from '../views/Colecciones.vue'
+import ColeccionDetalle from '../views/ColeccionDetalle.vue'
 import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
@@ -27,14 +30,26 @@ const routes = [
     component: VerPeliculas
   },
   {
-<<<<<<< HEAD
-=======
     path: '/ver-peliculas/:pag',
     name: 'VerPeliculasPag',
     component: VerPeliculas
   },
   {
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
+    path: '/colecciones/',
+    name: 'Colecciones',
+    component: Colecciones
+  },
+  {
+    path: '/colecciones/:username/:slug',
+    name: 'ColeccionDetalle',
+    component: ColeccionDetalle
+  },
+  {
+    path: '/perfil/:user',
+    name: 'PerfilUser',
+    component: VerPerfil
+  },
+  {
     path: '/descubrir/',
     name: 'Descubrir',
     component: Descubrir, 

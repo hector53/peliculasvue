@@ -6,7 +6,7 @@
         
         <div class="bg-cover-faker">
          
-           <BreadCrumbsMovies :movieTitle="movie.titulo" :fechaCreated="movie.fecha_created" />
+           <BreadCrumbsMovies :movieID="movie.id" :movieTitle="movie.titulo" :fechaCreated="movie.fecha_created" />
           
 
             <ReproductoresMovies :movieID="movie.id"  />
@@ -229,9 +229,9 @@ export default {
             await fetch(this.urlProcesos+'wp-json/peliculas/detalle_slug/post/?slug='+this.$route.params.slug)
                     .then((r) => r.json())
                     .then((res) => {
-                   //     console.log(res);
+                        console.log(res);
                         this.MoviesDetails = res
-              this.$store.state.skeleton = 1
+             
                     }
                     );
            }, 

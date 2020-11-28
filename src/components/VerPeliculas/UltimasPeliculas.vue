@@ -37,9 +37,6 @@
                     </div>
                 </div>
          </li>
-<<<<<<< HEAD
-          </ul>   
-=======
           </ul>  
 
       <div class="ui pagination menu" >
@@ -68,7 +65,6 @@
 	 >Ultimo &gt;</router-link>		
     	</div>    
  
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 </div>
 </template>
 
@@ -81,8 +77,6 @@ export default {
             type: Array, 
             required: true,
         },
-<<<<<<< HEAD
-=======
         totalPaginas:{
 			type: Number,
 			required: true
@@ -103,7 +97,6 @@ export default {
 			type: Object,
 			required: true
 		},
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
     },
    data (){
         return {

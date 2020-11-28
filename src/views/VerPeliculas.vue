@@ -2,23 +2,6 @@
 <div>
 	
 <div class="inner-content container" id="page-movies_list">
-<<<<<<< HEAD
-		 <range-slider
-      :min="0" :max="1000"  :step="100"
-      >
-    </range-slider>
-					<div data-gets="" data-type="hdr"></div>
-<div class="ui grid mb-0 desktop-only">	
-	<div class="left floated sixteen wide tablet eleven wide computer column pb-0">
-		<div class="cat-tagsx">
-		<a v-for="(item, index) in generos" :key="index"
-        href="/kesfet/eyJjb250ZW50IjoiMSIsImNhdGVnb3J5Ijp7IjIiOiIyIn19"
-         target="_blank" class="ui button secondary" 
-         :data-tooltip="item.name" 
-         :title="item.name">
-        {{item.name}}
-         </a>
-=======
 		 
 <div class="ui grid mb-0 desktop-only">	
 	<div class="left floated sixteen wide tablet eleven wide computer column pb-0">
@@ -30,7 +13,6 @@
 	
         {{item.name}}
          </router-link>
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 	    </div>
 		
 	</div>
@@ -41,17 +23,10 @@
 	<div class="right aligned floated five wide column pt-lg desktop-only">
 <span class="section-heading pr-md">Mostrar:</span>
         <dropdown class="my-dropdown-toggle"
-<<<<<<< HEAD
-          :options="opcionesDrop" 
-          :selected="opcionesDrop[5]" 
-          v-on:updateOption="methodToRunOnSelect" 
-          :placeholder="'Seleccione'"
-=======
            :options="opcionesDrop" 
                         :selected="ordenSelected" 
                          v-on:updateOption="buscarOrdenar" 
                         :placeholder="'Seleccione'"
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
           :closeOnOutsideClick="true">
 </dropdown>
 
@@ -76,19 +51,12 @@
 
 <div class="area latest-add-movies">
 <h2 class="segment-title p-0 m-0">Ultimas Peliculas</h2>
-<<<<<<< HEAD
-<UltimasPeliculas :arrayUltimas="peliculasUltimas" />
-
-<div class="ui pagination menu film"><a href="javascript:;" class="active item">1</a><a href="film-izle/2" class="item" data-navigo="" data-ci-pagination-page="2">2</a><a href="film-izle/3" class="item" data-navigo="" data-ci-pagination-page="3">3</a><a href="film-izle/4" class="item" data-navigo="" data-ci-pagination-page="4">4</a><a href="film-izle/2" class="item" data-navigo="" data-ci-pagination-page="2" rel="next">&gt;</a></div></div>
-<PeliculasNotables :arrayNotables="peliculasNotables" />
-=======
 <UltimasPeliculas :arrayUltimas="peliculasUltimas" :totalPaginas="totalPaginas" :paginaActual="paginaActual" 
     :num_actual_ini="num_actual_ini" :num_actual_fin="num_actual_fin" :urlTest="urlTest" />
 
 <PeliculasNotables :arrayNotables="peliculasNotables" />
 
 </div>
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 </div>
 
 
@@ -109,17 +77,11 @@ import PeliculasNotables from '@/components/VerPeliculas/PeliculasNotables.vue'
 import PeliculasEditor from '@/components/VerPeliculas/PeliculasEditor.vue'
 import dropdown from 'vue-dropdowns';
 
-<<<<<<< HEAD
-import RangeSlider from 'range-slider-vue';
-=======
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 
 export default {
   name: 'VerPeliculas',
    data (){
         return {
-<<<<<<< HEAD
-=======
           totalPaginas: 0, 
        registrosxPag: 2,
       paginaActual: 1, 
@@ -127,7 +89,6 @@ export default {
         num_actual_fin: 3,
         ini: 0, 
         fin: 2,
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
       VerPelicula: [], 
       generos: [], 
       peliculasSlider: [],
@@ -135,21 +96,6 @@ export default {
        peliculasUltimas: [],
        peliculasNotables: [],
        peliculasEditor: [],
-<<<<<<< HEAD
-       opcionesDrop: [
-           {"id":"1", "name":"IMDB ↓"},
-           {"id":"2", "name":"IMDB ↑"}, 
-           {"id":"3", "name":"Año ↓"},
-           {"id":"4", "name":"Año ↑"},
-           {"id":"5", "name":"Agregada ↓"},
-           {"id":"6", "name":"Agregada ↑"},
-     
-       ],
-          range: {
-        start: 100,
-        end: 900
-      }
-=======
      opcionesDrop: [
            {"id":"1", "name":"IMDB ↓", "order": "imdbMe"},
            {"id":"2", "name":"IMDB ↑", "order": "imdbMa" }, 
@@ -160,7 +106,6 @@ export default {
        ],
        ordenSelected: "", 
        urlTest: {}
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 	  
         }
     },
@@ -168,20 +113,6 @@ export default {
         ...mapState(['urlProcesos'])
     },
     methods: {
-<<<<<<< HEAD
-        slideEnd(e) {
-      this.range.start = e.start;
-      this.range.end = e.end;
-    }
-,
-        methodToRunOnSelect(payload) {
-            this.object = payload;
-      //      console.log(this.object)
-          },
-		async getVerPeliculas(){
-            await fetch(this.urlProcesos +
-          "wp-json/peliculas/ver/post/")
-=======
        buscarOrdenar(payload) {
            console.log(payload.id);
            let params = new URLSearchParams(location.search);
@@ -271,7 +202,6 @@ export default {
             await fetch(this.urlProcesos +
           "wp-json/peliculas/ver/post/"+"?xPag="+this.registrosxPag+"&ini="+this.ini+"&fin="+this.fin
           +"&Order="+Order)
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
                     .then((r) => r.json())
                     .then((res) => {
                      console.log(res)
@@ -281,8 +211,6 @@ export default {
                         this.peliculasUltimas =  res[0].ultimas_peliculas;
                         this.peliculasNotables = res[0].peliculas_notables;
                         this.peliculasEditor = res[0].peliculas_editor;
-<<<<<<< HEAD
-=======
                          this.totalPaginas =  res[0].totalPaginas;
                       this.paginaActual = parseInt(this.$route.params.pag); 
                      if(this.$route.params.pag > 1){
@@ -310,7 +238,6 @@ export default {
                        this.num_actual_fin = 3
                      
                      }
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
                         this.$store.state.skeleton = 1
                     
                     }
@@ -320,18 +247,12 @@ export default {
     },
      components: {
         dropdown, SliderPeliculas, ProximasEstrenar, UltimasPeliculas, PeliculasNotables,
-<<<<<<< HEAD
-        PeliculasEditor, RangeSlider
-=======
         PeliculasEditor
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
           
          }, 
   mounted() {
 	 this.getVerPeliculas()
     },
-<<<<<<< HEAD
-=======
     created(){
         const valores = window.location.search;
            const urlParams = new URLSearchParams(valores);
@@ -382,7 +303,6 @@ export default {
     this.ini = 0; 
 }
     }
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 }
 </script>
 <style >

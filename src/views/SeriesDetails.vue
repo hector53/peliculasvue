@@ -33,17 +33,7 @@
                 </router-link>
             </div>
 
-            <div class="right aligned floated sixteen wide tablet seven wide computer column"
-                id="series-action-buttons">
-                <div class="button-group">
-                    <button class="ui secondary button fnc_addFollow" data-status="2" data-series="238" onlyusers="">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Seguir</font>
-                        </font>
-                    </button>
-
-                </div>
-            </div>
+           <BreadCrumbsSeries :movieID="movie.id" />
 
         </div>
 
@@ -467,7 +457,7 @@
 <script>
 // @ is an alias to /src
 import {mapState} from 'vuex'
-
+import BreadCrumbsSeries from '@/components/SeriesDetails/BreadCrumbsSeries.vue'
 export default {
   name: 'SeriesDetails',
    data (){
@@ -486,7 +476,7 @@ export default {
                     .then((r) => r.json())
                     .then((res) => {
                         this.SeriesDetails = res
-                        this.$store.state.skeleton = 1
+                     //  this.$store.state.skeleton = 1
                     }
                     );
            }, 
@@ -509,7 +499,7 @@ export default {
           }
     },
      components: {
-
+BreadCrumbsSeries
          }, 
   mounted() {
            this.SeriesGetDetails();

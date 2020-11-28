@@ -38,11 +38,7 @@
 											</svg>
 										</span>Calendario </a>
 								</li>
-<<<<<<< HEAD
-								<li>
-=======
 								<li :class="{'active': $route.name == 'VerSeries'}">
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 									 <router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerSeries'}">
 										<span>
 											<svg class="mofycon">
@@ -51,11 +47,7 @@
 										</span>Series 
 									</router-link>
 								</li>
-<<<<<<< HEAD
-								<li>
-=======
 								<li :class="{'active': $route.name == 'VerPeliculas'}">
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 								<router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerPeliculas'}">
 									<span>
 											<svg class="mofycon">
@@ -73,12 +65,14 @@
 										</span>Foro </a>
 								</li>
 								<li>
-									<a href="https://yabancidizi.vip/koleksiyon" data-navigo="">
+								 <router-link @click.native="$store.commit('scrollToTop')" 
+								 :to="{name:'Colecciones'}">
+									
 										<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-collections-new"></use>
 											</svg>
-										</span>Colecciones </a>
+										</span>Colecciones </router-link>
 								</li>
 							
 							</ul>

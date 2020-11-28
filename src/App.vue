@@ -3,7 +3,7 @@
 
   <main id="wrapper">
 		<!--header logo y register-->
-			<HeaderMovie />
+			<HeaderMovie ref="HeaderMovies" />
 		<!-- fin header logo y register-->
 
 		<div id="wrapper-inner">

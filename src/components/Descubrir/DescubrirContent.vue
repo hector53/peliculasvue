@@ -4,10 +4,6 @@
 			<div id="discover-response" class="dark-segment">
 
 				
-<<<<<<< HEAD
-				<ul class="filter-results">
-					<li class="mb-lg" v-for="(movie, index) in arraySeries" :key="index">	
-=======
 				<ul class="filter-results" v-if="tipoS == 'pelicula'">
 					<li class="segment-poster" v-for="(movie, index) in arraySeries" :key="index"  >
 							<div class="poster poster-md">
@@ -41,7 +37,6 @@
 
 
 					<li class="mb-lg" v-for="(movie, index) in arraySeries" :key="index" >	
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 						<div class="poster-with-subject">
 					 <router-link   @click.native="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
 	
@@ -57,11 +52,7 @@
 										</router-link>
 										<p class="poster-meta truncate">
 											<span class="genres" > <span v-for="(genero, index) in movie.generos" :key="index">{{genero.genero}}</span> </span>
-<<<<<<< HEAD
-											<span class="rating"><svg class="mofycon"><use xlink:href="#icon-star"></use></svg> 7.3</span>
-=======
 											<span class="rating"><svg class="mofycon"><use xlink:href="#icon-star"></use></svg> {{movie.imdb}}</span>
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 										</p>
 									</div>
 																	</div>
@@ -197,13 +188,10 @@ export default {
 		urlTest:{
 			type: Object,
 			required: true
-<<<<<<< HEAD
-=======
 		}, 
 		tipo:{
 			type: String,
 			required: true
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
 		}
        
 	},
@@ -213,11 +201,7 @@ export default {
 	 },
    data (){
         return {
-<<<<<<< HEAD
-        
-=======
         tipoS : this.tipo
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
      
         }
     },
@@ -229,9 +213,6 @@ export default {
 		
     },
 }
-<<<<<<< HEAD
-</script>
-=======
 </script>
 <style>
 .imgposterDescubrirMovie{
@@ -239,4 +220,3 @@ export default {
 	height: 348px!important;
 }
 </style>
->>>>>>> 888b87a8bfb0fc3a63d65e774fcb3970105dbf30
