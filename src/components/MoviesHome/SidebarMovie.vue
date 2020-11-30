@@ -1,6 +1,6 @@
 <template>
     <div>
-        <aside id="primary-sidebar">
+        <aside id="primary-sidebar" :class="{'triggered' : $store.state.dropdownHeader}" v-click-outside="outSidebar">
 				<div class="scroll-wrapper scrollbar-macosx" style="position: relative;">
 					<div id="sidebar-inner" class="scrollbar-macosx scroll-content"
 						style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 1178px;">
@@ -165,7 +165,16 @@
 
 
 <script>
+import ClickOutside from 'vue-click-outside'
 export default {
-  name: 'SidebarMovie'
+  name: 'SidebarMovie', 
+  methods: {
+	  outSidebar(){
+		  this.$store.state.dropdownHeader = false
+	  }
+  },
+     directives: {
+    ClickOutside
+  }, 
 }
 </script>

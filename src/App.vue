@@ -6,8 +6,8 @@
 			<HeaderMovie ref="HeaderMovies" />
 		<!-- fin header logo y register-->
 
-		<div id="wrapper-inner">
-			<div class="triggered-overlay"></div>
+		<div id="wrapper-inner" >
+			<div class="triggered-overlay" :class="{'triggered' : $store.state.dropdownHeader}"></div>
 				<!--Sidebar Menu-->
 				<SidebarMovie />
 				<!-- fin Sidebar Menu-->

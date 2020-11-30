@@ -39,9 +39,13 @@
                     tabindex="0">
                     <span>Agregar a Mi Colección</span>
                     <div class="menu left transition" :class="{'hidden' : dropdownColeccion == 0, 'visible':dropdownColeccion == 1 }" tabindex="-1">
-                        <a href="#" class="item cl_add_item" v-for="(item, index) in arrayMisColecciones" 
-                        @click.prevent="agregarColeccion(item.id)"
+                        <a href="#" class="item cl_add_item" :class="{'active selected' : item.active == 1}" v-for="(item, index) in arrayMisColecciones" 
+                        @click.prevent="agregarColeccion(item.id, item.active)"
                         :key="index">{{item.titulo}}</a>
+
+
+
+                        
                         <div class="divider"></div>
                         <router-link class="item" @click.native="$store.commit('scrollToTop')" 
 								 :to="{name:'Colecciones'}">Crear Colección
@@ -87,20 +91,55 @@ export default {
           id_sjp: null, 
           textSeguir: 'Seguir', 
           dropdownColeccion: 0, 
-          arrayMisColecciones: []
+          arrayMisColecciones: [], 
     
         }
     }, computed: {
     ...mapState(["urlProcesos"]),
   },
     methods: {
-        agregarColeccion(id){
-            
-            console.log(id)
+        async agregarColeccion(id, active){
+            if(active == 0){
+                       await fetch(this.urlProcesos +
+          "wp-json/colecciones/crear_coleccion/post/?q=c&id_user="+this.id_user+"&id_coleccion="
+          +id+"&id_movie="+this.movieID)
+                    .then((r) => r.json())
+                    .then((res) => {
+                      console.log(res)
+                      if(res[0].id_sjp == ""){
+                            const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                      Toast.fire({
+                        icon: 'error',
+                        title: 'No se pudo Guardar'
+					  }); 
+                      }else{
+const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Agregada a la Colección!'
+					  }); 
+                      }
+                     this.getMisColecciones()
+                    }
+                    );
+         //   console.log(id)
+            }
+          
         },
           async getMisColecciones(){
             await fetch(this.urlProcesos +
-          "wp-json/colecciones/crear_coleccion/post/?q=g&id_user="+this.id_user)
+          "wp-json/colecciones/crear_coleccion/post/?q=g&id_user="+this.id_user+"&id_movie="
+          +this.movieID)
                     .then((r) => r.json())
                     .then((res) => {
                       console.log(res)

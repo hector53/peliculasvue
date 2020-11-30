@@ -33,7 +33,7 @@ export default {
          ColeccionesDestacadas, MisColecciones
          }, 
   mounted() {
-      
+       this.$store.state.skeleton = 1
     },
 }
 </script>

@@ -4,83 +4,193 @@
 <div class="bg-cover-faker">
 					<div class="right floated sixteen wide tablet three wide computer wide column">
 				<div class="collection-delete" data-id="60479">
-					<button class="ui primary button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar colección</font></font></button>
+					<button class="ui primary button" @click="eliminarColeccion()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar colección</font></font></button>
 				</div>
 			</div>
 			<div class="ui grid mt-0">
-		<div class="left floated sixteen wide tablet sixteen wide computer column">
+		<div class="left floated sixteen wide tablet sixteen wide computer column" style="margin-top: 40px;">
 			<h1 class="page-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{titulo_coleccion}}</font></font></h1>
 			<div class="sub-title pt-sm"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{descripcion_coleccion}}</font></font></div>		</div>
 	</div>
-		<div id="collection-archive" class="dark-segment mt-lg">
+		<div id="collection-archive" class="dark-segment mt-lg" v-show="skeleton==1">
+
+
+<ul class="clearfix mb-0">
 	    
-    	<ul class="clearfix mb-0">
-	    
-	    <li class="segment-poster" id="data_2662">
+	    <li class="segment-poster" v-for="(movie, index) in arrayMiColeccion" :key="index" >
 			<div class="poster poster-md">
 				<div class="poster-media">
-									    <div class="blurring dimmable image">
-				      <div class="ui dimmer transition hidden">
+				<div class="blurring dimmable image dimmed"
+				    @mouseover="mouse_over(movie.id, 1)"
+    				@mouseleave="mouse_over(movie.id, 2)"
+				
+				>
+				      <div class="ui dimmer transition" :id="'dimmer'+movie.id"
+					  
+					 style="display: flex!important;" >
 				        <div class="content">
 				          <div class="center">
-				            <div class="ui red button colDelete" data-id="2662" data-col="60479"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar de la colección</font></font></div>
+				            <div class="ui red button colDelete" 
+							@click="borrarItemColeccion(movie.id_seguimiento)">Borrar Colección</div>
 				          </div>
 				        </div>
 				      </div>
-				  						<a href="film/la-belle-poque" data-navigo="">
-						<img src="uploads/series/la-belle-poque.jpg">
+				  <router-link @click.native="$store.commit('scrollToTop')"  :to="{ name: movie.post_type, params: {slug: movie.slug} }">
+						<img :src="movie.imagen2" class="imagenPoster">
 						<div class="poster-overlay">
-							<span class="item rating"><svg class="mofycon"><use xlink:href="#icon-star"></use></svg><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 7.5</font></font></span>
-							<span class="item year"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2019</font></font></span>
+							<span class="item rating"><svg class="mofycon"><use xlink:href="#icon-star"></use></svg> 6.5</span>
+							<span class="item year">{{movie.year}}</span>
 						</div>
-					</a>
+					</router-link>
 				</div>
 				<div class="poster-subject">
-					<a href="film/la-belle-poque" data-navigo=""><h2 class="truncate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Los buenos tiempos</font></font></h2></a>
+				  <router-link @click.native="$store.commit('scrollToTop')"  :to="{ name: movie.post_type, params: {slug: movie.slug} }">
+				
+					<h2 class="truncate">{{movie.titulo}}</h2></router-link>
 					<p class="poster-meta truncate">
-						<span class="genres"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-							Drama, Comedia, Romance						</font></font></span>
+						<span class="genres">
+							{{movie.genero}}						</span>
 					</p>
 				</div>
 			</div>
-		</div></li><li class="segment-poster" id="data_1632">
-			<div class="poster poster-md">
-				<div class="poster-media">
-									    <div class="blurring dimmable image">
-				      <div class="ui dimmer transition hidden">
-				        <div class="content">
-				          <div class="center">
-				            <div class="ui red button colDelete" data-id="1632" data-col="60479"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar de la colección</font></font></div>
-				          </div>
-				        </div>
-				      </div>
-				  						<a href="dizi/the-mandalorian-izle-6" data-navigo="">
-						<img src="uploads/series/the-mandalorian-izle-6.jpg">
-						<div class="poster-overlay">
-							<span class="item rating"><svg class="mofycon"><use xlink:href="#icon-star"></use></svg><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 8.8</font></font></span>
-							<span class="item year"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2019</font></font></span>
-						</div>
-					</a>
-				</div>
-				<div class="poster-subject">
-					<a href="dizi/the-mandalorian-izle-6" data-navigo=""><h2 class="truncate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">El mandaloriano</font></font></h2></a>
-					<p class="poster-meta truncate">
-						<span class="genres"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-							Ciencia ficción, Fantasía						</font></font></span>
-					</p>
-				</div>
-			</div>
-		</div></li>	    
+		</div></li>
 		</ul>
-			</div>
-	
-	<div class="common-lists pt-md">
-		
-		<h4 class="sidebar-heading"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comentarios ( </font></font><span id="review-count"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )</font></font></h4>
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	    
+    
+		</div>
+
+			<skeleton-loading v-show="skeleton==0">
+            <row style="width:95%; margin:auto"
+                :gutter="{
+                    bottom: '15px'
+                }"
+            >
+                <square-skeleton 
+                    :backColor="'#1b1d26'"
+                    :count="1"
+                    :boxProperties="{
+                        top: '10px',
+                        height: '26px',
+						 width: '50px',
+                    }"
+                >
+                </square-skeleton>
+
+            </row>
+			<row style="width:95%; margin:auto">
+				<square-skeleton :backColor="'#1b1d26'"
+                    :count="1"
+                    :boxProperties="{
+                        top: '10px',
+                        height: '26px',
+						 width: '150px',
+                    }"
+                >
+                </square-skeleton>
+
+
+			</row>
+				<row style="width:95%; margin:auto">
+				<square-skeleton :backColor="'#1b1d26'"
+                    :count="1"
+                    :boxProperties="{
+                        top: '10px',
+                        height: '26px',
 						
-		
-			</div>
+                    }"
+                >
+                </square-skeleton>
+
+
+			</row>
+
+				<row style="width:95%; margin:auto">
+                    <column :span="8" :gutter="0">
+                    <square-skeleton :backColor="'#1b1d26'"
+						:count="1"
+						:boxProperties="{
+							top: '10px',
+							height: '400px',
+							
+						}"
+					>
+					</square-skeleton>
+                     </column>
+                <column :span="20" :gutter="10">
+                      	<square-skeleton :backColor="'#1b1d26'"
+                            :count="5"
+                            :boxProperties="{
+                                top: '10px',
+                                height: '26px',
+                             
+                                
+                            }"
+                        >
+                        </square-skeleton>
+                        <square-skeleton :backColor="'#1b1d26'"
+                            :count="1"
+                            :boxProperties="{
+                                top: '10px',
+                                height: '26px',
+                               width: '150px',
+                                
+                            }"
+                        >
+                        </square-skeleton>
+                         <square-skeleton :backColor="'#1b1d26'"
+                            :count="1"
+                            :boxProperties="{
+                                top: '60px',
+                                height: '26px',
+                               width: '100px',
+                                
+                            }"
+                        >
+                        </square-skeleton>
+                         <square-skeleton :backColor="'#1b1d26'"
+                            :count="1"
+                            :boxProperties="{
+                                top: '10px',
+                                height: '26px',
+                               width: '100px',
+                                
+                            }"
+                        >
+                        </square-skeleton>
+                </column>
+		 	  
+
+
+			</row>
+            <row style="width:95%; margin:auto">
+				<square-skeleton :backColor="'#1b1d26'"
+                    :count="2"
+                    :boxProperties="{
+                        top: '10px',
+                        height: '46px',
+						
+                    }"
+                >
+                </square-skeleton>
+
+
+			</row>
+        </skeleton-loading>
+	
+
 </div>
 			</div>
 </template>
@@ -100,37 +210,144 @@ export default {
 	titulo_coleccion: null, 
 	descripcion_coleccion: null, 
 	id_coleccion: null, 
-	error: null
+	error: null, 
+	mouseOver: false
         }
     },
       computed:{
-        ...mapState(['urlProcesos'])
-    },
+        ...mapState(['urlProcesos', 'skeleton'])
+	},
+	
+	
     methods: {
+		borrarItemColeccion(id){
+		this.$swal.fire({
+  title: 'Estas seguro de borrar este item de la colección?',
+  text: "Esto no se puede revertir",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si borrar'
+}).then((result) => {
+  if (result.isConfirmed) {
+    fetch(this.urlProcesos +
+          "wp-json/colecciones/crear_coleccion/post/?q=dic&id_seguimiento="+id)
+                    .then((r) => r.json())
+                    .then((res) => {
+                      console.log(res)
+                      if(res[0].error == ""){
+						        const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Borrado con exito'
+					  }); 
+					  this.getMisColecciones()
+					  }
+                     
+                    }
+					);
+					 this.$store.state.skeleton = 0
+  }
+})
+		 
+	
+   
+		},
+		mouse_over(id, out){
+			
+			var element = document.getElementById("dimmer"+id)
+		//	console.log(element)
+		
+			if(out == 1){
+				element.classList.add('visible')
+				element.classList.add('active')
+	
+			}
+			if(out == 2){
+				element.classList.remove('visible')
+				element.classList.remove('active')
+				element.classList.add('hidden')
+			}
+			
+			
+			
+		
+
+		},
          async getMisColecciones(){
-			 console.log(this.urlProcesos +
-          "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.userName+"&slug="
-          +this.$route.params.slug)
+			this.arrayMiColeccion = []
             await fetch(this.urlProcesos +
           "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.userName+"&slug="
           +this.$route.params.slug)
                     .then((r) => r.json())
                     .then((res) => {
+						
                       console.log(res)
                       if(res[0].error == ""){
 						  this.titulo_coleccion = res[0].titulo; 
 						  this.descripcion_coleccion = res[0].descripcion; 
-						  this.id_coleccion = res[0].id; 
-						  
+              this.id_coleccion = res[0].id_coleccion; 
+          
+						  this.arrayMiColeccion = res[0].agregadas
 					  }
                       this.$store.state.skeleton = 1
                     }
                     );
+           }, 
+           eliminarColeccion(){
+             
+             this.$swal.fire({
+  title: 'Estas seguro de borrar la colección, perderas todo lo que hayas agregado en ella?',
+  text: "Esto no se puede revertir",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si borrar'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.$store.state.skeleton = 0
+    fetch(this.urlProcesos +
+          "wp-json/colecciones/crear_coleccion/post/?q=delC&id_coleccion="+this.id_coleccion)
+                    .then((r) => r.json())
+                    .then((res) => {
+
+                      console.log(res)
+                      if(res[0].error == ""){
+						        const Toast = this.$swal.mixin({
+                        toast: true,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Borrado con exito'
+					  }); 
+					 
+            }
+      	this.$router.push({ name: 'Colecciones' })
+      
+                    }
+					);
+					 
+  }
+})
+		 
+	
+   
+		
            }
            },
      components: {Cookies},
   mounted() {
-     this.$store.state.skeleton = 1
+   
       var co = Cookies.get("user_session"); 
         if(co != undefined)
         {
@@ -143,3 +360,9 @@ export default {
   },
 }
 </script>
+<style >
+.imagenPoster{
+  height: 355px!important;
+}
+
+</style>

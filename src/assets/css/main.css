@@ -31612,7 +31612,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
     width: 32em;
     max-width: 100%;
     padding: 40px;
-    background: #1c1c1c;
+    background: #1c1c1c!important;
     font-family: inherit;
     font-size: 1rem;
     border-radius: 2px

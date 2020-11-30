@@ -18,11 +18,9 @@
                     ><font style="vertical-align: inherit">4</font></font
                   >
                 </div>
-                <a
-                  href="profil/hectoracosta53"
-                  class="circle-progress-link"
-                  data-navigo=""
-                >
+                 <router-link  class="circle-progress-link" @click.native="$store.commit('scrollToTop')" 
+                :to="{ name: 'PerfilUser', params: {user: userName} }" >
+               
                   <img
                     :src="imagenPerfil"
                     alt="@hectoracosta53"
@@ -46,7 +44,7 @@
                       ></circle>
                     </svg>
                   </div>
-                </a>
+                </router-link>
               </figure>
 
               <h2 class="title-secondary">
@@ -315,22 +313,19 @@
             :class="{'active' : tab4}" 
           >
             <div class="collections">
-              <a
-                href="koleksiyon/hectoracosta53/coleccion-peliculas"
-                data-navigo=""
-              >
+       <router-link @click.native="$store.commit('scrollToTop')"  v-for="(movie, index) in arrayMisColecciones" :key="index"
+          :to="{ name: 'ColeccionDetalle', params: {username: userName, slug: movie.slug} }">
+					
+             
                 <div class="collection-item">
-                  <figure>
-                    <img src="uploads/series/the-haunting-of-bly-manor.jpg" />
+                  <figure v-for="(image, index) in movie.imagen" :key="index" >
+                    <img :src="image.imagen"   />
                   </figure>
-                  <figure><img src="uploads/series/boss-level.jpg" /></figure>
-                  <figure>
-                    <img src="/mofy/img/collection-no-thumb.png" />
-                  </figure>
+                 
                   <h3 class="title-quaternary mt-0 mb-sm">
                     <font style="vertical-align: inherit"
                       ><font style="vertical-align: inherit"
-                        >Coleccion Peliculas</font
+                        >{{movie.titulo}}</font
                       ></font
                     >
                   </h3>
@@ -338,7 +333,7 @@
                     <span class="mr-md"
                       ><font style="vertical-align: inherit"
                         ><font style="vertical-align: inherit"
-                          >1 artículo
+                          >{{movie.contador}} artículo
                         </font></font
                       ></span
                     >
@@ -367,13 +362,17 @@
                     <span class="description-secondary"
                       ><font style="vertical-align: inherit"
                         ><font style="vertical-align: inherit"
-                          >@hectoracosta53</font
+                          >@{{userName}}</font
                         ></font
                       ></span
                     >
                   </p>
                 </div>
-              </a>
+              </router-link>
+
+              
+
+
             </div>
           </div>
 
@@ -427,7 +426,8 @@ export default {
         imagenPerfil: null, 
         fecha_registro: null, 
         arrayPeliculasSeguidas: [], 
-        arraySeriesSeguidas: []
+        arraySeriesSeguidas: [], 
+        arrayMisColecciones: []
     };
   },
   computed: {
@@ -454,7 +454,7 @@ export default {
                     .then((res) => {
                       console.log(res)
                       this.arrayPeliculasSeguidas = res
-                      this.$store.state.skeleton = 1
+                     
                     }
                     );
            },
@@ -465,6 +465,17 @@ export default {
                     .then((res) => {
                       console.log(res)
                       this.arraySeriesSeguidas = res
+                   
+                    }
+                    );
+           },
+            async getMisColecciones(){
+            await fetch(this.urlProcesos +
+          "wp-json/colecciones/crear_coleccion/post/?q=g2&id_user="+this.id_user)
+                    .then((r) => r.json())
+                    .then((res) => {
+                      console.log(res)
+                      this.arrayMisColecciones = res[0].coleccion
                       this.$store.state.skeleton = 1
                     }
                     );
@@ -513,6 +524,7 @@ export default {
      this.getUserData(); 
      this.getPeliculasSeguidas()
      this.getSeriesSeguidas()
+     this.getMisColecciones()
   },
   created() {
   },
@@ -522,5 +534,9 @@ export default {
 .imagenSerie{
   width: 248px!important;
   height: 140px!important;
+}
+.user-profile .collections .collection-item figure img {
+   
+    height: 126px!important;
 }
 </style> 

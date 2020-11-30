@@ -15,7 +15,8 @@ export default new Vuex.Store({
     DesPais: "", 
     s: "serie", 
     sessionCookie: false, 
-    arraySession: {}
+    arraySession: {}, 
+    dropdownHeader: false
   },
   mutations: {
     scrollToTop() {

@@ -217,7 +217,7 @@ export default {
   name: 'MoviesDetails',
    data (){
         return {
-          MoviesDetails: []
+          MoviesDetails: [], 
     
         }
     },
@@ -230,7 +230,7 @@ export default {
                     .then((r) => r.json())
                     .then((res) => {
                         console.log(res);
-                        this.MoviesDetails = res
+                        this.MoviesDetails = res; 
              
                     }
                     );

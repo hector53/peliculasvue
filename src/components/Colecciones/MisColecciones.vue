@@ -23,11 +23,11 @@
 						<div class="poster-subject">
 							
 							<p class="poster-meta">
-								<span class="episode-no">0 añadidas</span>
+								<span class="episode-no">{{movie.contador}} añadidas</span>
 							</p>
 							<h2>{{movie.titulo}}</h2>
 						</div>
-						
+						<img v-show="movie.imagen" alt="..." class="lazy-wide loaded" :src="movie.imagen" >
 					</router-link>
 				</div>
 			</li>
@@ -45,7 +45,59 @@
     </div>
 
 	
+ <div class="ui dark card">
 
+		<h2 class="header pt-md">
+			<span class="segment-title pt-0">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">
+                        Colecciones de la comunidad</font></font></span>
+		</h2>
+
+		<div class="content">
+
+			<table class="ui inverted unstackable table">
+
+				<thead>
+					<tr>
+						<th>#</th>
+						<th class="details"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Detalle</font></font></th>
+						<th width="140px" class="imdb"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IMDb</font></font></th>
+						<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Constitucion</font></font></th>
+					</tr>
+				</thead>
+
+				<tbody>
+						<tr v-for="(movie, index) in arrayColeccionesComunidad" :key="index">
+							<td>#{{index}}</td>
+							<td class="details">
+							  <router-link @click.native="$store.commit('scrollToTop')"
+                    :to="{ name: 'ColeccionDetalle', params: {username: userName, slug: movie.slug} }">
+					<font style="vertical-align: inherit;">
+                   <font style="vertical-align: inherit;">{{movie.titulo}}</font></font></router-link>
+								<div class="category"><font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">{{movie.contador}} Añadidas</font></font></div>
+							</td>
+							<td class="imdb">
+								<svg class="mofycon">
+									<use xlink:href="#icon-star"></use>
+								</svg>
+															</td>
+							<td class="flex-text-right">
+								<div class="poster-avatar pt-xs" tabindex="0">
+									<span class="poster-username pl-0 pr-sm">@{{userName}}</span>
+									<img src="https://avatars.dicebear.com/api/bottts/hectoracosta53.svg" alt="lacasadepapel">
+								</div>
+							</td>
+						</tr>
+																				
+														</tbody>
+
+			</table>
+
+		</div>
+
+	    </div>
 </div>
 </template>
 
@@ -59,7 +111,8 @@ export default {
     return {
          id_user: null, 
          userName: null,
-         arrayMisColecciones: []
+         arrayMisColecciones: [], 
+         arrayColeccionesComunidad: []
     };
   },
   computed: {
@@ -73,6 +126,17 @@ export default {
                     .then((res) => {
                       console.log(res)
                       this.arrayMisColecciones = res[0].coleccion
+                      this.$store.state.skeleton = 1
+                    }
+                    );
+           },
+            async getColeccionesComunidad(){
+            await fetch(this.urlProcesos +
+          "wp-json/colecciones/crear_coleccion/post/?q=gcom")
+                    .then((r) => r.json())
+                    .then((res) => {
+                      console.log(res)
+                      this.arrayColeccionesComunidad = res[0].coleccion
                       this.$store.state.skeleton = 1
                     }
                     );
@@ -118,7 +182,7 @@ export default {
             }
             
             else{
-                 return fetch(this.urlProcesos+'wp-json/colecciones/crear_coleccion/post?q=c&id_user='+this.id_user
+                 return fetch(this.urlProcesos+'wp-json/colecciones/crear_coleccion/post?q=cc&id_user='+this.id_user
                  +'&titulo='+titulo+'&descripcion='+descripcion)
              .then((r) => r.json())
                     .then((res) => {
@@ -157,6 +221,7 @@ export default {
        this.userName = co.user_login
         //listar colecciones 
         this.getMisColecciones()
+        this.getColeccionesComunidad()
         }
   },
 };

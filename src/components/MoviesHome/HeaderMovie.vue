@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <button class="mobile-menu-trigger"><span></span></button>
+      <button style="cursor: pointer;" class="mobile-menu-trigger" @click="$store.state.dropdownHeader = !$store.state.dropdownHeader"><span></span></button>
       <div id="logo">
         <a href="#" data-navigo="">Peliculas Turkass</a>
       </div>
@@ -204,7 +204,8 @@ export default {
             }
             
             else{
-                 return fetch(this.urlProcesos+'wp-json/registrar/usuario/post?username='+username)
+                 return fetch(this.urlProcesos+'wp-json/registrar/usuario/post?username='+username+'&email='
+                 +email+'&pass='+pass)
              .then((r) => r.json())
                     .then((res) => {
                      if(res[0].error == ''){
