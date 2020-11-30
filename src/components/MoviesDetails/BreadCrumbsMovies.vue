@@ -35,7 +35,7 @@
                 <button  v-if="id_user !=null" 
                 class="ui secondary scrolling button dropdown top right pointing" 
                 :class="{'active visible' : dropdownColeccion == 1}"
-                	v-click-outside="abrirColeccion" @click="abrirColeccion()" 
+                	v-click-outside="clickAfueraColeccion" @click="abrirColeccion()" 
                     tabindex="0">
                     <span>Agregar a Mi Colección</span>
                     <div class="menu left transition" :class="{'hidden' : dropdownColeccion == 0, 'visible':dropdownColeccion == 1 }" tabindex="-1">
@@ -148,6 +148,9 @@ const Toast = this.$swal.mixin({
                     }
                     );
            }, 
+           clickAfueraColeccion(){
+            this.dropdownColeccion = 0
+           },
        
         abrirColeccion(){
             if(this.dropdownColeccion == 0){

@@ -8,7 +8,7 @@
                 <button  v-if="id_user !=null" 
                 class="ui secondary scrolling button dropdown top right pointing" 
                 :class="{'active visible' : dropdownColeccion == 1}"
-                	v-click-outside="abrirColeccion" @click="abrirColeccion()" 
+                	v-click-outside="clickAfueraColeccion" @click="abrirColeccion()" 
                     tabindex="0">
                     <span>Agregar a Mi Colección</span>
                     <div class="menu left transition" :class="{'hidden' : dropdownColeccion == 0, 'visible':dropdownColeccion == 1 }" tabindex="-1">
@@ -37,6 +37,7 @@
 
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import {mapState} from 'vuex'
 import Cookies from "js-cookie";
 export default {
@@ -62,6 +63,9 @@ export default {
     ...mapState(["urlProcesos"]),
   },
     methods: {
+         clickAfueraColeccion(){
+            this.dropdownColeccion = 0
+           },
          async agregarColeccion(id, active){
             if(active == 0){
                        await fetch(this.urlProcesos +
@@ -175,6 +179,9 @@ const Toast = this.$swal.mixin({
     },
     components:{
         Cookies
-    }
+    },
+       directives: {
+    ClickOutside
+  }, 
 }
 </script>
