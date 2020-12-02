@@ -188,48 +188,7 @@
     
                         </div>
     
-                        <div class="sixteen wide tablet eleven wide computer column">
-	
-					<h4 class="sidebar-heading"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comentarios ( </font></font><span id="review-count"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )</font></font></h4>
-					
-															
-					<section class="user-reviews">
-						
-						<div class="ui list" id="review-form">
-														<div class="item">
-								<form class="review-form">
-									<div class="ui form">
-										<div class="field">
-                                            <div class="emojionearea ">
-                        <VueEmoji :width="'100%'" ref="emoji" @input="onInput"  />
-									<p v-html="myText"></p>
-
-                                            </div>
-                                           	</div>
-									</div>
-									<div class="ui grid">
-										<div class="left floated left aligned sixteen wide tablet ten wide computer column" id="spoiler-input-container">
-											<div class="ui checkbox ordi">
-												<input type="checkbox" name="spoiler-alert-checkbox" id="commentSpoiler" value="1" tabindex="0" class="hidden">
-												<label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¿Tu comentario contiene spoilers?</font></font></label>
-											</div>
-										</div>
-										<div class="right floated right aligned sixteen wide tablet four wide computer column">
-											<!-- <span class="chars-remaining right aligned">
-												<span id="charNum">0</span> karakter (500 max)
-											</span> -->
-											<button class="ui primary button fnc_addComment" style="float: inherit;" type="button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar comentario</font></font></button>
-										</div>
-									</div>
-								</form> <!-- // .review-form -->
-							</div> <!-- // .item -->
-						</div>
-						<div class="ui list" id="review-list">
-																				</div> <!-- // .list -->
-				
-					</section> <!-- // .user-reviews -->
-						
-				</div>
+                       <ComentariosFlix :post_id="post_id" :id_user="id_user" :userName="userName" />
                     </div>
                 </div>
             </div>
@@ -248,32 +207,37 @@
 
 <script>
 // @ is an alias to /src
-import VueEmoji from 'emoji-vue'
+import Cookies from "js-cookie";
+
 import {mapState} from 'vuex'
 import BreadCrumbsMovies from '@/components/MoviesDetails/BreadCrumbsMovies.vue'
 import ReproductoresMovies from '@/components/MoviesDetails/ReproductoresMovies.vue'
+import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
 export default {
   name: 'MoviesDetails',
    data (){
         return {
           MoviesDetails: [], 
-    myText: ""
+             myText: "", 
+             post_id: null, 
+             id_user: null, 
+          userName: null,
+          
         }
     },
+    
       computed:{
         ...mapState(['urlProcesos'])
     },
     methods: {
-         onInput(event) {
-          //event.data contains the value of the textarea
-          this.myText = event.data
-      },
+       
             async MoviesGetDetails(){
             await fetch(this.urlProcesos+'wp-json/peliculas/detalle_slug/post/?slug='+this.$route.params.slug)
                     .then((r) => r.json())
                     .then((res) => {
                         console.log(res);
-                        this.MoviesDetails = res; 
+                        this.MoviesDetails = res;
+                        this.post_id = res[0].id 
              
                     }
                     );
@@ -293,10 +257,18 @@ export default {
             },  
     },
      components: {
-BreadCrumbsMovies, ReproductoresMovies, VueEmoji
+BreadCrumbsMovies, ReproductoresMovies, Cookies, ComentariosFlix
          }, 
   mounted() {
+       var co = Cookies.get("user_session"); 
+        if(co != undefined)
+        {
+        co = JSON.parse(co)
+    this.id_user = co.user_id; 
+    this.userName = co.user_login
+        }
             this.MoviesGetDetails();
     },
 }
 </script>
+
