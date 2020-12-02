@@ -189,9 +189,47 @@
                         </div>
     
                         <div class="sixteen wide tablet eleven wide computer column">
-                            <h4 class="sidebar-heading"> COmentarios </h4>
-                            
-                        </div>
+	
+					<h4 class="sidebar-heading"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comentarios ( </font></font><span id="review-count"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )</font></font></h4>
+					
+															
+					<section class="user-reviews">
+						
+						<div class="ui list" id="review-form">
+														<div class="item">
+								<form class="review-form">
+									<div class="ui form">
+										<div class="field">
+                                            <div class="emojionearea ">
+                        <VueEmoji :width="'100%'" ref="emoji" @input="onInput"  />
+									<p v-html="myText"></p>
+
+                                            </div>
+                                           	</div>
+									</div>
+									<div class="ui grid">
+										<div class="left floated left aligned sixteen wide tablet ten wide computer column" id="spoiler-input-container">
+											<div class="ui checkbox ordi">
+												<input type="checkbox" name="spoiler-alert-checkbox" id="commentSpoiler" value="1" tabindex="0" class="hidden">
+												<label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">¿Tu comentario contiene spoilers?</font></font></label>
+											</div>
+										</div>
+										<div class="right floated right aligned sixteen wide tablet four wide computer column">
+											<!-- <span class="chars-remaining right aligned">
+												<span id="charNum">0</span> karakter (500 max)
+											</span> -->
+											<button class="ui primary button fnc_addComment" style="float: inherit;" type="button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar comentario</font></font></button>
+										</div>
+									</div>
+								</form> <!-- // .review-form -->
+							</div> <!-- // .item -->
+						</div>
+						<div class="ui list" id="review-list">
+																				</div> <!-- // .list -->
+				
+					</section> <!-- // .user-reviews -->
+						
+				</div>
                     </div>
                 </div>
             </div>
@@ -210,6 +248,7 @@
 
 <script>
 // @ is an alias to /src
+import VueEmoji from 'emoji-vue'
 import {mapState} from 'vuex'
 import BreadCrumbsMovies from '@/components/MoviesDetails/BreadCrumbsMovies.vue'
 import ReproductoresMovies from '@/components/MoviesDetails/ReproductoresMovies.vue'
@@ -218,13 +257,17 @@ export default {
    data (){
         return {
           MoviesDetails: [], 
-    
+    myText: ""
         }
     },
       computed:{
         ...mapState(['urlProcesos'])
     },
     methods: {
+         onInput(event) {
+          //event.data contains the value of the textarea
+          this.myText = event.data
+      },
             async MoviesGetDetails(){
             await fetch(this.urlProcesos+'wp-json/peliculas/detalle_slug/post/?slug='+this.$route.params.slug)
                     .then((r) => r.json())
@@ -250,7 +293,7 @@ export default {
             },  
     },
      components: {
-BreadCrumbsMovies, ReproductoresMovies
+BreadCrumbsMovies, ReproductoresMovies, VueEmoji
          }, 
   mounted() {
             this.MoviesGetDetails();

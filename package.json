@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "emoji-vue": "^0.2.4",
     "js-cookie": "^2.2.1",
     "node-sass": "^5.0.0",
     "nprogress": "^0.2.0",
