@@ -396,41 +396,7 @@
                             </div> <!-- // .ui grid -->
                         </section> <!-- // .episodes-box -->
 
-                        <h4 class="sidebar-heading">
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Comentarios ( </font>
-                            </font><span id="review-count">
-                                <font style="vertical-align: inherit;">
-                                    <font style="vertical-align: inherit;">31</font>
-                                </font>
-                            </span>
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;"> )</font>
-                            </font>
-                        </h4>
-
-                        <div class="alert alert-danger" role="alert">
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">
-                                    El campo de comentarios es solo para miembros. </font>
-                            </font><a onlyusers="">
-                                <font style="vertical-align: inherit;">
-                                    <font style="vertical-align: inherit;">Iniciar sesión y registrarse.</font>
-                                </font>
-                            </a>
-                        </div>
-
-
-                        <button class="ui button comments-load-more load-more" data-page="1" data-series="238"
-                            type="button">
-                            <svg class="mofycon">
-                                <use xlink:href="#icon-plus"></use>
-                            </svg>
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">
-                                    Mostrar más </font>
-                            </font>
-                        </button>
+                       <ComentariosFlix  :post_id="post_id" :id_user="id_user" :userName="userName" />
 
                     </div> <!-- // .eleven .wide .column -->
 
@@ -455,16 +421,21 @@
 </template>
 
 <script>
+import Cookies from "js-cookie";
 // @ is an alias to /src
 import {mapState} from 'vuex'
 import BreadCrumbsSeries from '@/components/SeriesDetails/BreadCrumbsSeries.vue'
+import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
 export default {
   name: 'SeriesDetails',
    data (){
         return {
           
       SeriesDetails: [], 
-            tabTemp: 1
+            tabTemp: 1, 
+              id_user: null, 
+          userName: null,
+          post_id: null,
         }
     },
       computed:{
@@ -476,6 +447,7 @@ export default {
                     .then((r) => r.json())
                     .then((res) => {
                         this.SeriesDetails = res
+                            this.post_id = res[0].id 
                      //  this.$store.state.skeleton = 1
                     }
                     );
@@ -499,9 +471,16 @@ export default {
           }
     },
      components: {
-BreadCrumbsSeries
+BreadCrumbsSeries, ComentariosFlix, Cookies
          }, 
   mounted() {
+       var co = Cookies.get("user_session"); 
+        if(co != undefined)
+        {
+        co = JSON.parse(co)
+    this.id_user = co.user_id; 
+    this.userName = co.user_login
+        }
            this.SeriesGetDetails();
     },
 }

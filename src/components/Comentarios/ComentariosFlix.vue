@@ -61,11 +61,9 @@
           <img class="ui avatar image" :src="item.imagen_perfil" alt="" />
           <div class="content">
             <h6>
-              <a
-                href="profil/hectoracosta53"
-                class="review-author"
-                title="@hectoracosta53 Profilini Görüntüle"
-                >@{{ item.username }}</a
+               <router-link  class="review-author" @click.native="$store.commit('scrollToTop')" 
+                :to="{ name: 'PerfilUser', params: {user: item.username} }" >
+             @{{ item.username }}</router-link
               >
             </h6>
             <div class="review-time">{{item.fecha}}</div>
@@ -75,32 +73,11 @@
 
             <div class="review-extras">
               <div class="flex-row buttons">
-                <button
-                  class="ui button fnc_addFeel"
-                  onlyusers=""
-                  data-id="3678"
-                  data-type="1"
-                  data-status="2"
-                  data-comment="720036"
-                >
-                  <svg class="mofycon">
-                    <use xlink:href="#icon-thumbs-up"></use>
-                  </svg>
-                  <span>1</span>
-                </button>
-                <button
-                  class="ui button fnc_addFeel"
-                  onlyusers=""
-                  data-id="3678"
-                  data-type="2"
-                  data-status="2"
-                  data-comment="720036"
-                >
-                  <svg class="mofycon">
-                    <use xlink:href="#icon-thumbs-down"></use>
-                  </svg>
-                  <span>0</span>
-                </button>
+                          <LikeComments :id_user="id_user" :id="item.id" :micomentario="item.micomentario"
+                          :like="item.cantidadLikes" :yadi="item.yadi"
+                          :dislike="item.cantidadDislikes" :yadid="item.yadid"
+                           @getCommentsLike="getCommentsbyLike()"
+                            />
                 <a
                   href="#"
                   class="reply-link"
@@ -157,66 +134,35 @@
                     </div>
                     <div class="review-extras">
                       <div class="flex-row buttons">
-                        <button
-                          class="ui button fnc_addFeel"
-                          data-id="3678"
-                          data-type="1"
-                          data-status="2"
-                          data-comment="720136"
-                        >
-                          <svg class="mofycon">
-                            <use xlink:href="#icon-thumbs-up"></use>
-                          </svg>
-                          <span>1</span>
-                        </button>
-                        <button
-                          class="ui button fnc_addFeel"
-                          data-id="3678"
-                          data-type="2"
-                          data-status="2"
-                          data-comment="720136"
-                        >
-                          <svg class="mofycon">
-                            <use xlink:href="#icon-thumbs-down"></use>
-                          </svg>
-                          <span>0</span>
-                        </button>
+                       <LikeComments :id_user="id_user" :id="subitem.id" :micomentario="subitem.micomentario"
+                          :like="subitem.cantidadLikes" :yadi="subitem.yadi" @getCommentsLike="getCommentsbyLike()"
+                           :dislike="subitem.cantidadDislikes" :yadid="subitem.yadid"
+                           
+                            />
                       </div>
                     </div>
                   </div>
-                  <div class="review-more-menu">
-                    <div
-                      class="ui icon dropdown top right pointing dropdown"
-                      tabindex="0"
-                    >
-                      <svg class="mofycon dropdown top right pointing dropdown">
-                        <use xlink:href="#icon-arrow-down"></use>
-                      </svg>
-                      <div class="menu" tabindex="-1"></div>
-                    </div>
-                  </div>
+
+                  
+          
+
+                <div class="review-more-menu">
+            <DropDownReply :id="subitem.id" :micomentario="subitem.micomentario" @getComments="getCommentsByReply()" />
+                </div>
+
+
+
+
+
+
                 </div>
                 
               </div>
             </div>
 
             <div class="review-more-menu">
-              <div
-                class="ui icon dropdown top right pointing dropdown"
-                tabindex="0"
-              >
-                <svg class="mofycon dropdown top right pointing dropdown">
-                  <use xlink:href="#icon-arrow-down"></use>
-                </svg>
-                <div class="menu" tabindex="-1">
-                  <div class="item" data-delete="720780" data-type="2">
-                    Yorumu Sil
-                  </div>
-                  <div class="item" data-spoiler="720780" data-type="2">
-                    Spoiler Yap
-                  </div>
-                </div>
-              </div>
+              <DropDownReply :id="item.id" :micomentario="item.micomentario" @getComments="getCommentsByReply()" />
+             
             </div>
           </div>
         </div>
@@ -233,7 +179,8 @@
 import VueEmoji from "emoji-vue";
 import ClickOutside from "vue-click-outside";
 import { mapState } from "vuex";
-
+import DropDownReply from '@/components/Comentarios/DropDownReply.vue'
+import LikeComments from '@/components/Comentarios/LikeComments.vue'
 export default {
   name: "ComentariosFlix",
   props: {
@@ -255,27 +202,51 @@ export default {
       loadingComment: false,
       arrayComentarios: [],
       textoComentario: "",
-      cantComments: 0
+      cantComments: 0, 
+      
     };
   },
   computed: {
     ...mapState(["urlProcesos"]),
   },
+   
   methods: {
+    getCommentsbyLike(){
+        this.getCommentsPost()
+ 
+    },
+   
+getCommentsByReply(){
+  this.getCommentsPost()
+}, 
       responderComment(id){
+        if(this.id_user == null){
+ vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+}
         var textoReply = document.getElementById("replyText_"+id).value
-        console.log(textoReply)
+      //  console.log(textoReply)
          document.getElementById("buttonReply_"+id).style.opacity = "0.2";
         this.addCommentReply(id, textoReply)
       },
       activarReply(id){
+        if(this.id_user == null){
+ vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+}
      const editor = this.$el.querySelector("#reply_"+id);
       editor.style.display = "block";
       }, 
-    enterClicked() {
-      console.log("presiono enter");
-    },
+   
     async addCommentReply(id, contenido){
+
+
+if(this.id_user == null){
+ vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+}
+
+
  var textoReply = document.getElementById("replyText_"+id)
  await fetch(
           this.urlProcesos +
@@ -292,7 +263,7 @@ export default {
           .then((r) => r.json())
           .then((res) => {
               
-            console.log(res);
+          //  console.log(res);
             textoReply.value = ''
             this.getCommentsPost();
                  document.getElementById("buttonReply_"+id).style.opacity = "1";
@@ -304,12 +275,17 @@ export default {
 
 
     async addComment() {
-      console.log(this.$refs.emoji);
-      this.loadingComment = true;
-      const editor = this.$el.querySelector(".emoji-wysiwyg-editor");
-      editor.style.backgroundColor = "#42454f";
+      if(this.id_user == null){
+ vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+}
+   //   console.log(this.$refs.emoji);
+     
 
       if (this.textoComentario.length > 0) {
+         this.loadingComment = true;
+      const editor = this.$el.querySelector(".emoji-wysiwyg-editor");
+      editor.style.backgroundColor = "#42454f";
         console.log("mayor q ce4o");
         await fetch(
           this.urlProcesos +
@@ -324,7 +300,7 @@ export default {
         )
           .then((r) => r.json())
           .then((res) => {
-            console.log(res);
+        //    console.log(res);
             this.$refs.emoji.clear();
             this.loadingComment = false;
             editor.style.backgroundColor = "#111215";
@@ -337,37 +313,36 @@ export default {
       this.textoComentario = event.data;
     },
     async getCommentsPost() {
-      console.log(
-        this.urlProcesos +
-          "wp-json/comentarios/add/post/?q=get&id_post=" +
-          this.post_id
-      );
+     
       await fetch(
         this.urlProcesos +
           "wp-json/comentarios/add/post/?q=get&id_post=" +
-          this.post_id
+          this.post_id+"&id_user="+this.id_user
       )
         .then((r) => r.json())
         .then((res) => {
-          console.log(res);
+         console.log(res);
           this.arrayComentarios = res[0].comentarios;
           this.cantComments = res[0].cantidad
+          this.$store.state.opa = false
         });
     },
   },
   mounted() {
+
     this.getCommentsPost();
   },
   components: {
-    VueEmoji,
+    VueEmoji, DropDownReply, LikeComments
   },
-  directives: {
-    ClickOutside,
-  },
+  
 };
 </script>
 <style >
 .loadingComment {
   opacity: 0.2;
+}
+.mostrarItem{
+  display: block;
 }
 </style>

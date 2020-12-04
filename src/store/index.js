@@ -16,7 +16,8 @@ export default new Vuex.Store({
     s: "serie", 
     sessionCookie: false, 
     arraySession: {}, 
-    dropdownHeader: false
+    dropdownHeader: false, 
+    opa: false
   },
   mutations: {
     scrollToTop() {

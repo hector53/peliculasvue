@@ -188,7 +188,7 @@
     
                         </div>
     
-                       <ComentariosFlix :post_id="post_id" :id_user="id_user" :userName="userName" />
+                       <ComentariosFlix  :post_id="post_id" :id_user="id_user" :userName="userName" />
                     </div>
                 </div>
             </div>

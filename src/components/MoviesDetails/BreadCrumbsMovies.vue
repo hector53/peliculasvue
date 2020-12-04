@@ -148,7 +148,8 @@ const Toast = this.$swal.mixin({
                     }
                     );
            }, 
-           clickAfueraColeccion(){
+           clickAfueraColeccion(event){
+          //     console.log(event)
             this.dropdownColeccion = 0
            },
        
