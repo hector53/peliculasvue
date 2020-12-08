@@ -10,6 +10,7 @@ import Descubrir from '../views/Descubrir.vue'
 import VerPerfil from '../views/VerPerfil.vue'
 import Colecciones from '../views/Colecciones.vue'
 import ColeccionDetalle from '../views/ColeccionDetalle.vue'
+import Foro from '../views/Foro.vue'
 import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
@@ -18,6 +19,21 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/foro/',
+    name: 'Foro',
+    component: Foro
+  },
+  {
+    path: '/foro/:foro_slug',
+    name: 'ForoVerSeccion',
+    component: Foro
+  },
+  {
+    path: '/foro/:foro_slug/:tema_slug',
+    name: 'ForoVerTema',
+    component: Foro
   },
   {
     path: '/ver-series/',

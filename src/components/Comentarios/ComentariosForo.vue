@@ -73,7 +73,7 @@
 
             <div class="review-extras">
               <div class="flex-row buttons">
-                          <LikeComments :id_user="id_user" :id="item.id" :micomentario="item.micomentario"
+                          <LikeComments :id_user="String(id_user)" :id="String(item.id)" :micomentario="item.micomentario"
                           :like="item.cantidadLikes" :yadi="item.yadi"
                           :dislike="item.cantidadDislikes" :yadid="item.yadid"
                            @getCommentsLike="getCommentsbyLike()"
@@ -134,7 +134,7 @@
                     </div>
                     <div class="review-extras">
                       <div class="flex-row buttons">
-                       <LikeComments :id_user="id_user" :id="subitem.id" :micomentario="subitem.micomentario"
+                       <LikeComments :id_user="String(id_user)" :id="String(subitem.id)" :micomentario="subitem.micomentario"
                           :like="subitem.cantidadLikes" :yadi="subitem.yadi" @getCommentsLike="getCommentsbyLike()"
                            :dislike="subitem.cantidadDislikes" :yadid="subitem.yadid"
                            
@@ -147,7 +147,7 @@
           
 
                 <div class="review-more-menu">
-            <DropDownReply :id="subitem.id" :micomentario="subitem.micomentario" @getComments="getCommentsByReply()" />
+            <DropDownReply :id="String(subitem.id)" :micomentario="subitem.micomentario" @getComments="getCommentsByReply()" />
                 </div>
 
 
@@ -161,7 +161,7 @@
             </div>
 
             <div class="review-more-menu">
-              <DropDownReply :id="item.id" :micomentario="item.micomentario" @getComments="getCommentsByReply()" />
+              <DropDownReply :id="String(item.id)" :micomentario="item.micomentario" @getComments="getCommentsByReply()" />
              
             </div>
           </div>
@@ -182,7 +182,7 @@ import { mapState } from "vuex";
 import DropDownReply from '@/components/Comentarios/DropDownReply.vue'
 import LikeComments from '@/components/Comentarios/LikeComments.vue'
 export default {
-  name: "ComentariosFlix",
+  name: "ComentariosForo",
   props: {
     post_id: {
       type: String,
@@ -247,7 +247,7 @@ if(this.id_user == null){
  var textoReply = document.getElementById("replyText_"+id)
  await fetch(
           this.urlProcesos +
-            "wp-json/comentarios/add/post/?q=addR&id_post=" +
+            "wp-json/foro/reply/?q=addR&id_post=" +
             this.post_id +
             "&id_user=" +
             this.id_user +
@@ -286,7 +286,7 @@ if(this.id_user == null){
         console.log("mayor q ce4o");
         await fetch(
           this.urlProcesos +
-            "wp-json/comentarios/add/post/?q=add&id_post=" +
+            "wp-json/foro/reply/?q=add&id_post=" +
             this.post_id +
             "&id_user=" +
             this.id_user +
@@ -313,7 +313,7 @@ if(this.id_user == null){
      
       await fetch(
         this.urlProcesos +
-          "wp-json/comentarios/add/post/?q=get&id_post=" +
+          "wp-json/foro/reply/?q=get&id_post=" +
           this.post_id+"&id_user="+this.id_user
       )
         .then((r) => r.json())

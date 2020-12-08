@@ -56,13 +56,15 @@
 										</span>Películas
 									</router-link>
 								</li>
-								<li>
-									<a href="https://yabancidizi.vip/forum" data-navigo="">
+								<li :class="{'active': $route.name == 'Foro'}">
+								<router-link @click.native="$store.commit('scrollToTop')" 
+								:to="{name:'Foro'}">
+								
 										<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-comment-new"></use>
 											</svg>
-										</span>Foro </a>
+										</span>Foro </router-link>
 								</li>
 								<li>
 								 <router-link @click.native="$store.commit('scrollToTop')" 

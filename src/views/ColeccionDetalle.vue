@@ -62,7 +62,7 @@
 
 
 
-
+ <ComentariosFlix v-if="skeleton==1"  :post_id="id_coleccion" :id_user="id_user" :userName="userName" />
 
 
 
@@ -200,6 +200,7 @@
 // @ is an alias to /src
 import {mapState} from 'vuex'
 import Cookies from "js-cookie";
+import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
 export default {
   name: 'ColeccionDetalle',
    data (){
@@ -345,7 +346,7 @@ export default {
 		
            }
            },
-     components: {Cookies},
+     components: {Cookies, ComentariosFlix},
   mounted() {
    
       var co = Cookies.get("user_session"); 
