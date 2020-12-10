@@ -320,7 +320,9 @@ if(this.id_user == null){
         .then((res) => {
          console.log(res);
           this.arrayComentarios = res[0].comentarios;
-          this.cantComments = res[0].cantidad
+           if(res[0].cantidad > 0){
+ this.cantComments = res[0].cantidad
+          }
           this.$store.state.opa = false
         });
     },

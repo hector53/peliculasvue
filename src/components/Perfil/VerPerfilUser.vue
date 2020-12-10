@@ -382,14 +382,62 @@
             data-tab="discussions"
             :class="{'active' : tab5}" 
           >
-            <div class="alert alert-danger">
-              <font style="vertical-align: inherit"
-                ><font style="vertical-align: inherit"
-                  >El usuario no tiene un tema abierto en la sección de
-                  discusiones.</font
-                ></font
-              >
-            </div>
+           <div class="ui grid" >
+
+	<div class="wide column">
+
+		<div class="story-list-items mb-lg">
+	<div class="title-base">
+		<h3 class="title-tertiary pt-sm"><font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">Mis Temas del Foro</font></font></h3>
+	</div>
+	<ul>
+		<li class="story-list-item" v-for="(movie, index) in arrayMisTemasForo" :key="index">
+		<VotoForo :id_user="id_user" :id_tema="String(movie.id)" />
+			<figure class="list-story-category">
+				<router-link @click.native="$store.commit('scrollToTop')" 
+					:to="{name:'ForoVerSeccion', params: {foro_slug: movie.slugForo} }">
+                  
+					<img src="https://api.pelisflix.com/wp-content/uploads/cover-general-discussion.png" 
+                    alt="deben cargarse matrices" class="lazy-wide loading"
+                     data-was-processed="true">
+				</router-link>
+			</figure>
+		
+			<h3 class="title-tertiary truncate mt-0 mb-0">
+                  <router-link @click.native="$store.commit('scrollToTop')" 
+	:to="{name:'ForoVerTema', params: {foro_slug: movie.slugForo, tema_slug: movie.slug+'.'+movie.id} }">
+                 <font style="vertical-align: inherit;">
+                     <font class="" style="vertical-align: inherit;">{{movie.titulo}}</font>
+                     </font></router-link></h3>
+			<p class="description-quaternary mb-0 truncate">
+               
+                    <font style="vertical-align: inherit;">
+                      {{movie.contenido}}
+                    </font>
+                    
+                         </p>
+			<p class="description-quaternary mb-0">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">
+                        {{movie.cantidadReply}} comentarios · Publicado {{movie.fecha}} </font>
+                        <font style="vertical-align: inherit;">por </font>
+                        </font>
+                         <router-link class="item"  @click.native="$store.commit('scrollToTop')" 
+                            :to="{ name: 'PerfilUser', params: {user: movie.autor} }">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">{{movie.autor}}</font>
+                            </font></router-link><font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;"> .</font>
+                </font>
+            </p>
+		</li>
+    			
+    				</ul>
+</div>
+
+			</div>
+</div>
           </div>
         </div>
       </div>
@@ -402,7 +450,7 @@
 <script>
 // @ is an alias to /src
 import { mapState } from "vuex";
-
+import VotoForo from '@/components/Foro/VotoForo.vue'
 export default {
   name: "VerPerfilUser",
    props: {
@@ -427,7 +475,8 @@ export default {
         fecha_registro: null, 
         arrayPeliculasSeguidas: [], 
         arraySeriesSeguidas: [], 
-        arrayMisColecciones: []
+        arrayMisColecciones: [], 
+        arrayMisTemasForo: []
     };
   },
   computed: {
@@ -480,6 +529,17 @@ export default {
                     }
                     );
            },
+           async getMisTemasForo(){
+            await fetch(this.urlProcesos +
+          "wp-json/foro/all/?q=getMisTemas&id_user="+this.id_user)
+                    .then((r) => r.json())
+                    .then((res) => {
+                      console.log(res)
+                      this.arrayMisTemasForo = res
+                      
+                    }
+                    );
+           },
       clickTab(num){
          if(num == 1){
                 this.tab1 = true; 
@@ -519,12 +579,13 @@ export default {
       }
 
   },
-  components: {},
+  components: {VotoForo},
   mounted() {
      this.getUserData(); 
      this.getPeliculasSeguidas()
      this.getSeriesSeguidas()
      this.getMisColecciones()
+     this.getMisTemasForo()
   },
   created() {
   },
