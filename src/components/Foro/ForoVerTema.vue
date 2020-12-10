@@ -20,26 +20,14 @@
 	</div>
 	<!-- // .grid -->
 
-	<div class="ui grid">
+	<div class="ui grid" v-for="(movie, index) in arrayTema" :key="index">
 
 		<div class="left floated thirteen wide column">
 			<div class="story-header">
-				<div class="list-story-upvote-grouper">
-					<button aria-label="Puan Ver" title="Puan Ver" class="story-upvote-button upvoted" itemscope="true" itemtype="http://schema.org/LikeAction" data-fid="75" data-vote="1">
-						<meta content="Puan Ver" itemprop="name">
-						<meta content="/forum//yuklenmesi-gereken-diziler-337841" itemprop="url">
-						<svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 6l5-6 5 6z"></path></svg>
-					</button>
-					<span class="story-vote-count">210</span>
-					<button aria-label="Puan Düşür" title="Puan Düşür" class="story-downvote-button" itemscope="true" itemtype="http://schema.org/LikeAction" data-fid="75" data-vote="2">
-						<meta content="Puan Düşür" itemprop="name">
-						<meta content="/forum//yuklenmesi-gereken-diziler-337841" itemprop="url">	
-						<svg width="10" height="6" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"></path></svg>
-					</button>
-				</div>
+				<VotoForo :id_user="id_user" :id_tema="String(movie.id)" />
 				<figure class="list-story-category" style="left: 40px!important;">
 					<a href="forum/genel" title="Genel Tartışma" data-navigo="">
-						<img :src="temaImagen" alt="Genel Tartışma" class="lazy-wide loading" data-was-processed="true">
+						<img :src="movie.imagen" alt="Genel Tartışma" class="lazy-wide loading" data-was-processed="true">
 					</a>
 				</figure>
 				<h1 class="title-primary p-0 m-0">{{temaTitulo}}</h1>
@@ -128,12 +116,7 @@
 		</section>
 
 		<aside class="right floated sixteen wide tablet five wide computer column">
-			<div class="generic-box story-box">
-				<div class="related-threads">
-					<h5 class="section-heading">Benzer Konular</h5>
-										<div class="alert alert-danger mt-lg mb-0">Benzer konu bulunamadı.</div>
-				</div>
-			</div>
+				<ForoTemasRelacionados v-if="temaID" :id_tema="temaID"  />
 		</aside>
 
 	</div>
@@ -147,6 +130,8 @@
 // @ is an alias to /src
 import {mapState} from 'vuex'
 import ComentariosForo from '@/components/Comentarios/ComentariosForo.vue'
+import VotoForo from '@/components/Foro/VotoForo.vue'
+import ForoTemasRelacionados from '@/components/Foro/ForoTemasRelacionados.vue'
 export default {
   name: 'ForoVerTema',
     props: {
@@ -213,7 +198,7 @@ export default {
             });
         }
            },
-     components: {ComentariosForo},
+     components: {ComentariosForo, VotoForo, ForoTemasRelacionados},
   mounted() {
    
     

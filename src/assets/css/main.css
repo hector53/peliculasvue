@@ -40456,7 +40456,17 @@ scroll-wrapper .next-ep-holder .next-ep-wrapper .title-quaternary {
     }
 
     #primary-sidebar {
-        display: none
+        display: none !important
+    }
+
+    #primary-sidebar.triggered {
+        display: block !important;
+        position: fixed;
+        top: 75px;
+        left: 0;
+        bottom: 0;
+        height: 100%;
+        z-index: 99
     }
 }
 

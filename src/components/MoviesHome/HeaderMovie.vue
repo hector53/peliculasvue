@@ -1,7 +1,8 @@
 <template>
   <div>
     <header id="header">
-      <button style="cursor: pointer;" class="mobile-menu-trigger" @click="$store.state.dropdownHeader = !$store.state.dropdownHeader"><span></span></button>
+      <button style="cursor: pointer;" class="mobile-menu-trigger"
+       @click="$store.state.dropdownHeader = !$store.state.dropdownHeader"><span></span></button>
       <div id="logo">
         <a href="#" data-navigo="">Peliculas Turkass</a>
       </div>
