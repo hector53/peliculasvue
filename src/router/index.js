@@ -11,6 +11,7 @@ import VerPerfil from '../views/VerPerfil.vue'
 import Colecciones from '../views/Colecciones.vue'
 import ColeccionDetalle from '../views/ColeccionDetalle.vue'
 import Foro from '../views/Foro.vue'
+import Tendencias from '../views/Tendencias.vue'
 import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/tendencias/',
+    name: 'Tendencias',
+    component: Tendencias
   },
   {
     path: '/foro/',

@@ -200,7 +200,16 @@ const Toast = this.$swal.mixin({
                }
            }
        
-       }
+       }, 
+         async ContVisit(){
+                 await fetch(this.urlProcesos+'wp-json/visitas/contador/?q=1&id_post='
+                 +this.movieID)
+                    .then((r) => r.json())
+                    .then((res) => {
+                        console.log(res);
+                    }
+                    );
+            }
     },
     mounted() {
     var co = Cookies.get("user_session"); 
@@ -212,6 +221,7 @@ const Toast = this.$swal.mixin({
         }
          this.getPeliculaSeguida('g')
         this.getMisColecciones()
+        this.ContVisit()
          
     },
     components:{

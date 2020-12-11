@@ -255,6 +255,7 @@ export default {
               })
               return  
             },  
+         
     },
      components: {
 BreadCrumbsMovies, ReproductoresMovies, Cookies, ComentariosFlix

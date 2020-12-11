@@ -52,7 +52,7 @@ import { mapState } from "vuex";
 
 export default {
   name: "VotoForo",
-   props: ['id_tema', 'id_user'],
+   props: ['id_tema', 'id_user', 'login'],
   data() {
     return {
         voteUp: false,
@@ -67,6 +67,20 @@ export default {
 
   methods: {
     async  Vote(val){
+                  if(this.id_user == null){
+ vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+}
+
+if(this.login != null || this.login != ''){
+  console.log(this.login)
+      if(this.login == 0){
+vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+      }
+}
+
+
           if(val == 1){
               if(this.voteUp == false){
              await     fetch( this.urlProcesos +"wp-json/like/comment/?q=voteUp&id_comment="

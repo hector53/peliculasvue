@@ -393,7 +393,7 @@
 	</div>
 	<ul>
 		<li class="story-list-item" v-for="(movie, index) in arrayMisTemasForo" :key="index">
-		<VotoForo :id_user="id_user" :id_tema="String(movie.id)" />
+		<VotoForo :id_user="id_user" :id_tema="String(movie.id)" :login="login" />
 			<figure class="list-story-category">
 				<router-link @click.native="$store.commit('scrollToTop')" 
 					:to="{name:'ForoVerSeccion', params: {foro_slug: movie.slugForo} }">
@@ -462,7 +462,10 @@ export default {
             type: String, 
             required: true,
 		},
-    
+    	login:{
+            type: Number, 
+            required: true,
+		},
     },
   data() {
     return {
@@ -576,7 +579,16 @@ export default {
                 this.tab4 = false; 
                 this.tab5 = true; 
          }
-      }
+      }, 
+       async ContVisit(){
+                 await fetch(this.urlProcesos+'wp-json/visitas/contador/?q=3&id_post='
+                 +this.id_user)
+                    .then((r) => r.json())
+                    .then((res) => {
+                        console.log(res);
+                    }
+                    );
+            }
 
   },
   components: {VotoForo},
@@ -586,6 +598,7 @@ export default {
      this.getSeriesSeguidas()
      this.getMisColecciones()
      this.getMisTemasForo()
+     this.ContVisit()
   },
   created() {
   },

@@ -24,12 +24,16 @@
                                         </span>Descubrir</router-link> 
 								</li>
 								<li>
-									<a href="https://yabancidizi.vip/trends" data-navigo="">
+										 <router-link @click.native="$store.commit('scrollToTop')" 
+								 :to="{name:'Tendencias'}">
+									
 										<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-trending-new"></use>
 											</svg>
-										</span>Tendencias </a>
+										</span>Tendencias </router-link>
+
+
 								</li>
 								<li>
 									<a href="https://yabancidizi.vip/takvim" data-navigo="">
