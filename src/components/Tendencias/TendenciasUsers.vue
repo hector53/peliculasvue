@@ -5,7 +5,8 @@
 					<div class="global-box">
 						<div class="ui middle aligned divided list">
 					    	<div class="item artist" v-for="(movie, index) in arrayDatos" :key="index">
-								<a href="#" data-navigo="">
+								<router-link class="item"  @click.native="$store.commit('scrollToTop')" 
+                            :to="{ name: 'PerfilUser', params: {user: movie.username} }">
 									<div class="artist-photo">
                                         <img :src="movie.imagen"></div>
 									<div class="content">
@@ -23,7 +24,7 @@
 										</div>
 									</div>
 									<span class="points">+{{movie.visitas}}</span>
-								</a>
+								</router-link>
 							</div>
 						</div>
 					</div>
