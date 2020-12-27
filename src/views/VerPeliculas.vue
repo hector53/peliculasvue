@@ -83,12 +83,12 @@ export default {
    data (){
         return {
           totalPaginas: 0, 
-       registrosxPag: 2,
+       registrosxPag: 20,
       paginaActual: 1, 
        num_actual_ini: 1,
         num_actual_fin: 3,
         ini: 0, 
-        fin: 2,
+        fin: 20,
       VerPelicula: [], 
       generos: [], 
       peliculasSlider: [],

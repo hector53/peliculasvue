@@ -12,6 +12,7 @@ import Colecciones from '../views/Colecciones.vue'
 import ColeccionDetalle from '../views/ColeccionDetalle.vue'
 import Foro from '../views/Foro.vue'
 import Tendencias from '../views/Tendencias.vue'
+import Actores from '../views/Actores.vue'
 import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
@@ -101,7 +102,12 @@ const routes = [
 path: '/series/:slug/temporada/:id_temp/capitulo/:id_cap', 
 name: 'detalleSeriesTemporadasCapitulos', 
 component: SeriesDetailsCap
-}
+}, 
+{
+  path: '/actor/:slug',
+  name: 'VerActor',
+  component: Actores
+},
 ]
 
 const router = new VueRouter({

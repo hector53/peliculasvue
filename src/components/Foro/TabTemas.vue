@@ -49,7 +49,7 @@
 			</div>
 			<h3 class="title-tertiary truncate mt-0 mb-0">
                   <router-link @click.native="$store.commit('scrollToTop')" 
-								:to="{name:'ForoVerTema', params: {foro_slug: movie.slugForo, tema_slug: movie.slug+'.'+movie.id} }">
+	:to="{name:'ForoVerTema', params: {foro_slug: movie.slugForo, tema_slug: movie.slug+'.'+movie.id} }">
                  <font style="vertical-align: inherit;">
                      <font class="" style="vertical-align: inherit;">{{movie.titulo}}</font>
                      </font></router-link></h3>

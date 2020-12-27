@@ -129,65 +129,8 @@
     
                 <div class="common-lists pt-sm">
                     <div class="ui column grid">
-                        <div class="sixteen wide tablet five wide computer column" id="common-cast-list">
-                            <h4 class="sidebar-heading">Öne Çıkan Oyuncular</h4>
-                            <div class="global-box">
-                                <div class="ui middle aligned divided list">
-                                    <div class="item">
-                                        <a href="https://yabancidizi.vip/oyuncu/nicolas-cage">
-                                            <div class="artist-photo"
-                                                style="background-image: url('uploads/cast/nicolas-cage.jpg');"></div>
-                                            <div class="content">
-                                                <h5 class="truncate">Nicolas Cage</h5>
-                                                <div class="description truncate">Araña</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="https://yabancidizi.vip/oyuncu/ryan-kwanten">
-                                            <div class="artist-photo"
-                                                style="background-image: url('uploads/cast/ryan-kwanten.jpg');"></div>
-                                            <div class="content">
-                                                <h5 class="truncate">Ryan Kwanten</h5>
-                                                <div class="description truncate">Ericson</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="https://yabancidizi.vip/oyuncu/alimi-ballard">
-                                            <div class="artist-photo"
-                                                style="background-image: url('uploads/cast/alimi-ballard.jpg');"></div>
-                                            <div class="content">
-                                                <h5 class="truncate">Alimi Ballard</h5>
-                                                <div class="description truncate">The Curious Assassin</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="https://yabancidizi.vip/oyuncu/enrico-colantoni">
-                                            <div class="artist-photo"
-                                                style="background-image: url('uploads/cast/enrico-colantoni.jpg');"></div>
-                                            <div class="content">
-                                                <h5 class="truncate">Enrico Colantoni</h5>
-                                                <div class="description truncate">The Old Sniper</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="https://yabancidizi.vip/oyuncu/anabelle-acosta">
-                                            <div class="artist-photo"
-                                                style="background-image: url('uploads/cast/anabelle-acosta.jpg');"></div>
-                                            <div class="content">
-                                                <h5 class="truncate">Anabelle Acosta</h5>
-                                                <div class="description truncate">The Woman In Red</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-    
-                        </div>
-    
+                       
+                        <ActoresMovies :arrayActoresMovie="movie.actores" />
                        <ComentariosFlix  :post_id="post_id" :id_user="id_user" :userName="userName" />
                     </div>
                 </div>
@@ -212,6 +155,7 @@ import Cookies from "js-cookie";
 import {mapState} from 'vuex'
 import BreadCrumbsMovies from '@/components/MoviesDetails/BreadCrumbsMovies.vue'
 import ReproductoresMovies from '@/components/MoviesDetails/ReproductoresMovies.vue'
+import ActoresMovies from '@/components/MoviesDetails/ActoresMovies.vue'
 import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
 export default {
   name: 'MoviesDetails',
@@ -258,7 +202,7 @@ export default {
          
     },
      components: {
-BreadCrumbsMovies, ReproductoresMovies, Cookies, ComentariosFlix
+BreadCrumbsMovies, ReproductoresMovies, Cookies, ComentariosFlix, ActoresMovies
          }, 
   mounted() {
        var co = Cookies.get("user_session"); 
