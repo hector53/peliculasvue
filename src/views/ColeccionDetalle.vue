@@ -4,7 +4,8 @@
 <div class="bg-cover-faker">
 					<div class="right floated sixteen wide tablet three wide computer wide column">
 				<div class="collection-delete" data-id="60479">
-					<button class="ui primary button" @click="eliminarColeccion()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar colección</font></font></button>
+					<button class="ui primary button"
+           @click="eliminarColeccion()" v-if="$route.params.username == userName"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar colección</font></font></button>
 				</div>
 			</div>
 			<div class="ui grid mt-0">
@@ -30,7 +31,7 @@
 					 style="display: flex!important;" >
 				        <div class="content">
 				          <div class="center">
-				            <div class="ui red button colDelete" 
+				            <div class="ui red button colDelete" v-if="$route.params.username == userName"
 							@click="borrarItemColeccion(movie.id_seguimiento)">Borrar Colección</div>
 				          </div>
 				        </div>
@@ -62,7 +63,7 @@
 
 
 
- <ComentariosFlix v-if="skeleton==1"  :post_id="id_coleccion" :id_user="id_user" :userName="userName" />
+ <ComentariosFlix v-if="skeleton==1"  :post_id="id_coleccion" :id_user="id_user" :userName="$route.params.username" />
 
 
 
@@ -284,7 +285,7 @@ export default {
          async getMisColecciones(){
 			this.arrayMiColeccion = []
             await fetch(this.urlProcesos +
-          "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.userName+"&slug="
+          "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.$route.params.username+"&slug="
           +this.$route.params.slug)
                     .then((r) => r.json())
                     .then((res) => {

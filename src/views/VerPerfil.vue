@@ -1,6 +1,7 @@
 <template>
 <div>
-    <VerPerfilUser v-if="verPerfilUser &&  id_user > 0" :login="login" :id_user="id_user" :userName="userName"/>
+    <VerPerfilUser v-if="verPerfilUser &&  id_user > 0" :login="login" 
+      :id_user="id_user" :userName="userName" :id_user_login="id_user_login"/>
     <VerPerfilConfiguracion v-if="verConfiguracionUser" :id_user="id_user" :userName="userName" />
 
 </div>
@@ -21,6 +22,7 @@ export default {
             userName: "", 
             id_user: "", 
             login: null,
+            id_user_login: null,
             arrayUserData: [], 
            
         }
@@ -55,13 +57,16 @@ var co = Cookies.get("user_session");
           var param = this.$router.history.current.params.user; 
   if(co != undefined)
         {
+            co = JSON.parse(co)
+        if(param == 'configuracion'){
           this.login = 1
-        co = JSON.parse(co)
        this.id_user = co.user_id; 
        this.userName = co.user_login
-        if(param == 'configuracion'){
              this.verConfiguracionUser = true; 
          }else{
+           this.login = 1
+           this.id_user_login = co.user_id; 
+          this.getUserByName(param)
              this.verPerfilUser = true; 
          }
      

@@ -86,7 +86,7 @@
 				
 <div class="right floated author">
 
-	<DropdownPerfilMenu :id_user="id_user" :userName="userName" />
+	<DropdownPerfilMenu :id_user="id_user" :userName="userName" :nivel="nivel" />
 
 </div>
 
@@ -130,6 +130,7 @@ export default {
       arrayBuscadorPelicula: [],
       id_user: 0,
       userName: "",
+      nivel: 0,
       reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
 		}
 	},
@@ -149,6 +150,21 @@ export default {
 	 }
 	 ,
 	methods: {
+     async getNivel(){
+            await fetch(this.urlProcesos +
+          "wp-json/perfil/usuario/post/?q=getNivel&id="+this.id_user)
+                    .then((r) => r.json())
+                    .then((res) => {
+                   console.log(res)
+                      this.nivel = res[0].nivel
+                  //    this.porcentaje = res[0].porcentaje * 10; 
+                    //  this.dasharray = res[0].porcentaje * 10; 
+                   //   var c = Math.PI*(46*2);
+                   //   this.dasharray = ((100-this.dasharray)/100)*c;
+                   //   this.$store.state.skeleton = 1
+                    }
+                    );
+           },
   
 		registerOpen(){
 	this.$swal({
@@ -373,6 +389,7 @@ Cookies, DropdownPerfilMenu, DropdownPerfilNotify
  //  console.log(co.user_id)
    this.id_user = co.user_id; 
    this.userName = co.user_login
+   this.getNivel()  
     }
 
  

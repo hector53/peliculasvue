@@ -15,7 +15,7 @@
               <figure class="user-profile-photo" role="presentation">
                 <div class="polygon">
                   <font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit">4</font></font
+                    ><font style="vertical-align: inherit">{{nivel}}</font></font
                   >
                 </div>
                  <router-link  class="circle-progress-link" @click.native="$store.commit('scrollToTop')" 
@@ -27,9 +27,9 @@
                   />
                   <div
                     class="circle-progress"
-                    data-tooltip="5%"
+                    :data-tooltip="porcentaje+'%'"
                     data-inverted=""
-                    data-percent="5"
+                    :data-percent="porcentaje"
                   >
                     <svg version="1.1" viewBox="0 0 100 100">
                       <circle
@@ -38,8 +38,8 @@
                         cy="48"
                         fill-opacity="0"
                         r="46"
-                        stroke-dashoffset="293"
-                        stroke-dasharray="307.65"
+                        :stroke-dashoffset="dasharray"
+                        stroke-dasharray="290"
                         transform="rotate(-90)"
                       ></circle>
                     </svg>
@@ -59,17 +59,19 @@
                 >
               </h2>
 
-              <div class="user-earnings"></div>
+     <Seguir :userName="userName" :id_user="id_user_login" 
+     :id_actor="id_user" :tipo="5" @getSeguidores="getMisSecciones()" v-if="id_user_login != id_user" />
+     
             </section>
 
             <section class="profile-section">
               <div class="profile-summary">
-                <div class="ui middle aligned divided list">
+                <div class="ui middle aligned divided list" v-for="(user, index) in arrayMisSecciones" :key="index">
                   <div class="item">
                     <div class="right floated content text-white">
                       <a href="#" data-modal="following_modal"
                         ><font style="vertical-align: inherit"
-                          ><font style="vertical-align: inherit">1</font></font
+                          ><font style="vertical-align: inherit">{{user.seguidos}}</font></font
                         ></a
                       >
                     </div>
@@ -85,7 +87,7 @@
                     <div class="right floated content text-white">
                       <a href="#" data-modal="follower_modal"
                         ><font style="vertical-align: inherit"
-                          ><font style="vertical-align: inherit">0</font></font
+                          ><font style="vertical-align: inherit">{{user.seguidores}}</font></font
                         ></a
                       >
                     </div>
@@ -100,7 +102,7 @@
                   <div class="item">
                     <div class="right floated content text-white">
                       <font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit">8</font></font
+                        ><font style="vertical-align: inherit">{{user.vigiladas}}</font></font
                       >
                     </div>
                     <div class="content">
@@ -114,7 +116,7 @@
                   <div class="item">
                     <div class="right floated content text-white">
                       <font style="vertical-align: inherit"
-                        ><font style="vertical-align: inherit">1</font></font
+                        ><font style="vertical-align: inherit">{{user.comentarios}}</font></font
                       >
                     </div>
                     <div class="content">
@@ -158,7 +160,7 @@
             >
             <a class="item" :class="{'active' : tab3}" @click.prevent="clickTab(3)"  data-tab="artists"
               ><font style="vertical-align: inherit"
-                ><font style="vertical-align: inherit">Jugadores</font></font
+                ><font style="vertical-align: inherit">Actores</font></font
               ></a
             >
             <a class="item" :class="{'active' : tab4}" @click.prevent="clickTab(4)"  data-tab="collections"
@@ -297,13 +299,18 @@
             data-tab="artists"
             :class="{'active' : tab3}" 
           >
-            <div class="alert alert-danger" role="alert">
-              <font style="vertical-align: inherit"
-                ><font style="vertical-align: inherit">
-                  El usuario no tiene ningún jugador seguido.
-                </font></font
-              >
-            </div>
+           
+        <ol class="artists-list mt-md">
+					<li class="mb-lg" v-for="(actor, index) in arrayMisActores" :key="index">
+								 <router-link @click.native="$store.commit('scrollToTop')" 
+	:to="{name:'VerActor', params: {slug: actor.slug+'.'+actor.id_actor} }">    
+										<img class="artist-photo" :src="actor.imagen" :alt="actor.nombreActor">
+										<h2 class="title-quaternary mt-md truncate">{{actor.nombreActor}}</h2>
+									</router-link>
+					</li>
+      	</ol>
+
+
           </div>
 
           <div
@@ -451,6 +458,7 @@
 // @ is an alias to /src
 import { mapState } from "vuex";
 import VotoForo from '@/components/Foro/VotoForo.vue'
+import Seguir from '@/components/Seguir/Seguir.vue'
 export default {
   name: "VerPerfilUser",
    props: {
@@ -465,7 +473,11 @@ export default {
     	login:{
             type: Number, 
             required: true,
-		},
+    },
+    id_user_login:{
+        type: String, 
+            required: true,
+    }
     },
   data() {
     return {
@@ -479,7 +491,13 @@ export default {
         arrayPeliculasSeguidas: [], 
         arraySeriesSeguidas: [], 
         arrayMisColecciones: [], 
-        arrayMisTemasForo: []
+        arrayMisTemasForo: [], 
+        arrayMisActores: [], 
+        arrayMisSecciones: [], 
+        nivel: 0, 
+        porcentaje: 0, 
+        dasharray: 0
+
     };
   },
   computed: {
@@ -491,7 +509,7 @@ export default {
           "wp-json/perfil/usuario/post/?q=getP&id="+this.id_user+"&username="+this.userName)
                     .then((r) => r.json())
                     .then((res) => {
-                      console.log(res)
+                //      console.log(res)
                      //   this.arrayUserData = res
                      this.imagenPerfil = res[0].imagen_perfil; 
                   this.fecha_registro = res[0].fecha_registro; 
@@ -504,7 +522,7 @@ export default {
           "wp-json/perfil/peliculas_seguidas/post/?id_user="+this.id_user)
                     .then((r) => r.json())
                     .then((res) => {
-                      console.log(res)
+                //      console.log(res)
                       this.arrayPeliculasSeguidas = res
                      
                     }
@@ -515,7 +533,7 @@ export default {
           "wp-json/perfil/series_seguidas/post/?id_user="+this.id_user)
                     .then((r) => r.json())
                     .then((res) => {
-                      console.log(res)
+                //      console.log(res)
                       this.arraySeriesSeguidas = res
                    
                     }
@@ -526,9 +544,9 @@ export default {
           "wp-json/colecciones/crear_coleccion/post/?q=g2&id_user="+this.id_user)
                     .then((r) => r.json())
                     .then((res) => {
-                      console.log(res)
+                  //    console.log(res)
                       this.arrayMisColecciones = res[0].coleccion
-                      this.$store.state.skeleton = 1
+                      
                     }
                     );
            },
@@ -537,9 +555,46 @@ export default {
           "wp-json/foro/all/?q=getMisTemas&id_user="+this.id_user)
                     .then((r) => r.json())
                     .then((res) => {
-                      console.log(res)
+                //     console.log(res)
                       this.arrayMisTemasForo = res
-                      
+                    }
+                    );
+           },
+           async getMisActores(){
+            await fetch(this.urlProcesos +
+          "wp-json/actor/get/?q=getAcbyU&id_user="+this.id_user)
+                    .then((r) => r.json())
+                    .then((res) => {
+                //    console.log(res)
+                      this.arrayMisActores = res
+                 
+                    }
+                    );
+           },
+
+                async getMisSecciones(){
+            await fetch(this.urlProcesos +
+          "wp-json/perfil/usuario/post/?q=getSta&id="+this.id_user)
+                    .then((r) => r.json())
+                    .then((res) => {
+                //    console.log(res)
+                      this.arrayMisSecciones = res
+           
+                    }
+                    );
+           },
+              async getNivel(){
+            await fetch(this.urlProcesos +
+          "wp-json/perfil/usuario/post/?q=getNivel&id="+this.id_user)
+                    .then((r) => r.json())
+                    .then((res) => {
+                    console.log(res)
+                      this.nivel = res[0].nivel
+                      this.porcentaje = res[0].porcentaje * 10; 
+                      this.dasharray = res[0].porcentaje * 10; 
+                      var c = Math.PI*(46*2);
+                      this.dasharray = ((100-this.dasharray)/100)*c;
+                      this.$store.state.skeleton = 1
                     }
                     );
            },
@@ -591,13 +646,16 @@ export default {
             }
 
   },
-  components: {VotoForo},
+  components: {VotoForo, Seguir},
   mounted() {
      this.getUserData(); 
      this.getPeliculasSeguidas()
      this.getSeriesSeguidas()
      this.getMisColecciones()
      this.getMisTemasForo()
+     this.getMisActores()
+     this.getMisSecciones()
+     this.getNivel()
      this.ContVisit()
   },
   created() {

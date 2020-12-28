@@ -9,7 +9,7 @@
 			</div>
 			<div class="left floated">
 				<span class="header-user-name truncate" :title="userName">{{userName}}</span>
-				<span class="header-user-level">Level 4</span>
+				<span class="header-user-level">Level {{nivel}}</span>
 			</div>
 			<div class="left floated">
 				<svg class="mofycon"><use xlink:href="#icon-arrow-down"></use></svg>
@@ -36,19 +36,11 @@ import Cookies from "js-cookie";
 import ClickOutside from 'vue-click-outside'
 export default {
   name: 'DropdownPerfilMenu',
-  props: {
-		 id_user:{
-            type: String, 
-            required: true,
-		},
-		userName:{
-            type: String, 
-            required: true,
-		},
-    },
+  props: ['id_user', 'nivel', 'userName' ],
    data (){
         return {
            perfilMenu: 0,
+           
         }
     },
     components: {
@@ -63,6 +55,7 @@ export default {
             }
       
     },
+       
      outPerfil(){
        
           this.perfilMenu = 0

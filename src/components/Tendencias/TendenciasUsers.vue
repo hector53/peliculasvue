@@ -16,10 +16,12 @@
                                                 </font></h5><small><font style="vertical-align: inherit;">
                                                     <font style="vertical-align: inherit;">@{{movie.username}}</font></font></small>										<div class="description">
 											<div class="ui tiny progress" 
-                                            data-percent="0" data-tooltip="LVL: 1 / EXP: 0	%" 
+                                            :data-percent="movie.porcentaje*10" :data-tooltip="'LVL: '+movie.nivel+' / EXP: '+movie.porcentaje*10+'	%'" 
                                             data-inverted="">
 												<div class="bar" 
-                                                style="transition-duration: 300ms; width: 0%;"></div>
+                                                style="transition-duration: 300ms;"
+                                                :style="{ 'width': movie.porcentaje*10+'%' }"
+                                                ></div>
 											</div>
 										</div>
 									</div>
@@ -42,6 +44,7 @@ export default {
   data() {
     return {
         arrayDatos: [], 
+
     };
   },
   computed: {

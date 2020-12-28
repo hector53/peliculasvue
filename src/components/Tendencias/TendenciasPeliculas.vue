@@ -1,7 +1,9 @@
 <template>
   <div class="ui dark-line card">
 				<h2 class="header"><font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Serie</font></font></h2>
+                    <font style="vertical-align: inherit;" v-if="tipo==1">Series</font>
+                    <font style="vertical-align: inherit;" v-if="tipo==2">Películas</font>
+                    </font></h2>
 				<div class="content">
 					<div class="global-box">
 						<div class="ui middle aligned divided list">

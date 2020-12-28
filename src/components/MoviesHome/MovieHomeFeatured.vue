@@ -7,7 +7,8 @@
 
                             <div class="flex poster poster-sm" v-for="(movie, index) in moviesFeatured " :key="index">
                                 <div class="poster-media">
-                        <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
+                        <router-link @click.native="$store.commit('scrollToTop')"
+                         :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
                                 <div class="poster-subject">
                                 <span class="date">
                                 <span class="date-text">{{movie.fecha}}</span>
