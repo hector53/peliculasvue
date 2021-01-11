@@ -60,15 +60,16 @@ export default {
               await fetch(this.urlProcesos+'wp-json/calendario/all/')
                     .then((r) => r.json())
                     .then((res) => {
-                        console.log(res);
+                      //  console.log(res);
                      this.arrayCalendario = res
+                     this.$store.state.skeleton = 1
                     }
                     );
 
         }
 	}, 
 	 mounted() {
-this.$store.state.skeleton = 1
+
 this.getCalendar()
   },
 }
