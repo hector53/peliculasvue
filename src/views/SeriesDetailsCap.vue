@@ -74,28 +74,21 @@
 
       <div class="common-lists">
         <div class="new-content">
-          <h4 class="sidebar-heading">Genel Bakış</h4>
+          <h4 class="sidebar-heading">General</h4>
           <section class="episode-controls">
             <div class="show-info">
               <div>
                 <img
-                  src="uploads/series/all-creatures-great-and-small_thumb.jpg"
+                  :src="movie.imagen"
                 />
                 <div class="series-name">
                   <a
-                    href="dizi/all-creatures-great-and-small"
-                    title="All Creatures Great and Small izle"
+                    href=""
+                    :title="movie.titulo"
                   >
-                    <h2>All Creatures Great and Small</h2>
+                    <h2>{{movie.titulo}}</h2>
                   </a>
-                  <button
-                    class="ui secondary button fnc_addFollow"
-                    data-status="2"
-                    data-series="3315"
-                    onlyusers=""
-                  >
-                    Takip Et
-                  </button>
+                
                 </div>
               </div>
             </div>
@@ -103,71 +96,15 @@
           <section class="episode-overview">
             <div class="info-section">
               <article>
-                All Creatures Great and Small 1. Sezon 5. bölümünde; Darrowby
-                Fuarı'nda ilk kez görev yapacak olan James'i zorlu bir macera
-                beklerken Siegfried'in hayatında yeni bir dönem başlamak
-                üzeredir. yabancidizi.org iyi seyirler diler.<br />
-                <br />
-                It's the Darrowby Show and James is pleased as punch that he has
-                been given the honour of Attending Vet. But Siegfried and
-                Tristan know the job is a poisoned chalice and reckon James
-                won't last the day without throwing in the towel.
+                <p><b>{{movie.titulo}}  Temporada {{$route.params.id_temp}}  Capitulo {{$route.params.id_cap}}</b></p>
+                {{movie.overview}}
               </article>
-              <br />
-              <small>
-                Bu bölüm özeti
-                <a href="https://yabancidizi.pw/" title="yabancıdizi">
-                  <img
-                    src="https://yabancidizi.org/mofy/img/yd_mini.png"
-                    class="ui avatar image ml-xs valign-bottom"
-                  />
-                  yabancıdizi
-                </a>
-                yapay zekası tarafından otomatik olarak oluşturuldu.
-              </small>
+           
             </div>
-            <div class="like-section">
-              <button
-                class="ui secondary button fnc_addFeel"
-                data-id="38466"
-                data-type="1"
-                data-status="1"
-                onlyusers=""
-              >
-                <svg class="mofycon">
-                  <use xlink:href="#icon-thumbs-up"></use>
-                </svg>
-                <span>2</span>
-              </button>
-              <button
-                class="ui secondary button fnc_addFeel"
-                data-id="38466"
-                data-type="2"
-                data-status="1"
-                onlyusers=""
-              >
-                <svg class="mofycon">
-                  <use xlink:href="#icon-thumbs-down"></use>
-                </svg>
-                <span>0</span>
-              </button>
-            </div>
+           
           </section>
         </div>
-
-        <h4 class="sidebar-heading">
-          Yorumlar (<span id="review-count">0</span>)
-        </h4>
-
-        <div class="alert alert-danger" role="alert">
-          Yorum alanı sadece üyelere özeldir.
-          <a onlyusers="">Giriş Yap &amp; Kayıt Ol.</a>
-        </div>
-
-        <section class="user-reviews">
-          <div class="ui list" id="review-list"></div>
-          <!-- // .list -->
-        </section>
+        <ComentariosFlix  :post_id="movie.idcap" :id_user="id_user" :userName="userName" v-if="movie.idcap" />
         <!-- // .user-reviews -->
       </div>
       <!-- // .common-lists -->
@@ -179,17 +116,21 @@
 
 <script>
 // @ is an alias to /src
+import Cookies from "js-cookie";
 import { mapState } from "vuex";
 import ReproductoresSeries from '@/components/SeriesDetails/ReproductoresSeries.vue'; 
 import SwiperSliderCaps from '@/components/SeriesDetails/SwiperSliderCaps.vue'; 
+import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
 
 export default {
   name: "SeriesDetailsCap",
-    components: {ReproductoresSeries, SwiperSliderCaps},
+    components: {ReproductoresSeries, SwiperSliderCaps, Cookies, ComentariosFlix},
   data() {
     return {
       SeriesDetails: [],
       tabTemp: 1,
+        id_user: null, 
+          userName: null,
       
     };
   },
@@ -234,6 +175,13 @@ export default {
 
    
   mounted() {
+     var co = Cookies.get("user_session"); 
+        if(co != undefined)
+        {
+        co = JSON.parse(co)
+    this.id_user = co.user_id; 
+    this.userName = co.user_login
+        }
       this.SeriesGetDetailsCapitulos();
      
      
@@ -241,4 +189,11 @@ export default {
   
 };
 </script>
+
+<style >
+.new-content .episode-controls .show-info>div .series-name h2:after {
+    display:none
+   
+}
+</style>
 

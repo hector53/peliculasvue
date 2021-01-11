@@ -36,12 +36,13 @@
 
 								</li>
 								<li>
-									<a href="https://yabancidizi.vip/takvim" data-navigo="">
+								<router-link @click.native="$store.commit('scrollToTop')" 
+								 :to="{name:'Calendario'}">
 										<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-calendar-new"></use>
 											</svg>
-										</span>Calendario </a>
+										</span>Calendario </router-link>
 								</li>
 								<li :class="{'active': $route.name == 'VerSeries'}">
 									 <router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerSeries'}">

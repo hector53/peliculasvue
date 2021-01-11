@@ -224,84 +224,7 @@
             <!-- // Common Lists -->
             <div class="common-lists pt-sm">
                 <div class="ui column grid">
-                    <div class="sixteen wide tablet five wide computer column" id="common-cast-list">
-                        <h4 class="sidebar-heading">
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Jugadores destacados</font>
-                            </font>
-                        </h4>
-                        <div class="global-box">
-                            <div class="ui middle aligned divided list">
-                                <div class="item">
-                                    <a href="oyuncu/jason-isaacs" data-navigo="">
-                                        <img class="artist-photo" src="uploads/cast/jason-isaacs.jpg">
-                                        <div class="content">
-                                            <h5 class="truncate">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Jason Isaacs</font>
-                                                </font>
-                                            </h5>
-                                            <div class="description truncate"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="oyuncu/sonequa-martin-green" data-navigo="">
-                                        <img class="artist-photo" src="uploads/cast/sonequa-martin-green.jpg">
-                                        <div class="content">
-                                            <h5 class="truncate">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Sonequa Martin-Verde</font>
-                                                </font>
-                                            </h5>
-                                            <div class="description truncate"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="oyuncu/doug-jones" data-navigo="">
-                                        <img class="artist-photo" src="uploads/cast/doug-jones.jpg">
-                                        <div class="content">
-                                            <h5 class="truncate">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Doug Jones</font>
-                                                </font>
-                                            </h5>
-                                            <div class="description truncate"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="oyuncu/anthony-rapp" data-navigo="">
-                                        <img class="artist-photo" src="uploads/cast/anthony-rapp.jpg">
-                                        <div class="content">
-                                            <h5 class="truncate">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Anthony Rapp</font>
-                                                </font>
-                                            </h5>
-                                            <div class="description truncate"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="oyuncu/mary-wiseman" data-navigo="">
-                                        <img class="artist-photo" src="uploads/cast/mary-wiseman.jpg">
-                                        <div class="content">
-                                            <h5 class="truncate">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Mary Wiseman</font>
-                                                </font>
-                                            </h5>
-                                            <div class="description truncate"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- // .global-box -->
-                    </div>
+                    <ActoresSeries :arrayActoresMovie="movie.actores" />
                     <!-- // .five .wide .column -->
 
                     <div class="sixteen wide tablet eleven wide computer column">
@@ -395,7 +318,7 @@
 
                             </div> <!-- // .ui grid -->
                         </section> <!-- // .episodes-box -->
-
+                       
                        <ComentariosFlix  :post_id="post_id" :id_user="id_user" :userName="userName" />
 
                     </div> <!-- // .eleven .wide .column -->
@@ -426,6 +349,7 @@ import Cookies from "js-cookie";
 import {mapState} from 'vuex'
 import BreadCrumbsSeries from '@/components/SeriesDetails/BreadCrumbsSeries.vue'
 import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
+import ActoresSeries from '@/components/SeriesDetails/ActoresSeries.vue'
 export default {
   name: 'SeriesDetails',
    data (){
@@ -471,7 +395,7 @@ export default {
           }
     },
      components: {
-BreadCrumbsSeries, ComentariosFlix, Cookies
+BreadCrumbsSeries, ComentariosFlix, Cookies, ActoresSeries
          }, 
   mounted() {
        var co = Cookies.get("user_session"); 
