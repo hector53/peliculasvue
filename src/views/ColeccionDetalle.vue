@@ -283,6 +283,9 @@ export default {
 
 		},
          async getMisColecciones(){
+           console.log(this.urlProcesos +
+          "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.$route.params.username+"&slug="
+          +this.$route.params.slug)
 			this.arrayMiColeccion = []
             await fetch(this.urlProcesos +
           "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.$route.params.username+"&slug="
@@ -290,13 +293,14 @@ export default {
                     .then((r) => r.json())
                     .then((res) => {
 						
-                      console.log(res)
+                      //console.log(res)
                       if(res[0].error == ""){
 						  this.titulo_coleccion = res[0].titulo; 
 						  this.descripcion_coleccion = res[0].descripcion; 
               this.id_coleccion = res[0].id_coleccion; 
           
-						  this.arrayMiColeccion = res[0].agregadas
+              this.arrayMiColeccion = res[0].agregadas
+              this.ContVisit()
 					  }
                       this.$store.state.skeleton = 1
                     }
@@ -345,7 +349,19 @@ export default {
 	
    
 		
-           }
+           }, 
+
+ async ContVisit(){
+                 await fetch(this.urlProcesos+'wp-json/visitas/contador/?q=4&id_post='
+                 +this.id_coleccion)
+                    .then((r) => r.json())
+                    .then((res) => {
+                   //     console.log(res);
+                    }
+                    );
+            }
+
+
            },
      components: {Cookies, ComentariosFlix},
   mounted() {

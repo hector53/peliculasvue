@@ -4,8 +4,8 @@
 					
 						<div class="right floated sixteen wide tablet twelve wide computer column">
 							<ul class="footer-social right floated">
-								<li>
-									<a href="https://facebook.com/yabancidiziorg" rel="nofollow">
+								<li >
+									<a :href="'https://facebook.com/'+facebook" rel="nofollow" target="_blank">
 										<i class="footer-social-facebook"></i>
 										<p>
 											<span>Facebook</span>
@@ -14,7 +14,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="https://twitter.com/yabancidiziorg" rel="nofollow">
+									<a :href="'https://twitter.com/'+twitter" rel="nofollow" target="_blank">
 										<i class="footer-social-twitter"></i>
 										<p>
 											<span>Twitter</span>
@@ -23,7 +23,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="https://instagram.com/yabancidiziorg" rel="nofollow">
+									<a :href="'https://instagram.com/'+instagram" rel="nofollow" target="_blank">
 										<i class="footer-social-instagram"></i>
 										<p>
 											<span>Instagram</span>
@@ -47,7 +47,9 @@ export default {
   
   data() {
     return {
-      
+	  instagram: "", 
+	  twitter: "", 
+	  facebook: ""
     };
   },
     computed:{
@@ -55,10 +57,23 @@ export default {
     },
    
   methods: {
+	  	 async getSocial(){
 
+              await fetch(this.urlProcesos+'wp-json/footer/options/?q=1')
+                    .then((r) => r.json())
+                    .then((res) => {
+                       // console.log(res);
+					 this.instagram = res[0].instagram
+					 this.twitter = res[0].twitter
+					 this.facebook = res[0].facebook
+                  
+                    }
+                    );
+
+        }
     },
   mounted() {
-
+	  this.getSocial()
   },
   updated() {
       

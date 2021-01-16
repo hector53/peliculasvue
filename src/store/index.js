@@ -20,6 +20,11 @@ export default new Vuex.Store({
     opa: false
   },
   mutations: {
+    scrollToTopCine() {
+      window.scrollTo(0,0);
+      
+ //     console.log(this.state.skeleton)
+    }, 
     scrollToTop() {
       window.scrollTo(0,0);
       this.state.skeleton = 0;

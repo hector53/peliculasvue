@@ -58,13 +58,11 @@
 
         <ReproductoresSeries :movieID="movie.id" :temporada_anterior="movie.temporada_anterior"
         :capitulo_anterior="movie.capitulo_anterior" :temporada_siguiente="movie.temporada_siguiente"
-        :capitulo_siguiente="movie.capitulo_siguiente"
+        :capitulo_siguiente="movie.capitulo_siguiente" :tituloSerie="movie.titulo"
           />
 
 
 
-          <br />
- 
 <SwiperSliderCaps />
         
       </div>

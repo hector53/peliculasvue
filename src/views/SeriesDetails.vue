@@ -17,7 +17,7 @@
 
             <div class="left floated sixteen wide tablet nine wide computer column">
                 <router-link @click.native="$store.commit('scrollToTop')"
-                    :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
+                    :to="{ name: 'detalleSeries', params: {slug: $route.params.slug} }">
 
                     <h1 class="page-title">
                         <font style="vertical-align: inherit;">
@@ -43,11 +43,13 @@
                     <font style="vertical-align: inherit;">Visión de conjunto</font>
                 </font>
             </a>
-            <a href="forum/star-trek-discovery" data-navigo="" class="item">
+             <router-link @click.native="$store.commit('scrollToTop')" class="item" 
+				:to="{name:'ForoVerSeccion', params: {foro_slug: $route.params.slug} }">
+           
                 <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;">Foros de discusión</font>
                 </font>
-            </a>
+            </router-link>
             <a class="item disabled">
                 <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;">Compartir</font>
@@ -82,8 +84,12 @@
 
                             <div class="ui list">
                                 <div class="item"><span class="label">Generos:</span> 
-                                <a :href="genero.slug" :title="genero.genero"
-                                 v-for="(genero, index) in movie.generos" :key="index">{{genero.genero}}</a></div>
+
+                        <router-link class="item" @click.native="$store.commit('scrollToTop')"
+                         :to="{ name: 'categoriaSerie', params: {slug: genero.slug} }"
+						  v-for="(genero, index) in movie.generos" :key="index"
+						 >{{genero.genero}}</router-link>
+                         </div>
                             </div>
 
                             

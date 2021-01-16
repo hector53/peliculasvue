@@ -13,6 +13,8 @@ import ColeccionDetalle from '../views/ColeccionDetalle.vue'
 import Foro from '../views/Foro.vue'
 import Tendencias from '../views/Tendencias.vue'
 import Calendario from '../views/Calendario.vue'
+import SerieCategoria from '../views/SerieCategoria.vue'
+import MovieCategoria from '../views/MovieCategoria.vue'
 import Actores from '../views/Actores.vue'
 import NProgress from 'nprogress';
 Vue.use(VueRouter)
@@ -114,6 +116,16 @@ component: SeriesDetailsCap
   name: 'VerActor',
   component: Actores
 },
+{
+  path: '/series/genero/:slug', 
+  name: 'categoriaSerie', 
+  component: SerieCategoria
+  }, 
+  {
+    path: '/peliculas/genero/:slug', 
+    name: 'categoriaMovie', 
+    component: MovieCategoria
+    }, 
 ]
 
 const router = new VueRouter({

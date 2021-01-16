@@ -9,11 +9,8 @@
            <BreadCrumbsMovies :movieID="movie.id" :movieTitle="movie.titulo" :fechaCreated="movie.fecha_created" />
           
 
-            <ReproductoresMovies :movieID="movie.id"  />
-            <br>
-            <div class="light-off"
-                style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,1);z-index: 50;display: none;">
-            </div>
+            <ReproductoresMovies :movieID="movie.id"  :tituloSerie="movie.titulo" />
+           
             <div class="mobile-only mb-lg"></div>
             <div data-gets="" data-type="va"></div>
             <section class="episode-overview mb-md">
@@ -71,8 +68,10 @@
                                 </div>
                                 <div class="ui list">
                                     <div class="item"><span class="label">Generos:</span> 
-                                    <a :href="genero.slug" :title="genero.genero"
-                                     v-for="(genero, index) in movie.generos" :key="index">{{genero.genero}}</a></div>
+                    <router-link class="item" @click.native="$store.commit('scrollToTop')"
+                         :to="{ name: 'categoriaMovie', params: {slug: genero.slug} }"
+						 v-for="(genero, index) in movie.generos" :key="index"
+						 >{{genero.genero}}</router-link></div>
                                 </div>
                                 
                                 <div class="media-meta">
@@ -192,7 +191,7 @@ export default {
             //  console.log(youtube[1]);
               this.$swal({
                 html:
-                  '<iframe width="100%" height="300" src="https://www.youtube.com/embed/'+youtube[1]+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                  '<iframe  src="https://www.youtube.com/embed/'+youtube[1]+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
                   showConfirmButton: false,
                   showCloseButton: true,
                 

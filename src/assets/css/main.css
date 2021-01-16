@@ -31484,7 +31484,8 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
     background-color: transparent;
     z-index: 9999999;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
+    background: #0000009c!important;
 }
 
 .swal2-container.swal2-top {
@@ -40921,12 +40922,13 @@ scroll-wrapper .next-ep-holder .next-ep-wrapper .title-quaternary {
    height: 141px!important;
 }
 .imgTrailerSerieHome{
-   width: 110px!important;
+
    height: 110px!important;
 }
 .imgHomeFeaturedPelis{
-   width: 504px!important;
-   height: 264px!important;
+    width: 101%!important;
+    max-width: 101%!important;
+    max-height: 99% !important;
 }
 .imgHomeFeaturedPelis2{
    width: 252px!important;
@@ -40942,3 +40944,32 @@ scroll-wrapper .next-ep-holder .next-ep-wrapper .title-quaternary {
    font-weight: 600;
    font-size: 12px;
 }
+
+.trailerSeries{
+    width: 80%;
+    padding: 0!important;
+    background: black!important;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+}
+
+@media only screen and (max-width: 768px) {
+    .trailerSeries{
+        width: 100%;
+        padding: 0!important;
+        background: black!important;
+        padding-left: 10px!important;
+        padding-right: 10px!important;
+    }
+
+    #swal2-content iframe{
+        height: 200px;
+          display: block;
+    }
+
+    .imgTrailerSerieHome{
+
+        height: 60px!important;
+     }
+
+  }

@@ -4,7 +4,7 @@
   <div id="series-tabs" class="ui pointing secondary menu">
         <a class="ui pointing item " href="#" :class="{'active': SubtituladaDoblada == true}" @click.prevent="ShowPlayers(1)">Subtitulada</a>
         <a class="ui pointing  item" href="#"  :class="{'active': SubtituladaDoblada == false}" @click.prevent="ShowPlayers(2)" >Doblada</a>
-        <a class="item desktop-only" id="sinemaModu" style="color:#fff;">Modo Cine</a>
+        <a class="item desktop-only" id="sinemaModu" style="color:#fff;" @click="ActivarmodoCine">Modo Cine</a>
     </div>
 
 
@@ -29,9 +29,26 @@
             <br>
         </div>
         <div class="ui grid">
-            <div class="left floated left aligned column pb-0 twelve wide computer sixteen wide mobile" id="playersol">
-                <div class="player-wrapper video-wrapper" id="video-area" >
-                        <div v-html="embedCode"></div>
+            <div class="left floated left aligned column pb-0 twelve wide computer sixteen wide mobile" 
+            id="playersol" :class="{'modoCinePlayerSol' : modoCine}" v-click-outside="clicAfueraModoCine">
+                <div class="video-wrapper" id="video-area" >
+                             <div class="player" v-if="notCap" >
+                        <div class="this-episode-not-ready" style="position: initial;">
+
+                        <div>
+                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{tituloSerie}}</font></font></h3>
+                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aún no tenemos reproductores para esta Película para la opcion {{opcion}}</font></font></p>
+
+                        </div>
+                        <iframe src="" width="100%" height="100%" frameborder="0" id="fragman-now-youtube" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                        </div>
+                        </div>   
+
+                        <div class="player" v-else >
+
+                        <div v-html="embedCode"  ></div>
+
+                        </div>
                 </div>
             </div>
             <div class="left floated aligned four wide column computer only pb-0 pl-0" id="playersag">
@@ -47,14 +64,16 @@
                 </div>
             </div>
         </div>
-          
+           <br />
+          <div class="light-off" :class="{'modoCineLucesOn' : modoCine, 'modoCineLucesOff' : modoCine == false}" ></div>
+ 
         </div>
 </template>
 
 
 <script>
 import {mapState} from 'vuex'
-
+import ClickOutside from 'vue-click-outside'
 export default {
   name: 'ReproductoresMovies',
      props: {
@@ -62,6 +81,10 @@ export default {
             type: String, 
             required: true,
         },
+         tituloSerie:{
+            type: String, 
+           
+        }
     },
     data (){
        return {
@@ -72,6 +95,10 @@ export default {
             embedCode: "", 
             embedCodeSubtitulada: "",
             embedCodeDoblada: "", 
+            modoCine: false, 
+            contadorCine: 0, 
+            notCap: false, 
+            opcion: "subtitulada"
         }
     },
      computed:{
@@ -86,7 +113,13 @@ export default {
                         this.PlayersSubtitulos = res["players"];
                         this.embedCode = res["embed"]; 
                      this.embedCodeSubtitulada = res["embed"]; 
-              
+
+                       if(res["embed"] == null){
+                            this.notCap = true
+                     }else{
+                         this.notCap = false
+                     }
+                    console.log(res["embed"])
                     }
                     );
            }, 
@@ -109,22 +142,95 @@ export default {
                     this.SubtituladaDoblada = true;
                     this.embedCode = this.embedCodeSubtitulada; 
                     this.activePlayer = 0; 
+                     if(this.embedCode  == null){
+                            this.notCap = true
+                            this.opcion = "subtitulada"
+                     }else{
+                         this.notCap = false
+                             this.opcion = "subtitulada"
+                     }
                 }
                 if(id == 2){
                     this.SubtituladaDoblada = false;
                     this.embedCode = this.embedCodeDoblada; 
                     this.activePlayer = 0; 
+                     if(this.embedCode  == null){
+                            this.notCap = true
+                            this.opcion = "doblada"
+                     }else{
+                         this.notCap = false
+                         this.opcion = "doblada"
+                     }
                 }
             }, 
             
             ShowPlayersSubs(index, embed){
                 this.activePlayer = index;
                 this.embedCode = embed
+            }, 
+            ActivarmodoCine(){
+                this.$store.commit('scrollToTopCine');
+                this.modoCine = !this.modoCine
+
+                if(this.modoCine == false){
+                            console.log("modo cine Desactivado")
+                }
+                 if(this.modoCine == true){
+                            console.log("modo cine Activado")
+                }
+            },
+            clicAfueraModoCine(){
+                this.contadorCine++
+                if(this.contadorCine > 1){
+                     if(this.modoCine == true){
+                    this.modoCine = false
+                                 console.log("modo cine Desactivado")
+                                 this.contadorCine = 0
+                }
+                }
+               
             }
     },
+       directives: {
+    ClickOutside
+  }, 
     mounted() {
         this.GetPlayersSubtitulados();
          this.GetPlayersDobladas();
     }
 }
 </script>
+
+<style>
+
+.modoCinePlayerSol{
+    z-Index: 56!important;
+    width: 100%!important;
+    position: absolute!important;
+    top: 0!important;
+}
+.modoCineLucesOn{
+        position: fixed!important;
+    top: 0px!important;
+    left: 0px!important;
+    width: 100%!important;
+    height: 100%!important;
+    background: rgb(0, 0, 0);
+    z-index: 50!important;
+    display:block!important
+}
+
+.modoCineLucesOff{
+        position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    z-index: 50;
+    display:none
+}
+
+
+
+</style>

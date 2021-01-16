@@ -32,7 +32,7 @@
 
                         <div class="flex flex-row">
                             <div class="flex flex-column poster poster-hg" v-for="(movie, index) in moviesFeatured2 " :key="index">
-                                <div class="flex poster-media">
+                                <div class="flex poster-media" style="max-height: 99%!important;">
                                 <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
                                         <div class="poster-subject">
                                             <span class="date">

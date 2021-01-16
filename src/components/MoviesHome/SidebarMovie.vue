@@ -85,71 +85,7 @@
 							
 							</ul>
 						</section>
-						<section class="guide-menu">
-							<h5 class="section-heading">Haftalık Trendler</h5>
-							<ul class="trending-thisweek">
-								<li>
-									<a href="https://yabancidizi.vip/dizi/friends-izle-1" data-navigo="">
-										<h5 class="truncate" title="Friends izle">#Friends</h5>
-										<small>+1628572 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/the-100-izle-1" data-navigo="">
-										<h5 class="truncate" title="The 100 izle">#The 100</h5>
-										<small>+943712 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/lucifer-izle" data-navigo="">
-										<h5 class="truncate" title="Lucifer izle">#Lucifer</h5>
-										<small>+900341 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/prison-break-izle" data-navigo="">
-										<h5 class="truncate" title="Prison Break izle">#Prison Break</h5>
-										<small>+690859 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/atiye-izle-7" data-navigo="">
-										<h5 class="truncate" title="Atiye izle">#Atiye</h5>
-										<small>+649395 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/la-casa-de-papel-izle-20" data-navigo="">
-										<h5 class="truncate" title="La Casa De Papel izle">#La Casa De Papel</h5>
-										<small>+504387 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/the-vampire-diaries" data-navigo="">
-										<h5 class="truncate" title="The Vampire Diaries izle">#The Vampire Diaries</h5>
-										<small>+491405 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/family-guy-izle" data-navigo="">
-										<h5 class="truncate" title="Family Guy izle">#Family Guy</h5>
-										<small>+485770 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/the-boys" data-navigo="">
-										<h5 class="truncate" title="The Boys izle">#The Boys</h5>
-										<small>+369160 puan</small>
-									</a>
-								</li>
-								<li>
-									<a href="https://yabancidizi.vip/dizi/brooklyn-nine-nine-izle" data-navigo="">
-										<h5 class="truncate" title="Brooklyn Nine-Nine izle">#Brooklyn Nine-Nine</h5>
-										<small>+358888 puan</small>
-									</a>
-								</li>
-							</ul>
-						</section>
+						<SidebarTendencias />
 						
 					</div>
 					<div class="scroll-element scroll-x">
@@ -174,6 +110,7 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
+import SidebarTendencias from '@/components/Sidebar/SidebarTendencias.vue'
 export default {
   name: 'SidebarMovie', 
   methods: {
@@ -184,5 +121,8 @@ export default {
      directives: {
     ClickOutside
   }, 
+  components:{
+      SidebarTendencias
+	},
 }
 </script>

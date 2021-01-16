@@ -24,7 +24,13 @@
                     </font></a>
                 </li>
             </ul>
-		</nav><div class="story-list-items mb-lg">
+		</nav>
+        
+       <div class="alert alert-danger mb-lg" v-if="arrayTemasC.length == 0">
+           <font style="vertical-align: inherit;">
+               <font style="vertical-align: inherit;">Todavía no hay ningún tema en esta seccion. </font><font style="vertical-align: inherit;">¿Quieres abrir el primer tema?</font></font></div>
+
+ <div class="story-list-items mb-lg" v-else>
 	<div class="title-base">
 		<h3 class="title-tertiary pt-sm"><font style="vertical-align: inherit;">
             <font style="vertical-align: inherit;">{{textoTemas}}</font></font></h3>
@@ -78,6 +84,10 @@
     			
     				</ul>
 </div>
+
+
+
+
 
 			</div>
 </div>
@@ -199,8 +209,9 @@ export default {
            },
      components: {VotoForo, SkeletonMio},
   mounted() {
-      console.log(this.temasForo)
+    //  console.log(this.temasForo)
       if(this.temasForo==0){
+          console.log("si es 0 llamo al 1")
            this.getTemas(1)
       }else{
           this.getTemas(4)

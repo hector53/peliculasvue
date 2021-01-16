@@ -25,9 +25,11 @@
     </div>
     <div class="ui grid">
         <div class="left floated sixteen wide tablet eight wide computer column">
-            <a href="https://yabancidizi.vip/film/kill-chain" data-navigo="">
+                 <router-link @click.native="$store.commit('scrollToTop')"
+                         :to="{ name: 'detallePeliculas', params: {slug: $route.params.slug} }">
+            
                 <h1 class="page-title">{{movieTitle}}</h1>
-            </a>
+            </router-link>
         </div>
         <div class="right aligned floated sixteen wide tablet eight wide computer column"
             id="series-action-buttons">
@@ -39,9 +41,9 @@
                     tabindex="0">
                     <span>Agregar a Mi Colección</span>
                     <div class="menu left transition" :class="{'hidden' : dropdownColeccion == 0, 'visible':dropdownColeccion == 1 }" tabindex="-1">
-                        <a href="#" class="item cl_add_item" :class="{'active selected' : item.active == 1}" v-for="(item, index) in arrayMisColecciones" 
+                        <a href="" class="item cl_add_item" :class="{'active selected' : item.active == 1}" v-for="(item, index) in arrayMisColecciones" 
                         @click.prevent="agregarColeccion(item.id, item.active)"
-                        :key="index">{{item.titulo}}</a>
+                        :key="index">{{item.titulo}} {{item.id}}</a>
 
 
 

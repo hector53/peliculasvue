@@ -1,5 +1,5 @@
 <template>
-      <div>
+     
  <div class="player-seasons" > 
      <div class="season-info">
       <ul>
@@ -38,7 +38,7 @@
     </div> 
 
 
-        </div>
+       
 </template>
 
 
