@@ -100,7 +100,7 @@ export default {
               await fetch(this.urlProcesos+'wp-json/footer/options/?q=2')
                     .then((r) => r.json())
                     .then((res) => {
-                        console.log(res);
+                   //     console.log(res);
 					 this.arrayPopulares = res
                   
                     }

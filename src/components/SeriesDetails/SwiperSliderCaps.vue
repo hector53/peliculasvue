@@ -6,7 +6,7 @@
           <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Temporada</font></font></li>
         <li v-for="(temp, index) in cantidadTemporadas" :key="index"
         @click="cambiarTemporada(temp.capTemporada, index)" 
-         :class="{'active': index == temporadaTab}" 
+        :id="'tabActive_'+index"
         >{{index+1}}</li>
       </ul>
     </div>
@@ -55,6 +55,7 @@ export default {
            cantidadTemporadas: 0,
            temporadaTab: 0,
            capxActive: 0,
+           tabActiveOld: 0,
            mounted: 0,
             swiperOptions: {
             slidesPerView: 6,
@@ -82,6 +83,8 @@ export default {
           this.capitulosSlider = res[0].AllCaps;
           this.cantidadTemporadas = res[0].cantidadTemporadas;
           this.temporadaTab = (this.$route.params.id_temp - 1); 
+           
+          this.tabActiveOld = (this.$route.params.id_temp - 1); 
             this.capxActive = parseInt(res[0].capitulo_actual);
         //    console.log(this.capxActive);
            
@@ -97,6 +100,15 @@ export default {
            this.$refs.mySwiper.$swiper.slideTo( cap,1000,false );
            this.temporadaTab = temp;
            console.log("di clic a cambiar temporada")
+            
+            var element1 = document.getElementById("tabActive_"+this.tabActiveOld)
+             element1.classList.remove('active')
+
+
+
+             var element = document.getElementById("tabActive_"+temp)
+             element.classList.add('active')
+             this.tabActiveOld = temp; 
         }
     },
     mounted() {
@@ -107,6 +119,9 @@ export default {
     updated() {
         if(this.mounted == 0){
         this.$refs.mySwiper.$swiper.slideTo( this.capxActive,0,false ); 
+
+        var element1 = document.getElementById("tabActive_"+this.tabActiveOld)
+             element1.classList.add('active')
         this.mounted = 1;
         }
         

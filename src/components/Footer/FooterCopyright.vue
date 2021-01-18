@@ -30,7 +30,7 @@ async getCopyright(){
               await fetch(this.urlProcesos+'wp-json/footer/options/?q=3')
                     .then((r) => r.json())
                     .then((res) => {
-                        console.log(res);
+             //           console.log(res);
 					      this.copyright = res
                   
                     }

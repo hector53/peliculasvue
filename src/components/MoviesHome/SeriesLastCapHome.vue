@@ -27,7 +27,9 @@
                         </div>
                     </li>
                 </ul>
-                <button type="button" class="ui button load-more series-load-more" data-page="1"><svg
+                <button type="button" class="ui button load-more series-load-more"
+                :class="{'disabled' : btnCargarMas}" data-page="1" @click="cargarMas()">
+                    <svg
                         class="mofycon">
                         <use xlink:href="#icon-plus"></use>
                     </svg>Cargar Más</button>
@@ -44,17 +46,36 @@ export default {
    data (){
         return {
           SeriesLastCapHome: [],
+          pag: 0, 
+          btnCargarMas: false
         }
     },
     computed:{
         ...mapState(['urlProcesos'])
     },
     methods: {
-        async SeriesHomeLastCap(){
-           await fetch(this.urlProcesos+'wp-json/series/home_lastcap/post')
+        cargarMas(){
+            this.pag++; 
+            this.btnCargarMas = true; 
+            this.SeriesHomeLastCap()
+        }, 
+         SeriesHomeLastCap(){
+            fetch(this.urlProcesos+'wp-json/series/home_lastcap/post/?pag='+this.pag)
                     .then((r) => r.json())
                     .then((res) => {
-                        this.SeriesLastCapHome = res[0].SeriesLastCapHome;
+                        if(this.pag == 0){
+                         this.SeriesLastCapHome = res[0].SeriesLastCapHome;
+                        
+                        }
+                        if(this.pag > 0){
+                            //sumar resultados al array
+                            res[0].SeriesLastCapHome.forEach(child => {
+                               // console.log(child)
+                                this.SeriesLastCapHome.push(child); 
+                            });
+                                this.btnCargarMas = false; 
+                        }
+                       
                     }
                     );
            }, 

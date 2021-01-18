@@ -53,7 +53,7 @@
                         <div class="this-episode-not-ready" style="position: initial;">
 
                         <div>
-                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{tituloSerie}}</font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Temporada {{temporada_anterior+1}} Capítulo {{capitulo_anterior+1}}</font></font></span></h3>
+                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{tituloSerie}}</font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Temporada {{$route.params.id_temp}} Capítulo {{this.$route.params.id_cap}}</font></font></span></h3>
                         <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aún no tenemos reproductores para este Capítulo para la opcion {{opcion}}</font></font></p>
 
                         </div>

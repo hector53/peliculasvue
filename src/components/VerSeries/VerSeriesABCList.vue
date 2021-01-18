@@ -21,7 +21,12 @@
             
 		</ul>
         
-        
+        <button type="button" class="ui button load-more series-load-more"
+                :class="{'disabled' : btnCargarMas}" data-page="1" @click.prevent="cargarMas()">
+                    <svg
+                        class="mofycon">
+                        <use xlink:href="#icon-plus"></use>
+                    </svg>Cargar Más</button>
 </div>
 
 </template>
@@ -40,31 +45,76 @@ export default {
     data (){
        return {
             ABCList: [], 
-           
+            btnCargarMas: false,
+           pag: 0
         }
     },
      computed:{
         ...mapState(['urlProcesos'])
     },
     methods: {
+         cargarMas(){
+            this.pag++; 
+            this.btnCargarMas = true; 
+              if(this.letra == '#'){
+          this.getNotABC();
+      }else
+      {
+          //console get letras
+       //   console.log("get letras")
+          this.getABC();
+          
+      }
+        }, 
          async getNotABC(){
             await fetch(this.urlProcesos +
-          "wp-json/series/ABC/post/?tipo=1")
+          "wp-json/series/ABC/post/?tipo=1&pag="+this.pag)
                     .then((r) => r.json())
                     .then((res) => {
-                        this.ABCList = res
+                          if(this.pag == 0){
+                         this.ABCList = res
+                        
+                        }
+                        if(this.pag > 0){
+                    //        console.log(this.ABCList)
+                            //sumar resultados al array
+                            res.forEach(child => {
+                               // console.log(child)
+                                this.ABCList.push(child); 
+                            });
+                      //      console.log(this.ABCList)
+                                this.btnCargarMas = false; 
+                        }
                       
                     }
                     );
            }, 
            async getABC(){
-               this.ABCList = [];
+             
             await fetch(this.urlProcesos +
-          "wp-json/series/ABC/post/?tipo=2&letra="+this.letra)
+          "wp-json/series/ABC/post/?tipo=2&letra="+this.letra+"&pag="+this.pag)
                     .then((r) => r.json())
                     .then((res) => {
-                        this.ABCList = res
-                         if(this.letra == "Z"){
+
+                       if(this.pag == 0){
+                         this.ABCList = res
+                        
+                        }
+                        if(this.pag > 0){
+                       //     console.log(this.ABCList)
+                            //sumar resultados al array
+                            res.forEach(child => {
+                               // console.log(child)
+                                this.ABCList.push(child); 
+                            });
+                       //     console.log(this.ABCList)
+                                this.btnCargarMas = false; 
+                        }
+
+
+
+                        
+                         if(this.letra == "J"){
                              this.$store.state.skeleton = 1
                          }
                     }
