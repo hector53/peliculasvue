@@ -141,7 +141,7 @@
 
 	</main>
 		<SymbolsMovie />
-
+    <notifications group="notificacionLikes" position="top center" />
   </div>
 </template>
 

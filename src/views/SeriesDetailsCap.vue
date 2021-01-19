@@ -99,7 +99,7 @@
               </article>
            
             </div>
-           
+             <Likes :post_id="movie.idcap" :id_user="id_user" :userName="userName" v-if="movie.idcap" />
           </section>
         </div>
         <ComentariosFlix  :post_id="movie.idcap" :id_user="id_user" :userName="userName" v-if="movie.idcap" />
@@ -118,11 +118,12 @@ import Cookies from "js-cookie";
 import { mapState } from "vuex";
 import ReproductoresSeries from '@/components/SeriesDetails/ReproductoresSeries.vue'; 
 import SwiperSliderCaps from '@/components/SeriesDetails/SwiperSliderCaps.vue'; 
+import Likes from '@/components/Likes/Likes.vue'; 
 import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
 
 export default {
   name: "SeriesDetailsCap",
-    components: {ReproductoresSeries, SwiperSliderCaps, Cookies, ComentariosFlix},
+    components: {ReproductoresSeries, SwiperSliderCaps, Cookies, ComentariosFlix, Likes},
   data() {
     return {
       SeriesDetails: [],

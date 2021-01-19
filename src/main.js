@@ -16,6 +16,16 @@ import VueSkeletonLoading from 'vue-skeleton-loading';
 Vue.use(VueSkeletonLoading);
 
 
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
+
+Vue.notify({
+  group: 'notificacionLikes',
+  title: 'Error',
+  text: 'Hello user! This is a notification!', 
+  closeOnClick: true
+})
+
 
 import './assets/css/swiper.css'
 import './assets/css/main.css'

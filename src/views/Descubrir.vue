@@ -1,6 +1,8 @@
 <template>
 <div>
-	<div class="inner-content container" id="page-discover">
+
+  	
+	<div class="inner-content container" id="page-discover" >
 			
 					<div data-gets="" data-type="hdr"></div>
 <div class="bg-cover-faker">
@@ -58,19 +60,23 @@
 			<span class="mofycon-delete"></span>
 		</a>
 	</div>
-	
-	<div class="ui grid mb-lg mt-0">
+  
+	<div class="ui grid mb-lg mt-0" >
 
-		<DescubrirSidebar  :arrayGeneros="generos" :arrayPaises="paises" 
+		<DescubrirSidebar   :arrayGeneros="generos" :arrayPaises="paises" 
     :yearI="yearI" :yearE="yearE" :urlTest="urlTest" :imdbI="imdbI" :imdbE="imdbE"
     :genS="genSerie" :pais="pais" :tipo="tipo" />
 
-		<DescubrirContent :arraySeries="series" 
+
+
+<SkeletonMio v-show="skeletonmio == true" style="width: 75%;" />  
+		<DescubrirContent  v-show="skeletonmio == false"  :arraySeries="series" 
     :totalPaginas="totalPaginas" :paginaActual="paginaActual" 
     :num_actual_ini="num_actual_ini" :num_actual_fin="num_actual_fin"
     :parametros="parametros" :urlTest="urlTest" :tipo="tipo"
     />
 
+  
 	</div>
 
 </div>			
@@ -84,6 +90,7 @@ import {mapState} from 'vuex'
 import dropdown from 'vue-dropdowns';
 import DescubrirSidebar from '@/components/Descubrir/DescubrirSidebar.vue'
 import DescubrirContent from '@/components/Descubrir/DescubrirContent.vue'
+import SkeletonMio from '@/components/SkeletonMio/SkeletonMio.vue'
 export default {
   name: 'Descubrir',
    data (){
@@ -98,17 +105,18 @@ export default {
            {"id":"6", "name":"Agregada ↑", "order": "addMa"},
        ],
        ordenSelected: "", 
-       tipo: "serie", 
+       tipo: "pelicula", 
        generos:[], 
+       skeletonmio: true,
        paises: [], 
        series: [], 
        totalPaginas: 0, 
-       registrosxPag: 20,
+       registrosxPag: 10,
       paginaActual: 1, 
        num_actual_ini: 1,
         num_actual_fin: 3,
         ini: 0, 
-        fin: 20,
+        fin: 10,
         yearI:2000, 
         yearE: 2020, 
         imdbI: 0, 
@@ -250,7 +258,11 @@ delete this.urlTest.pais;
           var pais = params.get('pais'); 
           var Order = params.get('Order'); 
           
-          
+          console.log(this.urlProcesos +
+          "wp-json/buscador/descubrir/post/?t="+this.tipo
+          +"&yearI="+yearsI+"&yearE="+yearsE+"&imdbI="+imdbI+"&imdbE="+imdbE
+          +"&genS="+genS+"&pais="+pais+"&Order="+Order
+          +"&xPag="+this.registrosxPag+"&ini="+this.ini+"&fin="+this.fin)
             await fetch(this.urlProcesos +
           "wp-json/buscador/descubrir/post/?t="+this.tipo
           +"&yearI="+yearsI+"&yearE="+yearsE+"&imdbI="+imdbI+"&imdbE="+imdbE
@@ -263,6 +275,8 @@ delete this.urlTest.pais;
                      this.generos = res[0].generos; 
                      this.paises = res[0].paises;
                      this.series = res[0].series;
+                     this.$store.state.skeleton = 1
+                this.skeletonmio = false
                      this.totalPaginas =  res[0].totalPaginas;
                       this.paginaActual = parseInt(this.$route.params.pag); 
                      if(this.$route.params.pag > 1){
@@ -290,15 +304,14 @@ delete this.urlTest.pais;
                        this.num_actual_fin = 3
                      
                      }
-                     this.$store.state.skeleton = 1
-                   
+                     
                     }
                     );
            }, 
 		
     },
      components: {
-         dropdown, DescubrirSidebar, DescubrirContent
+         dropdown, DescubrirSidebar, DescubrirContent, SkeletonMio
          }, 
          created() {
 
@@ -309,7 +322,7 @@ delete this.urlTest.pais;
            let params = new URLSearchParams(location.search);
 
            if(urlParams.has('s')==false){
-              this.tipo = 'serie'
+              this.tipo = 'pelicula'
            }else{
                   this.tipo = params.get('s')
            }
@@ -440,7 +453,7 @@ if(urlParams.has('yearI')==false && urlParams.has('yearE')==false
 
 
            this.$store.state.skeleton = 1
-         
+        
          },
   mounted() {
 
