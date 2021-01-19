@@ -4,7 +4,7 @@
   	
 	<div class="inner-content container" id="page-discover" >
 			
-					<div data-gets="" data-type="hdr"></div>
+				
 <div class="bg-cover-faker">
 
 	<div class="ui grid mb-0">
