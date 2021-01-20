@@ -75,7 +75,7 @@ export default {
                             });
                                 this.btnCargarMas = false; 
                         }
-                       
+  this.$store.state.skeleton = 1
                     }
                     );
            }, 
