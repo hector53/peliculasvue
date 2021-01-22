@@ -17,12 +17,12 @@
         <div class="left floated left aligned nine wide column pb-0">
             <div class="series-genres pb-0">
                 <div xmlns:v="http://rdf.data-vocabulary.org/#" class="Breadcrumb">
-                    <router-link @click.native="$store.commit('scrollToTop')"
+                    <router-link @click="$store.commit('scrollToTop')"
                     :to="{ name: 'detalleSeries', params: {slug: $route.params.slug} }">
                     <span typeof="v:Breadcrumb">
                     {{movie.titulo}}</span></router-link>
 
-                    &gt;   <router-link @click.native="$store.commit('scrollToTop')"
+                    &gt;   <router-link @click="$store.commit('scrollToTop')"
                     :to="{ name: 'detalleSeriesTemporadas', params: {slug: $route.params.slug, id_temp: $route.params.id_temp} }"><span typeof="v:Breadcrumb">
                     Temporada {{$route.params.id_temp }}</span></router-link>
                     &gt; Capitulo {{$route.params.id_cap }} ({{movie.titulo_cap}})
@@ -48,7 +48,7 @@
        <div class="ui grid mt-0" style="margin-top: 1rem!important;">
 		<div class="left floated sixteen wide tablet sixteen wide computer column">
 			<h1 class="page-title">
-                  <router-link @click.native="$store.commit('scrollToTop')"
+                  <router-link @click="$store.commit('scrollToTop')"
                     :to="{ name: 'detalleSeries', params: {slug: $route.params.slug} }">
                 {{movie.titulo}}</router-link>
                   <span class="light-title"> Temporada {{$route.params.id_temp }} - Capitulo {{$route.params.id_cap }}</span>
@@ -184,6 +184,10 @@ export default {
       this.SeriesGetDetailsCapitulos();
      
      
+  },
+
+  created() {
+    this.$store.state.skeleton = 0
   },
   
 };

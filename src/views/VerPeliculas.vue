@@ -254,6 +254,7 @@ export default {
 	 this.getVerPeliculas()
     },
     created(){
+      this.$store.state.skeleton = 0
         const valores = window.location.search;
            const urlParams = new URLSearchParams(valores);
            let params = new URLSearchParams(location.search);

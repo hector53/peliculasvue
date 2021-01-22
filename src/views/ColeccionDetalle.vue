@@ -376,6 +376,10 @@ export default {
        this.getMisColecciones()
         }
   },
+
+  created() {
+    this.$store.state.skeleton = 0
+  },
 }
 </script>
 <style >

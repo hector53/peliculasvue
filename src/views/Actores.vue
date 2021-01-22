@@ -51,7 +51,7 @@
 			<div class="global-box p-md flex">
 				<ul class="cast-series-list">
                         <li v-for="(movie, index) in actor.participo" :key="index">
-                      <router-link @click.native="$store.commit('scrollToTop')"
+                      <router-link @click="$store.commit('scrollToTop')"
                          :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
                             <img :src="movie.imagen">
                             <h3 class="truncate">{{movie.titulo}}</h3>
@@ -150,7 +150,9 @@ Seguir, Cookies
       
   },
 
- 
+ created() {
+   this.$store.state.skeleton = 0
+ },
 };
 </script>
 <style >

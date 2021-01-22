@@ -48,6 +48,10 @@ export default {
   methods: {
 
         likeUp(){
+                if(this.id_user == null){
+ vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+}
             console.log("like UP")
             this.disableBtn = true
 
@@ -78,6 +82,10 @@ export default {
           });
         }, 
  likeDown(){
+         if(this.id_user == null){
+ vm.$children[0].$refs.HeaderMovies.loginOpen()
+ return false
+}
             console.log("like Down")
             this.disableBtn = true
 

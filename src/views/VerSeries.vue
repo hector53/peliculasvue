@@ -53,6 +53,9 @@ export default {
          }, 
   mounted() {
 	 
-    },
+	},
+	created() {
+		this.$store.state.skeleton = 0
+	},
 }
 </script>

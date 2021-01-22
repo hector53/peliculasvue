@@ -314,7 +314,7 @@ delete this.urlTest.pais;
          dropdown, DescubrirSidebar, DescubrirContent, SkeletonMio
          }, 
          created() {
-
+          this.$store.state.skeleton = 0
           
         //   console.log(window.location.search)
            const valores = window.location.search;

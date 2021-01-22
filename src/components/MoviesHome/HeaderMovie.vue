@@ -40,7 +40,7 @@
                 <ul class="clearfix" style="flex-wrap: wrap">
                   <li class="segment-poster-sm" v-for="(movie, index) in arrayBuscadorSerie" :key="index" >
                     <div class="poster poster-xs">
-                    <router-link @click.native="$store.commit('scrollToTop'), linkOcultar()"  :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
+                    <router-link @click="$store.commit('scrollToTop'), linkOcultar()"  :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
 				   		<div class="poster-subject">
                           <h2 class="truncate">{{movie.titulo}}</h2>
                         </div>
@@ -61,12 +61,12 @@
                   <li class="segment-poster"  v-for="(movie, index) in arrayBuscadorPelicula" :key="index">
                     <div class="poster poster-md">
                       <div class="poster-media">
-                       <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
+                       <router-link @click="$store.commit('scrollToTop')" :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
                     	<img :src="movie.imagen"
                         /></router-link>
                       </div>
                       <div class="poster-subject">
-                       <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
+                       <router-link @click="$store.commit('scrollToTop')" :to="{ name: 'detallePeliculas', params: {slug: movie.slug} }">
                     		<h2 class="truncate">{{movie.titulo}}</h2></router-link>
                         <p class="poster-meta truncate">
                           <span class="genres">{{movie.year}}</span>

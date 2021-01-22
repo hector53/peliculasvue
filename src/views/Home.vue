@@ -55,6 +55,9 @@ export default {
   components: {
     SeriesHomeFeatured, MovieHomeFeatured, TrailersSeriesHomeNewTemp, SeriesLastCapHome,
     SeriesHomeNotables, LastMoviesHome, SeriesHomeRanking, ColeccionesMasVistas
-  }
+  }, 
+  created() {
+    this.$store.state.skeleton = 0
+  },
 }
 </script>

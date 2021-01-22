@@ -43,7 +43,7 @@
                     <div class="menu left transition" :class="{'hidden' : dropdownColeccion == 0, 'visible':dropdownColeccion == 1 }" tabindex="-1">
                         <a href="" class="item cl_add_item" :class="{'active selected' : item.active == 1}" v-for="(item, index) in arrayMisColecciones" 
                         @click.prevent="agregarColeccion(item.id, item.active)"
-                        :key="index">{{item.titulo}} {{item.id}}</a>
+                        :key="index">{{item.titulo}}</a>
 
 
 

@@ -81,7 +81,7 @@ var co = Cookies.get("user_session");
 
     },
     created(){
-
+this.$store.state.skeleton = 0
     }
 }
 </script>

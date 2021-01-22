@@ -50,7 +50,7 @@ TendenciasPeliculas, TendenciasUsers, TendenciasTabla
  
 },
     created(){
-
+this.$store.state.skeleton = 0
     }
 }
 </script>

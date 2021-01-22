@@ -11,36 +11,20 @@
 
             <ReproductoresMovies :movieID="movie.id"  :tituloSerie="movie.titulo" />
            
-            <div class="mobile-only mb-lg"></div>
-            <div data-gets="" data-type="va"></div>
+           
             <section class="episode-overview mb-md">
                 <div class="episode-likes">
                     <div class="ui grid">
                         <div class="left floated left aligned six wide column">
                         </div>
                         <div class="right floated right aligned ten wide tablet four wide computer column">
-                            <button class="ui secondary button fnc_addFeel" data-id="38634" data-type="1" data-status="1"
-                                onlyusers="">
-                                <svg class="mofycon">
-                                    <use xlink:href="#icon-thumbs-up"></use>
-                                </svg>
-                                <span>8</span>
-                            </button>
-                            <button class="ui secondary button fnc_addFeel" data-id="38634" data-type="2" data-status="1"
-                                onlyusers="">
-                                <svg class="mofycon">
-                                    <use xlink:href="#icon-thumbs-down"></use>
-                                </svg>
-                                <span>5</span>
-                            </button>
-                            <div class="ui tiny progress mt-md">
-                                <div class="bar"></div>
-                            </div>
+                 <Likes :post_id="movie.id" :id_user="id_user" :userName="userName" v-if="movie.id" />
+        
                         </div>
                     </div>
                 </div>
             </section>
-            <div data-gets="" data-type="vaa"></div>
+           
             
             <div id="series-tabs" class="ui pointing secondary menu">
                 <a class="item active" data-tab="first"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Visión de conjunto</font></font></a>
@@ -68,7 +52,7 @@
                                 </div>
                                 <div class="ui list">
                                     <div class="item"><span class="label">Generos:</span> 
-                    <router-link class="item" @click.native="$store.commit('scrollToTop')"
+                    <router-link class="item" @click="$store.commit('scrollToTop')"
                          :to="{ name: 'categoriaMovie', params: {slug: genero.slug} }"
 						 v-for="(genero, index) in movie.generos" :key="index"
 						 >{{genero.genero}}</router-link></div>
@@ -156,6 +140,7 @@ import BreadCrumbsMovies from '@/components/MoviesDetails/BreadCrumbsMovies.vue'
 import ReproductoresMovies from '@/components/MoviesDetails/ReproductoresMovies.vue'
 import ActoresMovies from '@/components/MoviesDetails/ActoresMovies.vue'
 import ComentariosFlix from '@/components/Comentarios/ComentariosFlix.vue'
+import Likes from '@/components/Likes/Likes.vue'; 
 export default {
   name: 'MoviesDetails',
    data (){
@@ -201,7 +186,7 @@ export default {
          
     },
      components: {
-BreadCrumbsMovies, ReproductoresMovies, Cookies, ComentariosFlix, ActoresMovies
+BreadCrumbsMovies, ReproductoresMovies, Cookies, ComentariosFlix, ActoresMovies, Likes
          }, 
   mounted() {
        var co = Cookies.get("user_session"); 
@@ -212,6 +197,9 @@ BreadCrumbsMovies, ReproductoresMovies, Cookies, ComentariosFlix, ActoresMovies
     this.userName = co.user_login
         }
             this.MoviesGetDetails();
+    },
+    created() {
+        this.$store.state.skeleton = 0
     },
 }
 </script>

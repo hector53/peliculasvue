@@ -5,7 +5,7 @@
                 <ul class="clearfix" id="result_lastEpisodes">
                     <li class="segment-poster-sm"  v-for="(movie, index) in SeriesLastCapHome" :key="index">
                         <div class="poster poster-xs">
-                        <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
+                        <router-link @click="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
                    
                                 <span class="date">
                                 

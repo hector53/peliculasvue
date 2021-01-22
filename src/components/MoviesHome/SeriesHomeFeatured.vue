@@ -3,7 +3,7 @@
             <div class="flex flex-row">
                 <div class="flex flex-column poster poster-hg" v-for="(movie, index) in SeriesFeaturedHome2 " :key="index">
                     <div class="flex poster-media" >
-                    <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
+                    <router-link @click="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
                             <div class="poster-subject">
                                 <span class="date">
                                 <span class="date-text">{{movie.fecha}}</span>
@@ -28,7 +28,7 @@
             <div class="flex flex-row">
                 <div class="flex poster poster-sm" v-for="(movie, index) in SeriesFeaturedHome " :key="index" >
                     <div class="poster-media">
-                    <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
+                    <router-link @click="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
                    
                             <div class="poster-subject">
                                 <span class="date">

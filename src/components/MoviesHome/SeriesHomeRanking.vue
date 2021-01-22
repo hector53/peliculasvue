@@ -9,7 +9,7 @@
                                  style="width:100%;padding:6.66px 10px"
                                   v-for="(movie, index) in SeriesHomeRank " :key="index">
                                     <div class="poster poster-xs">
-                                    <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
+                                    <router-link @click="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
                    
                                             <div class="poster-subject">
                                                 <h2 class="truncate">{{movie.titulo}}</h2>
@@ -55,7 +55,6 @@ export default {
                     .then((res) => {
                     //    console.log(res)
                         this.SeriesHomeRank = res[0].seriesRankingHome;
-                     
                     }
                     );
            }, 

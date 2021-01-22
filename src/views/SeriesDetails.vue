@@ -16,7 +16,7 @@
         <div class="ui grid">
 
             <div class="left floated sixteen wide tablet nine wide computer column">
-                <router-link @click.native="$store.commit('scrollToTop')"
+                <router-link @click="$store.commit('scrollToTop')"
                     :to="{ name: 'detalleSeries', params: {slug: $route.params.slug} }">
 
                     <h1 class="page-title">
@@ -43,7 +43,7 @@
                     <font style="vertical-align: inherit;">Visión de conjunto</font>
                 </font>
             </a>
-             <router-link @click.native="$store.commit('scrollToTop')" class="item" 
+             <router-link @click="$store.commit('scrollToTop')" class="item" 
 				:to="{name:'ForoVerSeccion', params: {foro_slug: $route.params.slug} }">
            
                 <font style="vertical-align: inherit;">
@@ -85,7 +85,7 @@
                             <div class="ui list">
                                 <div class="item"><span class="label">Generos:</span> 
 
-                        <router-link class="item" @click.native="$store.commit('scrollToTop')"
+                        <router-link class="item" @click="$store.commit('scrollToTop')"
                          :to="{ name: 'categoriaSerie', params: {slug: genero.slug} }"
 						  v-for="(genero, index) in movie.generos" :key="index"
 						 >{{genero.genero}}</router-link>
@@ -280,7 +280,7 @@
                                                                     <td class="collapsing table-episode-check">
                                                                        
                                                                         <div class="ordilabel">
-                                                                        <router-link @click.native="$store.commit('scrollToTop')"
+                                                                        <router-link @click="$store.commit('scrollToTop')"
                                                                          :to="{ name: 'detalleSeriesTemporadasCapitulos', 
                                                                          params: {slug: movie.slugsolo, id_temp: tabTemp, id_cap: index+1 } }">
                                                                                 <font style="vertical-align: inherit;">
@@ -294,7 +294,7 @@
                                                                     <td id="table-episodes-title"
                                                                         class="table-episodes-title">
                                                                         <h6 class="truncate">
-                                                                        <router-link @click.native="$store.commit('scrollToTop')"
+                                                                        <router-link @click="$store.commit('scrollToTop')"
                                                                         :to="{ name: 'detalleSeriesTemporadasCapitulos', 
                                                                         params: {slug: movie.slugsolo, id_temp: tabTemp, id_cap: index+1 } }">
                                                                              
@@ -412,6 +412,9 @@ BreadCrumbsSeries, ComentariosFlix, Cookies, ActoresSeries
     this.userName = co.user_login
         }
            this.SeriesGetDetails();
+    },
+    created() {
+        this.$store.state.skeleton = 0
     },
 }
 </script>

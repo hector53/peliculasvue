@@ -72,7 +72,7 @@
 							<td>#{{index}}</td>
 							<td class="details">
 							  <router-link @click.native="$store.commit('scrollToTop')"
-                    :to="{ name: 'ColeccionDetalle', params: {username: userName, slug: movie.slug} }">
+                    :to="{ name: 'ColeccionDetalle', params: {username: movie.username, slug: movie.slug} }">
 					<font style="vertical-align: inherit;">
                    <font style="vertical-align: inherit;">{{movie.titulo}}</font></font></router-link>
 								<div class="category"><font style="vertical-align: inherit;">
@@ -85,8 +85,8 @@
 															</td>
 							<td class="flex-text-right">
 								<div class="poster-avatar pt-xs" tabindex="0">
-									<span class="poster-username pl-0 pr-sm">@{{userName}}</span>
-									<img src="https://avatars.dicebear.com/api/bottts/hectoracosta53.svg" alt="lacasadepapel">
+									<span class="poster-username pl-0 pr-sm">@{{movie.username}}</span>
+									<img :src="movie.userImagen" :alt="movie.titulo">
 								</div>
 							</td>
 						</tr>
@@ -222,7 +222,10 @@ export default {
         //listar colecciones 
         this.getMisColecciones()
         this.getColeccionesComunidad()
+        }else{
+          this.getColeccionesComunidad()
         }
+        
   },
 };
 </script>

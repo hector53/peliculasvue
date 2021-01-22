@@ -18,7 +18,7 @@
                     ><font style="vertical-align: inherit">{{nivel}}</font></font
                   >
                 </div>
-                 <router-link  class="circle-progress-link" @click.native="$store.commit('scrollToTop')" 
+                 <a  class="circle-progress-link" @click.native="$store.commit('scrollToTop')" 
                 :to="{ name: 'PerfilUser', params: {user: userName} }" >
                
                   <img
@@ -44,7 +44,7 @@
                       ></circle>
                     </svg>
                   </div>
-                </router-link>
+                </a>
               </figure>
 
               <h2 class="title-secondary">

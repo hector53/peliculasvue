@@ -5,7 +5,7 @@
                         <ul class="clearfix new-tvseries">
                             <li class="segment-poster-sm" v-for="(movie, index) in SeriesHomeNotables" :key="index">
                                 <div class="poster poster-xs">
-                                <router-link @click.native="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
+                                <router-link @click="$store.commit('scrollToTop')" :to="{ name: 'detalleSeries', params: {slug: movie.slug} }">
                    
                                         <img class="lazy-wide loaded"
                                             :src="movie.imagen"

@@ -10,21 +10,21 @@
 							<ul class="guide-icon-menu">
 								<li  :class="{'active': $route.name == 'Home'}" >
 								
-                                        <router-link  @click.native="$store.commit('scrollToTop')"  :to="{name:'Home'}"><span>
+                                        <router-link  @click="$store.commit('scrollToTop')"  :to="{name:'Home'}"><span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-home-new"></use>
 											</svg>
                                         </span>Inicio</router-link>  
 								</li>
 								<li :class="{'active': $route.name == 'Descubrir'}">
-                                <router-link  @click.native="$store.commit('scrollToTop')" :to="{name:'Descubrir'}"><span>
+                                <router-link  @click="$store.commit('scrollToTop')" :to="{name:'Descubrir'}"><span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-discover-new"></use>
 											</svg>
                                         </span>Descubrir</router-link> 
 								</li>
-								<li>
-										 <router-link @click.native="$store.commit('scrollToTop')" 
+								<li :class="{'active': $route.name == 'Tendencias'}">
+								<router-link @click="$store.commit('scrollToTop')" 
 								 :to="{name:'Tendencias'}">
 									
 										<span>
@@ -35,8 +35,8 @@
 
 
 								</li>
-								<li>
-								<router-link @click.native="$store.commit('scrollToTop')" 
+								<li :class="{'active': $route.name == 'Calendario'}">
+								<router-link @click="$store.commit('scrollToTop')" 
 								 :to="{name:'Calendario'}">
 										<span>
 											<svg class="mofycon">
@@ -44,8 +44,8 @@
 											</svg>
 										</span>Calendario </router-link>
 								</li>
-								<li :class="{'active': $route.name == 'VerSeries'}">
-									 <router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerSeries'}">
+								<li  :class="{'active': $route.name == 'VerSeries'}">
+									 <router-link @click="$store.commit('scrollToTop')" :to="{name:'VerSeries'}">
 										<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-tv-new"></use>
@@ -54,7 +54,7 @@
 									</router-link>
 								</li>
 								<li :class="{'active': $route.name == 'VerPeliculas'}">
-								<router-link @click.native="$store.commit('scrollToTop')" :to="{name:'VerPeliculas'}">
+								<router-link @click="$store.commit('scrollToTop')" :to="{name:'VerPeliculas'}">
 									<span>
 											<svg class="mofycon">
 												<use xlink:href="#icon-film-new"></use>
@@ -63,7 +63,7 @@
 									</router-link>
 								</li>
 								<li :class="{'active': $route.name == 'Foro'}">
-								<router-link @click.native="$store.commit('scrollToTop')" 
+								<router-link @click="$store.commit('scrollToTop')" 
 								:to="{name:'Foro'}">
 								
 										<span>
@@ -72,8 +72,8 @@
 											</svg>
 										</span>Foro </router-link>
 								</li>
-								<li>
-								 <router-link @click.native="$store.commit('scrollToTop')" 
+								<li :class="{'active': $route.name == 'Colecciones'}">
+								 <router-link @click="$store.commit('scrollToTop')" 
 								 :to="{name:'Colecciones'}">
 									
 										<span>
