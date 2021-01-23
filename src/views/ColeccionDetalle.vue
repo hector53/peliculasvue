@@ -2,18 +2,25 @@
 <div class="inner-content container" id="page-collection">
 
 <div class="bg-cover-faker">
-					<div class="right floated sixteen wide tablet three wide computer wide column">
-				<div class="collection-delete" data-id="60479">
+					<div class="right floated sixteen wide tablet three wide computer wide column" v-if="error==false">
+				<div class="collection-delete" >
 					<button class="ui primary button"
            @click="eliminarColeccion()" v-if="$route.params.username == userName"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Eliminar colección</font></font></button>
 				</div>
+
+        <div class="collection-delete" style="margin-top: 10px" >
+					<button class="ui scrolling button dropdown top right pointing"
+          :class="{'disabled' : disabled, 'secondary': publica == 0, 'primary' : publica == 1}"
+           @click="hacerPublica()" v-if="$route.params.username == userName"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hacer Pública</font></font></button>
+				</div>
 			</div>
-			<div class="ui grid mt-0">
+			<div class="ui grid mt-0" v-if="error==false">
 		<div class="left floated sixteen wide tablet sixteen wide computer column" style="margin-top: 40px;">
 			<h1 class="page-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{titulo_coleccion}}</font></font></h1>
 			<div class="sub-title pt-sm"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{descripcion_coleccion}}</font></font></div>		</div>
 	</div>
-		<div id="collection-archive" class="dark-segment mt-lg" v-show="skeleton==1">
+
+		<div id="collection-archive" class="dark-segment mt-lg" v-show="skeleton==1" v-if="error==false">
 
 
 <ul class="clearfix mb-0">
@@ -63,14 +70,14 @@
 
 
 
- <ComentariosFlix v-if="skeleton==1"  :post_id="id_coleccion" :id_user="id_user" :userName="$route.params.username" />
+ <ComentariosFlix v-if="skeleton==1 && error == false"  :post_id="id_coleccion" :id_user="id_user" :userName="$route.params.username" />
 
 
-
-
-
-	    
     
+		</div>
+
+    <div class="alert alert-danger" role="alert" v-if="error">
+        {{errorMsj}}
 		</div>
 
 			<skeleton-loading v-show="skeleton==0">
@@ -213,7 +220,11 @@ export default {
 	descripcion_coleccion: null, 
 	id_coleccion: null, 
 	error: null, 
-	mouseOver: false
+  mouseOver: false, 
+  error: false, 
+  errorMsj: "", 
+  disabled: false,
+  publica: 0
         }
     },
       computed:{
@@ -249,7 +260,7 @@ export default {
                         icon: 'success',
                         title: 'Borrado con exito'
 					  }); 
-					  this.getMisColecciones()
+					  this.getMisColecciones(this.id_user)
 					  }
                      
                     }
@@ -260,7 +271,41 @@ export default {
 		 
 	
    
-		},
+    },
+   async hacerPublica(){
+    
+ 
+
+      this.disabled = true
+
+       await  fetch(this.urlProcesos +
+          "wp-json/colecciones/crear_coleccion/post/?q=gcpublic&username="+this.$route.params.username+"&slug="
+          +this.$route.params.slug+"&id_user="+this.id_user+"&id_coleccion="+this.id_coleccion+"&publica="+this.publica)
+                    .then((r) => r.json())
+                    .then((res) => {
+                 //    console.log(res)
+                          if(res[0].publica == 0){
+                              this.$notify({ group: 'notificacionLikes',
+                              text: 'Coleccion ya no esta disponible publicamente', 
+                              type: 'info', 
+                                duration: 2000, 
+                                speed: 1000, 
+                              
+                              })
+                          }else{
+                             this.$notify({ group: 'notificacionLikes',
+                              text: 'Coleccion disponible publicamente', 
+                              type: 'success', 
+                                duration: 2000, 
+                                speed: 1000, 
+                              
+                              })
+                          }
+                          this.publica = res[0].publica
+                           this.disabled = false
+                    }
+                    );
+    }, 
 		mouse_over(id, out){
 			
 			var element = document.getElementById("dimmer"+id)
@@ -282,26 +327,29 @@ export default {
 		
 
 		},
-         async getMisColecciones(){
-           console.log(this.urlProcesos +
-          "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.$route.params.username+"&slug="
-          +this.$route.params.slug)
+         async getMisColecciones(id_user){
+         
 			this.arrayMiColeccion = []
             await fetch(this.urlProcesos +
           "wp-json/colecciones/crear_coleccion/post/?q=gc&username="+this.$route.params.username+"&slug="
-          +this.$route.params.slug)
+          +this.$route.params.slug+"&id_user="+id_user)
                     .then((r) => r.json())
                     .then((res) => {
 						
-                      //console.log(res)
+                      console.log(res)
                       if(res[0].error == ""){
 						  this.titulo_coleccion = res[0].titulo; 
 						  this.descripcion_coleccion = res[0].descripcion; 
               this.id_coleccion = res[0].id_coleccion; 
           
               this.arrayMiColeccion = res[0].agregadas
+              this.publica = res[0].publica
               this.ContVisit()
-					  }
+					  }else{
+              this.$router.push({  name: 'Colecciones' })
+              this.error = true
+              this.errorMsj = res[0].error
+            }
                       this.$store.state.skeleton = 1
                     }
                     );
@@ -373,8 +421,12 @@ export default {
     this.id_user = co.user_id; 
        this.userName = co.user_login
         //listar colecciones 
-       this.getMisColecciones()
+       this.getMisColecciones(co.user_id)
+        }else{
+this.getMisColecciones(0)
         }
+
+        
   },
 
   created() {
