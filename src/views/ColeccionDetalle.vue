@@ -11,7 +11,7 @@
         <div class="collection-delete" style="margin-top: 10px" >
 					<button class="ui scrolling button dropdown top right pointing"
           :class="{'disabled' : disabled, 'secondary': publica == 0, 'primary' : publica == 1}"
-           @click="hacerPublica()" v-if="$route.params.username == userName"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hacer Pública</font></font></button>
+           @click="hacerPublica()" v-if="$route.params.username == userName & p == 1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hacer Pública</font></font></button>
 				</div>
 			</div>
 			<div class="ui grid mt-0" v-if="error==false">
@@ -224,7 +224,8 @@ export default {
   error: false, 
   errorMsj: "", 
   disabled: false,
-  publica: 0
+  publica: 0, 
+  p: 0
         }
     },
       computed:{
@@ -343,7 +344,9 @@ export default {
               this.id_coleccion = res[0].id_coleccion; 
           
               this.arrayMiColeccion = res[0].agregadas
+              this.p = res[0].p
               this.publica = res[0].publica
+
               this.ContVisit()
 					  }else{
               this.$router.push({  name: 'Colecciones' })
