@@ -6,14 +6,24 @@
 <div class="ui grid mb-0 desktop-only">	
 	<div class="left floated sixteen wide tablet eleven wide computer column pb-0">
 		<div class="cat-tagsx">
-     <router-link class="ui button secondary"  target="_blank" :title="item.name"  v-for="(item, index) in generos" :key="index"
+     <router-link class="ui button secondary"    :title="item.name"  v-for="(item, index) in generos" :key="index"
      :data-tooltip="item.name" 
 :to="{ name: 'Descubrir', query: {s: 'pelicula', genS: item.slug} }">
      
 	
         {{item.name}}
          </router-link>
+          <dropdown class="my-dropdown-toggle"
+           :options="opcionesDropGeneros" 
+                        :selected="GeneroDropSelected" 
+                         v-on:updateOption="clickGeneroDrop" 
+                        :placeholder="'Mas...'"
+          :closeOnOutsideClick="true"
+          :classGen="1">
+      </dropdown>
 	    </div>
+
+      
 		
 	</div>
 	
@@ -104,7 +114,13 @@ export default {
            {"id":"5", "name":"Agregada ↓", "order": "addMe"},
            {"id":"6", "name":"Agregada ↑", "order": "addMa"},
        ],
+       opcionesDropGeneros: [
+           {"id":"0", "name":"Mas...", "order": "imdbMe"},
+           {"id":"2", "name":"IMDB ↑", "order": "imdbMa" }, 
+           
+       ],
        ordenSelected: "", 
+       GeneroDropSelected: "Mas...",
        urlTest: {}
 	  
         }
@@ -113,6 +129,11 @@ export default {
         ...mapState(['urlProcesos'])
     },
     methods: {
+      clickGeneroDrop(payload){
+         
+         this.$router.push({  name: 'Descubrir', query: {s: 'pelicula', genS: payload.slug} })
+        
+      }, 
        buscarOrdenar(payload) {
            console.log(payload.id);
            let params = new URLSearchParams(location.search);
@@ -205,7 +226,14 @@ export default {
                     .then((r) => r.json())
                     .then((res) => {
                      console.log(res)
-                        this.generos = res[0].generos;
+                   console.log(res[0].generos.length)
+                    var generosCortados = res[0].generos.slice(0, 6);
+                    var generosDrop = res[0].generos.slice(6, res[0].generos.length);
+                      console.log(generosCortados)
+                       console.log(generosDrop)
+// masculinos contiene ['Pedro','Miguel
+                        this.generos = generosCortados;
+                        this.opcionesDropGeneros = generosDrop
                         this.peliculasSlider = res[0].peliculas_slider;
                         this.peliculasEstrenar = res[0].peliculas_estrenar;
                         this.peliculasUltimas =  res[0].ultimas_peliculas;

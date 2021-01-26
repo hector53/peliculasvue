@@ -39,11 +39,16 @@ export default {
               //mostrar trailer de youtube 
               var youtube = trailer.split("=")
             //  console.log(youtube[1]);
-              this.$swal({
+                 this.$swal({
                 html:
-                  '<iframe width="100%" height="300" src="https://www.youtube.com/embed/'+youtube[1]+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                  '<iframe width="100%" height="480" frameborder="0"  webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://www.youtube.com/embed/'+youtube[1]+'?autoplay=1&amp;rel=0"></iframe>',
                   showConfirmButton: false,
                   showCloseButton: true,
+                  customClass: {
+                    
+                    popup: 'trailerSeries',
+                  
+                }
                 
               })
               return  

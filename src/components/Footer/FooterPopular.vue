@@ -5,6 +5,7 @@
 						<h6>Categorías Populares</h6>
 						<div class="ui two column doubling grid">
 							<div class="column">
+								<h6 style="    margin-top: 10px;">Series</h6>
 								<div class="ui link list">
 
 						<router-link class="item" @click.native="$store.commit('scrollToTop')"
@@ -16,6 +17,7 @@
 								</div>
 							</div>
 							<div class="column">
+								<h6 style="    margin-top: 10px;">Películas</h6>
 								<div class="ui link list">
 								<router-link class="item" @click.native="$store.commit('scrollToTop')"
                          :to="{ name: 'categoriaMovie', params: {slug: movie2.slug} }"
